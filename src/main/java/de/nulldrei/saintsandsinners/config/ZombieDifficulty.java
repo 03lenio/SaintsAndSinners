@@ -8,8 +8,6 @@ public class ZombieDifficulty {
 
     public static boolean extraSpawningCave = true;
 
-    public static boolean doHordes = false;
-
     public static double randomSpeedBoost = 0.3D;
 
 }

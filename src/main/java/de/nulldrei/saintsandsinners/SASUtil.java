@@ -69,11 +69,6 @@ public class SASUtil {
             }
         }
 
-        if (ZombieDifficulty.doHordes) {
-            if (rand.nextInt(25) == 0) {
-                //spawnWaypoint(player);
-            }
-        }
 
     }
 
@@ -160,9 +155,7 @@ public class SASUtil {
         BlockState state = world.getBlockState(pos);
         Block block = state.getBlock();//Block.pressurePlatePlanks.blockID;
 
-        /*if (id == Block.grass.blockID || id == Block.stone.blockID || id == Block.tallGrass.blockID || id == Block.grass.blockID || id == Block.sand.blockID) {
-            return true;
-        }*/
+
         return (!(block instanceof AirBlock)) && block.isValidSpawn(state, world, pos, SpawnPlacements.Type.ON_GROUND, EntityType.ZOMBIE);
     }
 
@@ -192,29 +185,6 @@ public class SASUtil {
     }
 
 
-    /* public static void spawnWaypoint(Entity entSource) {
-        int range = 128;
-        int tryX = (entSource.getBlockX() - range / 2 + rand.nextInt(range));
-        int tryZ = (entSource.getBlockZ() - range / 2 + rand.nextInt(range));
-        int tryY = entSource.level().getHeight(Heightmap.Types.MOTION_BLOCKING, (int)Math.floor(tryX), (int)Math.floor(tryZ));
-        if (!canSpawnTrace(entSource.m_9236_(), tryX, tryY, tryZ))
-            return;
-        double height = entSource.getBbHeight();
-        EntityScent var1 = getSenseNodeAtPos(entSource.m_9236_(), new Vector3d(tryX, tryY, tryZ), EnumSenseType.WAYPOINT);
-        boolean newNode = false;
-        if (var1 == null) {
-            var1 = new EntityScent((EntityType<EntityScent>)EntityRegistry.SCENT.get(), entSource.m_9236_());
-            newNode = true;
-        }
-        var1.setStrengthPeak(150);
-        if (newNode) {
-            var1.m_6034_(tryX, tryY, tryZ);
-            var1.f_19847_ = 2;
-            entSource.m_9236_().m_7967_(var1);
-        }
-
-        System.out.println("WP: " + entSource + " - range: " + var1.getRange());
-    }*/
 
 
     public static double distance(int x1, int z1, int x2, int z2) {
