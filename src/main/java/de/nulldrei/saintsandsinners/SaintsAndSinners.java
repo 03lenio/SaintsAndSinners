@@ -62,6 +62,7 @@ public class SaintsAndSinners {
             output.accept(SASItems.BOTTLE.get());
             output.accept(SASItems.BROKENBOTTLE.get());
             output.accept(SASItems.SHIV.get());
+            output.accept(SASItems.SCREWDRIVER.get());
             }).build());
 
     public SaintsAndSinners() {
