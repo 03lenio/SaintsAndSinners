@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern":[
+    " B ",
+    " G ",
+    " G "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:oak_button"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "item": "saintsandsinners:bottle"
+}
+}

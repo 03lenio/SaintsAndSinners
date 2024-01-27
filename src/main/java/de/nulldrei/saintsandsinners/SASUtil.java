@@ -14,7 +14,9 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.SpyglassItem;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -41,7 +43,6 @@ public class SASUtil {
             if (player.level().isDay()) {
                 if (getWorldData(player.level().dimension().toString()).lastMobsCountSurface < ZombieSpawning.daySpawningSurfaceMaxCount) {
                     int rand2 =  rand.nextInt(ZombieSpawning.daySpawningSurfaceRandomPool);
-                    System.out.println(ZombieSpawning.daySpawningSurfaceRandomPool);
                     if (ZombieSpawning.daySpawningSurfaceRandomPool <= 0 || rand2 == 0) {
                         spawnNewMobSurface(player);
                     }
@@ -54,7 +55,6 @@ public class SASUtil {
             if (!player.level().isDay()) {
                 if (getWorldData(player.level().dimension().toString()).lastMobsCountSurface < ZombieSpawning.extraNightSpawningSurfaceMaxCount) {
                     if (ZombieSpawning.extraNightSpawningSurfaceRandomPool <= 0 || rand.nextInt(ZombieSpawning.extraNightSpawningSurfaceRandomPool) == 0) {
-                        System.out.println("Spooky night zombie");
                         spawnNewMobSurface(player);
                     }
                 }
@@ -68,8 +68,6 @@ public class SASUtil {
                 }
             }
         }
-
-
     }
 
     public static void spawnNewMobSurface(Player player) {
@@ -119,7 +117,6 @@ public class SASUtil {
            if ((int)distance((int)player.getX(), (int)player.getZ(), tryX, tryZ) < minDist || (int)distance((int)player.getX(), (int)player.getZ(), tryX, tryZ) > maxDist || !canSpawnMobOnGround(player.level(), tryX, tryY, tryZ) || !isInDarkCave(player.level(), tryX, tryY, tryZ, true)) {
                 continue;
            }
-                SaintsAndSinners.LOGGER.debug(String.valueOf((int)distance((int)player.getX(), (int)player.getZ(), tryX, tryZ)));
                 int randSize = player.level().random.nextInt(ZombieSpawning.extraSpawningCavesMaxGroupSize) + 1;
                 ServerLevel world = (ServerLevel) player.level();
                 for (int i = 0; i < randSize; i++) {
