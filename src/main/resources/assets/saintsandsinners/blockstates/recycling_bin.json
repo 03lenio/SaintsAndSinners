@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "saintsandsinners:block/recycling_bin"
+    },
+    "facing=south": {
+      "model": "saintsandsinners:block/recycling_bin",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "saintsandsinners:block/recycling_bin",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "saintsandsinners:block/recycling_bin",
+      "y": 90
+    }
+  }
+}

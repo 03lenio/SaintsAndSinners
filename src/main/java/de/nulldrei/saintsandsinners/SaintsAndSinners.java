@@ -1,6 +1,7 @@
 package de.nulldrei.saintsandsinners;
 
 import com.mojang.logging.LogUtils;
+import de.nulldrei.saintsandsinners.block.SASBlocks;
 import de.nulldrei.saintsandsinners.item.SASItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
@@ -63,11 +64,12 @@ public class SaintsAndSinners {
             output.accept(SASItems.BROKENBOTTLE.get());
             output.accept(SASItems.SHIV.get());
             output.accept(SASItems.SCREWDRIVER.get());
+            output.accept(SASBlocks.RECYCLINGBIN.get());
             }).build());
 
     public SaintsAndSinners() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
+        SASBlocks.register(modEventBus);
         SASItems.register(modEventBus);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
