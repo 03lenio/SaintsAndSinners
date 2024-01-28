@@ -65,6 +65,9 @@ public class SaintsAndSinners {
             output.accept(SASItems.SHIV.get());
             output.accept(SASItems.SCREWDRIVER.get());
             output.accept(SASBlocks.RECYCLINGBIN.get());
+            output.accept(SASItems.DIAMOND_SHARD.get());
+            output.accept(SASItems.NETHERITE_FRAGMENT.get());
+            output.accept(SASItems.COPPER_NUGGET.get());
             }).build());
 
     public SaintsAndSinners() {
@@ -107,8 +110,10 @@ public class SaintsAndSinners {
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            event.accept(SASItems.BOTTLE);
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(SASItems.DIAMOND_SHARD);
+            event.accept(SASItems.NETHERITE_FRAGMENT);
+            event.accept(SASItems.COPPER_NUGGET);
         }
     }
     // You can use SubscribeEvent and let the Event Bus discover methods to call

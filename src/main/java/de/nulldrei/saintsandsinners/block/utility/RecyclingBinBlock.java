@@ -1,6 +1,7 @@
 package de.nulldrei.saintsandsinners.block.utility;
 
 import de.nulldrei.saintsandsinners.SASUtil;
+import de.nulldrei.saintsandsinners.item.SASItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.controls.KeyBindsList;
 import net.minecraft.core.BlockPos;
@@ -29,6 +30,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclingBinBlock extends HorizontalDirectionalBlock {
@@ -44,7 +46,8 @@ public class RecyclingBinBlock extends HorizontalDirectionalBlock {
                 ItemStack itemInHand = p_60506_.getItemInHand(p_60507_);
                 List<CraftingRecipe> recipes = p_60504_.getRecipeManager().getAllRecipesFor(RecipeType.CRAFTING);
                 boolean returnedItem = false;
-                int ingredientCounter = 1;
+                ArrayList<ItemStack> alreadySeen = new ArrayList<ItemStack>();
+                int ingredientCounter = 0;
                 for (CraftingRecipe recipe : recipes) {
                     if (recipe.getResultItem(p_60504_.registryAccess()).getItem() == itemInHand.getItem()) {
                         for (Ingredient ingredient : recipe.getIngredients()) {
@@ -58,6 +61,18 @@ public class RecyclingBinBlock extends HorizontalDirectionalBlock {
                                     addItem(p_60506_, new ItemStack(Items.GOLD_NUGGET), p_60505_);
                                     returnedItem = true;
                                 }
+                                else if(itemStack.getItem().toString().contains("diamond")) {
+                                    addItem(p_60506_, new ItemStack(SASItems.DIAMOND_SHARD.get()), p_60505_);
+                                    returnedItem = true;
+                                }
+                                else if(itemStack.getItem().toString().contains("netherite")) {
+                                    addItem(p_60506_, new ItemStack(SASItems.NETHERITE_FRAGMENT.get()), p_60505_);
+                                    returnedItem = true;
+                                }
+                                else if(itemStack.getItem().toString().contains("copper")) {
+                                    addItem(p_60506_, new ItemStack(SASItems.COPPER_NUGGET.get()), p_60505_);
+                                    returnedItem = true;
+                                }
                                 else if(itemStack.getItem().toString().equals("string")) {
                                     addItem(p_60506_, new ItemStack(Items.STRING), p_60505_);
                                     returnedItem = true;
@@ -68,6 +83,7 @@ public class RecyclingBinBlock extends HorizontalDirectionalBlock {
                                 }
                                 else if(itemStack.getItem().toString().contains("wood") || itemStack.getItem().toString().contains("plank")) {
                                     addItem(p_60506_, new ItemStack(Items.STICK), p_60505_);
+                                    //System.out.println(itemStack.getItem().toString());
                                     returnedItem = true;
                                 }
                                 else if(itemStack.getItem().toString().contains("bone")) {
@@ -126,7 +142,7 @@ public class RecyclingBinBlock extends HorizontalDirectionalBlock {
     }
 
     public boolean isScrapItem(ItemStack item) {
-        return (item.getItem() == Items.IRON_NUGGET || item.getItem() == Items.GOLD_NUGGET || item.getItem() == Items.REDSTONE || item.getItem() == Items.GUNPOWDER || item.getItem() == Items.STICK || item.getItem() == Items.STRING || item.getItem() == Items.GLASS || item.getItem() == Items.LEATHER || item.getItem() == Items.SUGAR || item.getItem() == Items.BONE);
+        return (item.getItem() == Items.IRON_NUGGET || item.getItem() == Items.GOLD_NUGGET || item.getItem() == SASItems.NETHERITE_FRAGMENT.get() || item.getItem() == SASItems.COPPER_NUGGET.get() || item.getItem() == SASItems.DIAMOND_SHARD.get() || item.getItem() == Items.REDSTONE || item.getItem() == Items.GUNPOWDER || item.getItem() == Items.STICK || item.getItem() == Items.STRING || item.getItem() == Items.GLASS || item.getItem() == Items.LEATHER || item.getItem() == Items.SUGAR || item.getItem() == Items.BONE);
     }
 
     public BlockState rotate(BlockState p_60215_, Rotation p_60216_) {
