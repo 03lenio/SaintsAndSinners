@@ -2,9 +2,19 @@ package de.nulldrei.saintsandsinners;
 
 import com.mojang.logging.LogUtils;
 import de.nulldrei.saintsandsinners.block.SASBlocks;
+import de.nulldrei.saintsandsinners.entity.SASEntities;
+import de.nulldrei.saintsandsinners.entity.ai.memory.SASMemoryModules;
+import de.nulldrei.saintsandsinners.entity.ai.memory.sensors.SASSensorTypes;
+import de.nulldrei.saintsandsinners.entity.client.SASModelLayers;
+import de.nulldrei.saintsandsinners.entity.client.SurvivorRendererReworked;
+import de.nulldrei.saintsandsinners.event.SASEventHandler;
 import de.nulldrei.saintsandsinners.item.SASItems;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.PiglinRenderer;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -68,12 +78,16 @@ public class SaintsAndSinners {
             output.accept(SASItems.DIAMOND_SHARD.get());
             output.accept(SASItems.NETHERITE_FRAGMENT.get());
             output.accept(SASItems.COPPER_NUGGET.get());
+            output.accept(SASItems.SPAWN_BEGGAR.get());
             }).build());
 
     public SaintsAndSinners() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         SASBlocks.register(modEventBus);
         SASItems.register(modEventBus);
+        SASEntities.register(modEventBus);
+        SASMemoryModules.register(modEventBus);
+        SASSensorTypes.register(modEventBus);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(new SASEventHandler());
@@ -133,6 +147,11 @@ public class SaintsAndSinners {
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+           // EntityRenderers.register(SASEntities.BEGGAR_SURVIVOR.get(), SurvivorRendererReworked::new);
+            EntityRenderers.register(SASEntities.BEGGAR_SURVIVOR.get(), (p_174066_) -> {
+                return new SurvivorRendererReworked(p_174066_, SASModelLayers.SURVIVOR_LAYER, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false);
+            });
+
         }
     }
 }

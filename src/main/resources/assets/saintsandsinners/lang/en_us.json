@@ -6,5 +6,7 @@
   "item.saintsandsinners.diamond_shard": "Diamond Shard",
   "item.saintsandsinners.netherite_fragment": "Netherite Fragment",
   "item.saintsandsinners.copper_nugget": "Copper Nugget",
-  "block.saintsandsinners.recycling_bin": "Recycling Bin"
+  "block.saintsandsinners.recycling_bin": "Recycling Bin",
+  "item.saintsandsinners.beggar_spawn_egg": "Spawn Beggar",
+  "entity.saintsandsinners.beggar_survivor": "Beggar"
 }

@@ -1,8 +1,10 @@
 package de.nulldrei.saintsandsinners.item;
 
 import de.nulldrei.saintsandsinners.SaintsAndSinners;
+import de.nulldrei.saintsandsinners.entity.SASEntities;
 import de.nulldrei.saintsandsinners.item.combat.Bottle;
 import net.minecraft.world.item.*;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -20,6 +22,8 @@ public class SASItems {
     public static final RegistryObject<Item> SHIV = ITEMS.register("shiv", () -> new SwordItem(Tiers.IRON, 2, -1.5F, new Item.Properties().durability(100)));
     public static final RegistryObject<Item> BROKENBOTTLE = ITEMS.register("broken_bottle", () -> new SwordItem(Tiers.STONE, 3, -0.5F, new Item.Properties().durability(15)));
     public static final RegistryObject<Item> SCREWDRIVER = ITEMS.register("screwdriver", () -> new SwordItem(Tiers.STONE, 2, -0.5F, new Item.Properties().durability(150)));
+    public static final RegistryObject<ForgeSpawnEggItem> SPAWN_BEGGAR = ITEMS.register("beggar_spawn_egg", () -> new ForgeSpawnEggItem(SASEntities.BEGGAR_SURVIVOR, 0x965D22, 0xFFC51C, new Item.Properties()));
+
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

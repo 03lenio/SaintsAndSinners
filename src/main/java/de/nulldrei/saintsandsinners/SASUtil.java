@@ -3,37 +3,30 @@ package de.nulldrei.saintsandsinners;
 import de.nulldrei.saintsandsinners.config.ZombieDifficulty;
 import de.nulldrei.saintsandsinners.config.ZombieSpawning;
 import de.nulldrei.saintsandsinners.data.WorldData;
-import net.minecraft.client.gui.ComponentPath;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.commands.LocateCommand;
-import net.minecraft.server.commands.SummonCommand;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.SpyglassItem;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.eventbus.api.Event;
+import org.checkerframework.checker.units.qual.A;
 
-import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.UUID;
 
 public class SASUtil {
 
+    public static ArrayList<String> neededItems = new ArrayList<>();
     public static HashMap<String, WorldData> lookupWorldData = new HashMap<>();
     public static Random rand = new Random();
 
@@ -188,6 +181,10 @@ public class SASUtil {
             if(item.isEmpty()) return false;
         }
         return true;
+    }
+
+    public static boolean doSurvivorsFindItemUseful(ItemStack itemStack) {
+        return neededItems.contains(itemStack.toString());
     }
 
     public static double distance(int x1, int z1, int x2, int z2) {
