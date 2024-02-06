@@ -35,7 +35,7 @@ import java.util.List;
 
 public class RecyclingBinBlock extends HorizontalDirectionalBlock {
 
-    public static final VoxelShape vs = Block.box(0, 0, 1, 16 , 15, 14);
+    public static final VoxelShape vs = Block.box(-1, 0, 2, 17, 16, 14);
 
 
     @Override

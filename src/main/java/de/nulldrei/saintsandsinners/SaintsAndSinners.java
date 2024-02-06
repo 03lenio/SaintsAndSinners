@@ -6,15 +6,13 @@ import de.nulldrei.saintsandsinners.entity.SASEntities;
 import de.nulldrei.saintsandsinners.entity.ai.memory.SASMemoryModules;
 import de.nulldrei.saintsandsinners.entity.ai.memory.sensors.SASSensorTypes;
 import de.nulldrei.saintsandsinners.entity.client.SASModelLayers;
-import de.nulldrei.saintsandsinners.entity.client.SurvivorRendererReworked;
+import de.nulldrei.saintsandsinners.entity.client.SurvivorRenderer;
 import de.nulldrei.saintsandsinners.event.SASEventHandler;
 import de.nulldrei.saintsandsinners.item.SASItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.renderer.entity.PiglinRenderer;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -71,7 +69,7 @@ public class SaintsAndSinners {
             .icon(() -> SASItems.SHIV.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
             output.accept(SASItems.BOTTLE.get());
-            output.accept(SASItems.BROKENBOTTLE.get());
+            output.accept(SASItems.BROKEN_BOTTLE.get());
             output.accept(SASItems.SHIV.get());
             output.accept(SASItems.SCREWDRIVER.get());
             output.accept(SASBlocks.RECYCLINGBIN.get());
@@ -79,6 +77,9 @@ public class SaintsAndSinners {
             output.accept(SASItems.NETHERITE_FRAGMENT.get());
             output.accept(SASItems.COPPER_NUGGET.get());
             output.accept(SASItems.SPAWN_BEGGAR.get());
+            output.accept(SASItems.GREEN_BOX_OF_STUFF.get());
+            output.accept(SASItems.GREY_BOX_OF_STUFF.get());
+            output.accept(SASItems.ORANGE_BOX_OF_STUFF.get());
             }).build());
 
     public SaintsAndSinners() {
@@ -147,9 +148,8 @@ public class SaintsAndSinners {
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
-           // EntityRenderers.register(SASEntities.BEGGAR_SURVIVOR.get(), SurvivorRendererReworked::new);
             EntityRenderers.register(SASEntities.BEGGAR_SURVIVOR.get(), (p_174066_) -> {
-                return new SurvivorRendererReworked(p_174066_, SASModelLayers.SURVIVOR_LAYER, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false);
+                return new SurvivorRenderer(p_174066_, SASModelLayers.SURVIVOR_LAYER, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false);
             });
 
         }

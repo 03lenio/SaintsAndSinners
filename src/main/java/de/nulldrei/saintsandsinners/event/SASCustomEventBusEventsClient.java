@@ -2,7 +2,7 @@ package de.nulldrei.saintsandsinners.event;
 
 import de.nulldrei.saintsandsinners.SaintsAndSinners;
 import de.nulldrei.saintsandsinners.entity.client.SASModelLayers;
-import de.nulldrei.saintsandsinners.entity.client.SurvivorModelReworked;
+import de.nulldrei.saintsandsinners.entity.client.SurvivorModel;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,7 +15,7 @@ public class SASCustomEventBusEventsClient {
 
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(SASModelLayers.SURVIVOR_LAYER, () -> LayerDefinition.create(SurvivorModelReworked.createMesh(CubeDeformation.NONE), 64, 64));
+        event.registerLayerDefinition(SASModelLayers.SURVIVOR_LAYER, () -> LayerDefinition.create(SurvivorModel.createMesh(CubeDeformation.NONE), 64, 64));
      }
 
 }

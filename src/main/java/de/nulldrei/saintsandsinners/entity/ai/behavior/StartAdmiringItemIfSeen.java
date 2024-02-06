@@ -14,11 +14,8 @@ public class StartAdmiringItemIfSeen {
                 return (p_260130_, p_259946_, p_259235_) -> {
                     ItemEntity itementity = p_259264_.get(p_259343_);
                     if (!BeggarSurvivorAI.isNeededItem(itementity.getItem())) {
-                        //System.out.println(SASUtil.neededItems);
-                        System.out.println(itementity.getItem());
                         return false;
                     } else {
-
                         p_260195_.setWithExpiry(true, (long)p_259418_);
                         return true;
                     }

@@ -3,31 +3,23 @@ package de.nulldrei.saintsandsinners.entity.client;// Made with Blockbench 4.9.3
 // Paste this class into your mod and generate all required imports
 
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import de.nulldrei.saintsandsinners.entity.animations.SASAnimationUtils;
 import de.nulldrei.saintsandsinners.entity.animations.pose.SurvivorArmPose;
 import de.nulldrei.saintsandsinners.entity.neutral.AbstractSurvivor;
 import net.minecraft.client.model.AnimationUtils;
-import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.PlayerModel;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 
-public class SurvivorModelReworked<T extends Mob> extends PlayerModel<T> {
+public class SurvivorModel<T extends Mob> extends PlayerModel<T> {
 	private final PartPose bodyDefault = this.body.storePose();
 	private final PartPose headDefault = this.head.storePose();
 	private final PartPose leftArmDefault = this.leftArm.storePose();
 	private final PartPose rightArmDefault = this.rightArm.storePose();
 
-	public SurvivorModelReworked(ModelPart p_170810_) {
+	public SurvivorModel(ModelPart p_170810_) {
 		super(p_170810_, false);
 	}
 
@@ -82,16 +74,6 @@ public class SurvivorModelReworked<T extends Mob> extends PlayerModel<T> {
 		this.rightSleeve.copyFrom(this.rightArm);
 		this.jacket.copyFrom(this.body);
 		this.hat.copyFrom(this.head);
-	}
-
-	protected void setupAttackAnimation(T p_103363_, float p_103364_) {
-		/*
-		if (this.attackTime > 0.0F && p_103363_ instanceof Survivor && ((Survivor)p_103363_).getArmPose() == SurvivorArmPose.ATTACKING_WITH_MELEE_WEAPON) {
-			AnimationUtils.swingWeaponDown(this.rightArm, this.leftArm, p_103363_, this.attackTime, p_103364_);
-		} else {
-			super.setupAttackAnimation(p_103363_, p_103364_);
-		}
-		*/
 	}
 
 	private void holdWeaponHigh(T p_103361_) {

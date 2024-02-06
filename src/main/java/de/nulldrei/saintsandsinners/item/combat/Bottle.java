@@ -40,10 +40,9 @@ public class Bottle extends Item {
     public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
         Entity camera = Minecraft.getInstance().getCameraEntity();
         assert camera != null;
-        //Was entity.pick
         hitResult = camera.pick(20.0D, 0.0F, false);
         if (this.hitResult.getType() == HitResult.Type.BLOCK) {
-            entity.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(SASItems.BROKENBOTTLE.get()));
+            entity.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(SASItems.BROKEN_BOTTLE.get()));
             entity.level().playSound(null, entity.blockPosition(), SoundEvents.GLASS_BREAK, SoundSource.BLOCKS);
         } else {
             return false;

@@ -16,7 +16,6 @@ public class StopHoldingItemIfNoLongerAdmiring {
                     if (!p_289482_.getOffhandItem().isEmpty() && !p_289482_.getOffhandItem().canPerformAction(net.minecraftforge.common.ToolActions.SHIELD_BLOCK)) {
                         if(p_289482_ instanceof  BeggarSurvivor) {
                             BeggarSurvivorAI.stopHoldingOffHandItem((BeggarSurvivor) p_289482_, true);
-                            System.out.println("yep im gonna stop holding this now");
                         }
                         return true;
                     } else {

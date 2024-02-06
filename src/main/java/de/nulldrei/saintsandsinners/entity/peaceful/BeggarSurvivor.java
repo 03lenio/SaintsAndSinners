@@ -12,8 +12,6 @@ import de.nulldrei.saintsandsinners.entity.neutral.AbstractSurvivor;
 import de.nulldrei.saintsandsinners.entity.peaceful.variant.Variant;
 import de.nulldrei.saintsandsinners.item.SASItems;
 import net.minecraft.Util;
-import net.minecraft.client.renderer.entity.HorseRenderer;
-import net.minecraft.client.renderer.entity.RabbitRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -36,17 +34,11 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.sensing.Sensor;
 import net.minecraft.world.entity.ai.sensing.SensorType;
-import net.minecraft.world.entity.animal.Rabbit;
-import net.minecraft.world.entity.animal.Sheep;
-import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.piglin.PiglinBruteAi;
 import net.minecraft.world.entity.npc.InventoryCarrier;
-import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -55,7 +47,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 import java.util.Random;
 
 public class BeggarSurvivor extends AbstractSurvivor implements InventoryCarrier, VariantHolder<Variant> {
@@ -85,7 +76,6 @@ public class BeggarSurvivor extends AbstractSurvivor implements InventoryCarrier
     public ItemStack generateNeededItem() {
         Random random = new Random();
         int rand = random.nextInt(5);
-        System.out.println(rand);
         switch(rand) {
             case 1 -> { return new ItemStack(Items.GUNPOWDER); }
             case 2 -> { return new ItemStack(Items.IRON_CHESTPLATE); }
@@ -124,7 +114,7 @@ public class BeggarSurvivor extends AbstractSurvivor implements InventoryCarrier
         if (!compoundtag.isEmpty()) {
             ItemStack neededItemStack = ItemStack.of(compoundtag);
             if (neededItemStack.isEmpty()) {
-                System.out.println("Unable to load item from: " + compoundtag);
+                SaintsAndSinners.LOGGER.error("Unable to load item from: " + compoundtag);
             } else {
                 setNeededItem(neededItemStack);
             }
@@ -142,7 +132,6 @@ public class BeggarSurvivor extends AbstractSurvivor implements InventoryCarrier
         ItemStack neededItem = generateNeededItem();
         this.getEntityData().set(DATA_ITEM, neededItem);
         SASUtil.neededItems.add(neededItem.toString());
-        System.out.println(getEntityData().get(DATA_ITEM));
         setVariant(Util.getRandom(Variant.values(), p_21434_.getRandom()));
         return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_, p_21438_);
     }
@@ -176,12 +165,10 @@ public class BeggarSurvivor extends AbstractSurvivor implements InventoryCarrier
     }
 
     protected void defineSynchedData() {
-        System.out.println("zyzz");
         this.getEntityData().define(DATA_ITEM, ItemStack.EMPTY);
         this.getEntityData().define(DATA_BEGGING, Boolean.TRUE);
         this.getEntityData().define(DATA_ACTIVELY_BEGGING, Boolean.FALSE);
         this.getEntityData().define(DATA_ID_TYPE_VARIANT, 0);
-        System.out.println(getEntityData().get(DATA_BEGGING));
         super.defineSynchedData();
     }
 
@@ -229,7 +216,6 @@ public class BeggarSurvivor extends AbstractSurvivor implements InventoryCarrier
 
     public InteractionResult mobInteract(Player p_34745_, InteractionHand p_34746_) {
         if(isBegging()) {
-            System.out.println(isBegging() + "SUPER GAY");
             InteractionResult interactionresult = super.mobInteract(p_34745_, p_34746_);
             if (interactionresult.consumesAction()) {
                 return interactionresult;
@@ -280,8 +266,6 @@ public class BeggarSurvivor extends AbstractSurvivor implements InventoryCarrier
         } else if (getEntityData().get(DATA_ACTIVELY_BEGGING) && isBegging()) {
             return SurvivorArmPose.BEGGING_FOR_ITEM;
         } else {
-            //System.out.println("fuck u" + getBrain().hasMemoryValue(MemoryModuleType.NEAREST_VISIBLE_PLAYER));
-            //System.out.println(getBrain().getMemories());
            BeggarSurvivorAI.seesPlayer(this);
         }
         return SurvivorArmPose.DEFAULT;
@@ -297,10 +281,6 @@ public class BeggarSurvivor extends AbstractSurvivor implements InventoryCarrier
             }
             return flag;
         }
-    }
-
-    protected void holdInMainHand(ItemStack p_34784_) {
-        this.setItemSlotAndDropWhenKilled(EquipmentSlot.MAINHAND, p_34784_);
     }
 
     public void holdInOffHand(ItemStack p_34786_) {
@@ -346,10 +326,6 @@ public class BeggarSurvivor extends AbstractSurvivor implements InventoryCarrier
 
     protected void playStepSound(BlockPos p_34748_, BlockState p_34749_) {
         this.playSound(SoundEvents.ZOMBIE_STEP, 0.15F, 1.0F);
-    }
-
-    public void playSoundEvent(SoundEvent p_219196_) {
-        this.playSound(p_219196_, this.getSoundVolume(), this.getVoicePitch());
     }
 
     @Override

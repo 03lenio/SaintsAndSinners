@@ -5,13 +5,10 @@ import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.util.Pair;
 import de.nulldrei.saintsandsinners.SASUtil;
 import de.nulldrei.saintsandsinners.entity.ai.behavior.*;
-import de.nulldrei.saintsandsinners.entity.ai.behavior.StartAdmiringItemIfSeen;
-import de.nulldrei.saintsandsinners.entity.ai.behavior.StopHoldingItemIfNoLongerAdmiring;
 import de.nulldrei.saintsandsinners.entity.ai.memory.SASMemoryModules;
 import de.nulldrei.saintsandsinners.entity.neutral.AbstractSurvivor;
 import de.nulldrei.saintsandsinners.entity.peaceful.BeggarSurvivor;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvent;
+import de.nulldrei.saintsandsinners.item.SASItems;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.TimeUtil;
@@ -26,38 +23,20 @@ import net.minecraft.world.entity.ai.behavior.declarative.BehaviorBuilder;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.monster.piglin.*;
+import net.minecraft.world.entity.monster.piglin.StopAdmiringIfItemTooFarAway;
+import net.minecraft.world.entity.monster.piglin.StopAdmiringIfTiredOfTryingToReachItem;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.schedule.Activity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
-import net.minecraft.world.level.storage.loot.LootParams;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 public class BeggarSurvivorAI {
-    private static final int ADMIRE_DURATION = 120;
-    private static final int MAX_DISTANCE_TO_WALK_TO_ITEM = 9;
-    private static final int MAX_TIME_TO_WALK_TO_ITEM = 200;
-    private static final int HOW_LONG_TIME_TO_DISABLE_ADMIRE_WALKING_IF_CANT_REACH_ITEM = 200;
-    public static final UniformInt TIME_BETWEEN_HUNTS = TimeUtil.rangeOfSeconds(30, 120);
     private static final UniformInt RETREAT_DURATION = TimeUtil.rangeOfSeconds(5, 20);
-    private static final int EAT_COOLDOWN = 200;
-    private static final int DESIRED_DISTANCE_FROM_ENTITY_WHEN_AVOIDING = 12;
-    private static final int MAX_LOOK_DIST = 8;
-    private static final int MAX_LOOK_DIST_FOR_PLAYER_HOLDING_USEFUL_ITEM = 14;
-    private static final int INTERACTION_RANGE = 8;
-    private static final float SPEED_WHEN_STRAFING_BACK_FROM_TARGET = 0.75F;
-    private static final int DESIRED_DISTANCE_FROM_ZOMBIE = 6;
     private static final UniformInt AVOID_ZOMBIE_DURATION = TimeUtil.rangeOfSeconds(5, 7);
-    private static final UniformInt AVOID_NEMESIS_DURATION = TimeUtil.rangeOfSeconds(5, 7);
 
     public static Brain<?> makeBrain(BeggarSurvivor p_34841_, Brain<BeggarSurvivor> p_34842_) {
         initCoreActivity(p_34842_);
@@ -67,7 +46,6 @@ public class BeggarSurvivorAI {
         p_34842_.setCoreActivities(ImmutableSet.of(Activity.CORE));
         p_34842_.setDefaultActivity(Activity.IDLE);
         p_34842_.useDefaultActivity();
-        System.out.println("nigga two times");
         return p_34842_;
     }
 
@@ -109,13 +87,10 @@ public class BeggarSurvivorAI {
     public static void pickUpItem(BeggarSurvivor p_34844_, ItemEntity p_34845_) {
         stopWalking(p_34844_);
         ItemStack itemstack;
-        System.out.println(p_34844_.getNeededItem().toString());
-        System.out.println("YEP this is getting called");
         itemstack = p_34845_.getItem();
         if (p_34844_.doesSurvivorNeedItem(itemstack)) {
             p_34844_.take(p_34845_, 1);
             itemstack = removeOneItemFromItemEntity(p_34845_);
-            System.out.println("yep I need this");
             p_34844_.setBegging(false);
             p_34844_.getBrain().eraseMemory(MemoryModuleType.TIME_TRYING_TO_REACH_ADMIRE_ITEM);
             holdInOffhand(p_34844_, itemstack);
@@ -153,7 +128,7 @@ public class BeggarSurvivorAI {
         boolean flag = p_34868_.doesSurvivorNeedItem(itemstack);
         if (p_34869_ && flag) {
 
-            throwItems(p_34868_, getBarterResponseItems(p_34868_));
+            throwItem(p_34868_, getBoxToGift(p_34868_));
             putInInventory(p_34868_, itemstack);
         } else if (!flag) {
                 putInInventory(p_34868_, itemstack);
@@ -161,54 +136,53 @@ public class BeggarSurvivorAI {
         }
     }
 
-    public static void cancelAdmiring(BeggarSurvivor p_34928_) {
-        if (isAdmiringItem(p_34928_) && !p_34928_.getOffhandItem().isEmpty()) {
-            p_34928_.spawnAtLocation(p_34928_.getOffhandItem());
-            p_34928_.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
-        }
-
-    }
 
     private static void putInInventory(BeggarSurvivor p_34953_, ItemStack p_34954_) {
         ItemStack itemstack = p_34953_.addToInventory(p_34954_);
-        System.out.println("I put it in the inventory");
-        throwItemsTowardRandomPos(p_34953_, Collections.singletonList(itemstack));
+        throwItemTowardRandomPos(p_34953_, itemstack);
     }
 
-    private static void throwItems(BeggarSurvivor p_34861_, List<ItemStack> p_34862_) {
+    private static void throwItem(BeggarSurvivor p_34861_, ItemStack boxToThrow) {
         Optional<Player> optional = p_34861_.getBrain().getMemory(MemoryModuleType.NEAREST_VISIBLE_PLAYER);
         if (optional.isPresent()) {
-            throwItemsTowardPlayer(p_34861_, optional.get(), p_34862_);
+            throwItemTowardPlayer(p_34861_, optional.get(), boxToThrow);
         } else {
-            throwItemsTowardRandomPos(p_34861_, p_34862_);
+            throwItemTowardRandomPos(p_34861_, boxToThrow);
         }
 
     }
 
-    private static void throwItemsTowardRandomPos(BeggarSurvivor p_34913_, List<ItemStack> p_34914_) {
-        throwItemsTowardPos(p_34913_, p_34914_, getRandomNearbyPos(p_34913_));
+    private static void throwItemTowardRandomPos(BeggarSurvivor p_34913_, ItemStack itemStack) {
+        throwItemTowardPos(p_34913_, itemStack, getRandomNearbyPos(p_34913_));
     }
 
-    private static void throwItemsTowardPlayer(BeggarSurvivor p_34851_, Player p_34852_, List<ItemStack> p_34853_) {
-        throwItemsTowardPos(p_34851_, p_34853_, p_34852_.position());
+    private static void throwItemTowardPlayer(BeggarSurvivor p_34851_, Player p_34852_, ItemStack itemStack) {
+        throwItemTowardPos(p_34851_, itemStack, p_34852_.position());
     }
 
-    private static void throwItemsTowardPos(BeggarSurvivor p_34864_, List<ItemStack> p_34865_, Vec3 p_34866_) {
-        if (!p_34865_.isEmpty()) {
+    private static void throwItemTowardPos(BeggarSurvivor p_34864_, ItemStack itemStack, Vec3 p_34866_) {
+        if(!itemStack.isEmpty()) {
             p_34864_.swing(InteractionHand.OFF_HAND);
+            BehaviorUtils.throwItem(p_34864_, itemStack, p_34866_.add(0.0D, 1.0D, 0.0D));
+        }
+    }
 
-            for(ItemStack itemstack : p_34865_) {
-                BehaviorUtils.throwItem(p_34864_, itemstack, p_34866_.add(0.0D, 1.0D, 0.0D));
+    private static ItemStack getBoxToGift(BeggarSurvivor p_34997_) {
+        Random random = new Random();
+        int rand = random.nextInt(3);
+        switch (rand) {
+            case 2 -> {
+                return new ItemStack(SASItems.GREEN_BOX_OF_STUFF.get());
+
+            }
+            case 1 -> {
+                    return new ItemStack(SASItems.GREY_BOX_OF_STUFF.get());
+
+            }
+            default -> {
+                return new ItemStack(SASItems.ORANGE_BOX_OF_STUFF.get());
             }
         }
-
-    }
-
-    private static List<ItemStack> getBarterResponseItems(BeggarSurvivor p_34997_) {
-        //TODO// Add own survivor loot table
-        LootTable loottable = p_34997_.level().getServer().getLootData().getLootTable(BuiltInLootTables.PIGLIN_BARTERING);
-        List<ItemStack> list = loottable.getRandomItems((new LootParams.Builder((ServerLevel)p_34997_.level())).withParameter(LootContextParams.THIS_ENTITY, p_34997_).create(LootContextParamSets.PIGLIN_BARTER));
-        return list;
     }
 
     public static boolean wantsToPickup(BeggarSurvivor p_34858_, ItemStack p_34859_) {
@@ -234,7 +208,6 @@ public class BeggarSurvivorAI {
 
     private static boolean isNearZombie(BeggarSurvivor p_34999_) {
         Brain<BeggarSurvivor> brain = p_34999_.getBrain();
-        //TODO // Add own memory for zombie
         if (brain.hasMemoryValue(SASMemoryModules.NEAREST_VISIBLE_ZOMBIE.get())) {
             LivingEntity livingentity = brain.getMemory(SASMemoryModules.NEAREST_VISIBLE_ZOMBIE.get()).get();
             return p_34999_.closerThan(livingentity, 6.0D);
@@ -261,12 +234,6 @@ public class BeggarSurvivorAI {
         return !isAdmiringDisabled(p_34910_) && !isAdmiringItem(p_34910_) && p_34910_.doesSurvivorNeedItem(p_34911_);
     }
 
-    public static Optional<SoundEvent> getSoundForCurrentActivity(BeggarSurvivor p_34948_) {
-        return p_34948_.getBrain().getActiveNonCoreActivity().map((p_34908_) -> {
-            return getSoundForActivity(p_34948_, p_34908_);
-        });
-    }
-
     public static void maybePlayActivitySound(BeggarSurvivor p_35115_) {
         if ((double)p_35115_.level().random.nextFloat() < 0.0125D) {
             playActivitySound(p_35115_);
@@ -283,53 +250,13 @@ public class BeggarSurvivorAI {
         });
     }
 
-    private static SoundEvent getSoundForActivity(BeggarSurvivor p_34855_, Activity p_34856_) {
-        // TODO // Implement own sounds
-         /*if (p_34856_ == Activity.ADMIRE_ITEM) {
-             return SoundEvents.VILLAGER_YES;
-         } else if(p_34856_ == Activity.AVOID) {
-            System.out.println("rape");
-            return SoundEvents.ZOMBIE_DEATH;
-         } else if(!(p_34856_ == Activity.AVOID)) {
-             return SoundEvents.VILLAGER_AMBIENT;
-         }
-        return null;*/
-        if (p_34856_ == Activity.FIGHT) {
-            return SoundEvents.PIGLIN_ANGRY;
-        } else if (p_34856_ == Activity.AVOID && isNearAvoidTarget(p_34855_)) {
-            return SoundEvents.VILLAGER_HURT;
-        } else if (p_34856_ == Activity.ADMIRE_ITEM) {
-            return SoundEvents.PIGLIN_ADMIRING_ITEM;
-        } else if (p_34856_ == Activity.CELEBRATE) {
-            return SoundEvents.PIGLIN_CELEBRATE;
-        }  else {
-            return isNearAvoidTarget(p_34855_) ? SoundEvents.PIGLIN_RETREAT : SoundEvents.PIGLIN_AMBIENT;
-        }
-    }
-
     private static BehaviorControl<BeggarSurvivor> avoidNemesis() {
         return CopyMemoryWithExpiry.create((p_289472_) -> { return true; }, MemoryModuleType.NEAREST_VISIBLE_NEMESIS, MemoryModuleType.AVOID_TARGET, AVOID_ZOMBIE_DURATION);
     }
 
-    private static boolean isNearAvoidTarget(BeggarSurvivor p_35003_) {
-        Brain<BeggarSurvivor> brain = p_35003_.getBrain();
-        return !brain.hasMemoryValue(MemoryModuleType.AVOID_TARGET) ? false : brain.getMemory(MemoryModuleType.AVOID_TARGET).get().closerThan(p_35003_, 12.0D);
-    }
-
-
     private static void stopWalking(BeggarSurvivor p_35007_) {
         p_35007_.getBrain().eraseMemory(MemoryModuleType.WALK_TARGET);
         p_35007_.getNavigation().stop();
-    }
-
-    public static Optional<LivingEntity> getAvoidTarget(BeggarSurvivor p_34987_) {
-        return p_34987_.getBrain().hasMemoryValue(MemoryModuleType.AVOID_TARGET) ? p_34987_.getBrain().getMemory(MemoryModuleType.AVOID_TARGET) : Optional.empty();
-    }
-
-    private static void retreatFromNearestTarget(BeggarSurvivor p_34950_, LivingEntity p_34951_) {
-        Brain<BeggarSurvivor> brain = p_34950_.getBrain();
-        LivingEntity $$3 = BehaviorUtils.getNearestTarget(p_34950_, brain.getMemory(MemoryModuleType.AVOID_TARGET), p_34951_);
-        setAvoidTarget(p_34950_, $$3);
     }
 
     private static boolean wantsToStopFleeing(BeggarSurvivor p_35009_) {
@@ -342,7 +269,6 @@ public class BeggarSurvivorAI {
             return entitytype == EntityType.ZOMBIE;
         }
     }
-
 
     private static void setAvoidTarget(AbstractSurvivor p_34968_, LivingEntity p_34969_) {
         p_34968_.getBrain().setMemoryWithExpiry(MemoryModuleType.AVOID_TARGET, p_34969_, (long)RETREAT_DURATION.sample(p_34968_.level().random));
@@ -366,7 +292,6 @@ public class BeggarSurvivorAI {
     }
 
     private static void admireGiftItem(LivingEntity p_34939_) {
-        System.out.println("Im admiring this");
         p_34939_.getBrain().setMemoryWithExpiry(MemoryModuleType.ADMIRING_ITEM, true, 120L);
     }
 
@@ -386,10 +311,6 @@ public class BeggarSurvivorAI {
         return !seesPlayer(p_34983_);
     }
 
-    public static boolean isPlayerHoldingUsefulItem(LivingEntity p_34884_) {
-        return p_34884_.getType() == EntityType.PLAYER && p_34884_.isHolding(BeggarSurvivorAI::isNeededItem);
-    }
-
     private static boolean isAdmiringDisabled(BeggarSurvivor p_35025_) {
         return p_35025_.getBrain().hasMemoryValue(MemoryModuleType.ADMIRING_DISABLED);
     }
@@ -406,7 +327,4 @@ public class BeggarSurvivorAI {
         setAvoidTarget(beggarSurvivor, entity);
     }
 
-    public static boolean isItemNeeded(BeggarSurvivor beggarSurvivor, ItemStack item) {
-        return beggarSurvivor.getNeededItem() == item;
-    }
 }
