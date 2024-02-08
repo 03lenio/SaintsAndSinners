@@ -9,6 +9,7 @@ import de.nulldrei.saintsandsinners.entity.ai.memory.SASMemoryModules;
 import de.nulldrei.saintsandsinners.entity.neutral.AbstractSurvivor;
 import de.nulldrei.saintsandsinners.entity.peaceful.BeggarSurvivor;
 import de.nulldrei.saintsandsinners.item.SASItems;
+import net.minecraft.core.GlobalPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.TimeUtil;
@@ -49,6 +50,11 @@ public class BeggarSurvivorAI {
         return p_34842_;
     }
 
+    public static void initMemories(BeggarSurvivor p_35095_) {
+        GlobalPos globalpos = GlobalPos.of(p_35095_.level().dimension(), p_35095_.blockPosition());
+        p_35095_.getBrain().setMemory(MemoryModuleType.HOME, globalpos);
+    }
+
     private static void initCoreActivity(Brain<BeggarSurvivor> p_34821_) {
         p_34821_.addActivity(Activity.CORE, 0, ImmutableList.of(new LookAtTargetSink(45, 90), new MoveToTargetSink(), InteractWithDoor.create(), avoidZombie(), avoidNemesis(), StartBegging.create(), StopBegging.create(), StopBeggingWhenFleeing.create(),StopHoldingItemIfNoLongerAdmiring.create(), StartAdmiringItemIfSeen.create(200)));
     }
@@ -66,7 +72,7 @@ public class BeggarSurvivorAI {
     }
 
     private static RunOne<BeggarSurvivor> createIdleMovementBehaviors() {
-        return new RunOne<>(ImmutableList.of(Pair.of(RandomStroll.stroll(0.6F), 2), Pair.of(BehaviorBuilder.triggerIf(BeggarSurvivorAI::doesntSeeAnyPlayer, SetWalkTargetFromLookTarget.create(0.6F, 3)), 2), Pair.of(new DoNothing(30, 60), 1)));
+        return new RunOne<>(ImmutableList.of(Pair.of(RandomStroll.stroll(0.6F), 2), Pair.of(StrollToPoi.create(MemoryModuleType.HOME, 0.6F, 2, 100), 2), Pair.of(StrollAroundPoi.create(MemoryModuleType.HOME, 0.6F, 5), 2), Pair.of(new DoNothing(30, 60), 1)));
     }
 
     private static BehaviorControl<BeggarSurvivor> avoidZombie() {

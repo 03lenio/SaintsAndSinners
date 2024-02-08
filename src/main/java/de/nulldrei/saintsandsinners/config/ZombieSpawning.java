@@ -25,7 +25,7 @@ public class ZombieSpawning  {
     //extra night surface spawns
     public static int extraNightSpawningSurfaceMaxCount = 50;
 
-    public static int extraNightSpawningSurfaceRandomPool = 10;
+    public static int extraNightSpawningSurfaceRandomPool = 3;
 
     public static int extraNightSpawningDistMin = 25;
 

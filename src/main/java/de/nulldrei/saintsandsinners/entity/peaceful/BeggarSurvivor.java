@@ -59,7 +59,7 @@ public class BeggarSurvivor extends AbstractSurvivor implements InventoryCarrier
 
     private static final EntityDataAccessor<Boolean> DATA_BEGGING = SynchedEntityData.defineId(BeggarSurvivor.class, EntityDataSerializers.BOOLEAN);
     protected static final ImmutableList<SensorType<? extends Sensor<? super BeggarSurvivor>>> SENSOR_TYPES = ImmutableList.of(SensorType.NEAREST_LIVING_ENTITIES, SensorType.NEAREST_PLAYERS, SensorType.NEAREST_ITEMS, SensorType.HURT_BY, SASSensorTypes.BEGGAR_SURVIVOR_SPECIFIC_SENSOR.get());
-    protected static final ImmutableList<MemoryModuleType<?>> MEMORY_TYPES = ImmutableList.of(MemoryModuleType.LOOK_TARGET, MemoryModuleType.DOORS_TO_CLOSE, MemoryModuleType.NEAREST_LIVING_ENTITIES, MemoryModuleType.NEAREST_VISIBLE_LIVING_ENTITIES, MemoryModuleType.NEAREST_VISIBLE_PLAYER,  MemoryModuleType.NEAREST_PLAYER_HOLDING_WANTED_ITEM,MemoryModuleType.NEAREST_VISIBLE_WANTED_ITEM, MemoryModuleType.ITEM_PICKUP_COOLDOWN_TICKS, MemoryModuleType.HURT_BY, MemoryModuleType.HURT_BY_ENTITY, MemoryModuleType.WALK_TARGET, MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryModuleType.INTERACTION_TARGET, MemoryModuleType.PATH, MemoryModuleType.AVOID_TARGET, MemoryModuleType.ADMIRING_ITEM, MemoryModuleType.TIME_TRYING_TO_REACH_ADMIRE_ITEM, MemoryModuleType.ADMIRING_DISABLED, MemoryModuleType.DISABLE_WALK_TO_ADMIRE_ITEM, SASMemoryModules.NEAREST_VISIBLE_ZOMBIE.get(), MemoryModuleType.ATE_RECENTLY);
+    protected static final ImmutableList<MemoryModuleType<?>> MEMORY_TYPES = ImmutableList.of(MemoryModuleType.LOOK_TARGET, MemoryModuleType.DOORS_TO_CLOSE, MemoryModuleType.NEAREST_LIVING_ENTITIES, MemoryModuleType.NEAREST_VISIBLE_LIVING_ENTITIES, MemoryModuleType.NEAREST_VISIBLE_PLAYER,  MemoryModuleType.NEAREST_PLAYER_HOLDING_WANTED_ITEM,MemoryModuleType.NEAREST_VISIBLE_WANTED_ITEM, MemoryModuleType.ITEM_PICKUP_COOLDOWN_TICKS, MemoryModuleType.HURT_BY, MemoryModuleType.HURT_BY_ENTITY, MemoryModuleType.WALK_TARGET, MemoryModuleType.CANT_REACH_WALK_TARGET_SINCE, MemoryModuleType.INTERACTION_TARGET, MemoryModuleType.PATH, MemoryModuleType.AVOID_TARGET, MemoryModuleType.ADMIRING_ITEM, MemoryModuleType.TIME_TRYING_TO_REACH_ADMIRE_ITEM, MemoryModuleType.ADMIRING_DISABLED, MemoryModuleType.DISABLE_WALK_TO_ADMIRE_ITEM, SASMemoryModules.NEAREST_VISIBLE_ZOMBIE.get(), MemoryModuleType.ATE_RECENTLY, MemoryModuleType.HOME);
 
     public BeggarSurvivor(EntityType<? extends AbstractSurvivor> p_34652_, Level p_34653_) {
         super(p_34652_, p_34653_);
@@ -130,6 +130,7 @@ public class BeggarSurvivor extends AbstractSurvivor implements InventoryCarrier
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_, @Nullable CompoundTag p_21438_) {
         ItemStack neededItem = generateNeededItem();
+        BeggarSurvivorAI.initMemories(this);
         this.getEntityData().set(DATA_ITEM, neededItem);
         SASUtil.neededItems.add(neededItem.toString());
         setVariant(Util.getRandom(Variant.values(), p_21434_.getRandom()));
