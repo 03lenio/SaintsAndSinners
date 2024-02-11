@@ -2,6 +2,8 @@ package de.nulldrei.saintsandsinners.event;
 
 
 import de.nulldrei.saintsandsinners.SASUtil;
+import de.nulldrei.saintsandsinners.entity.neutral.AbstractSurvivor;
+import de.nulldrei.saintsandsinners.entity.neutral.RobberSurvivor;
 import de.nulldrei.saintsandsinners.entity.peaceful.BeggarSurvivor;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.IronGolem;
@@ -29,7 +31,7 @@ public class SASEventHandler {
     public void spawnMob(MobSpawnEvent event) {
         if(event.getEntity() instanceof Zombie) {
             Zombie zombie = (Zombie)event.getEntity();
-            zombie.goalSelector.addGoal(3, new NearestAttackableTargetGoal<>(zombie, BeggarSurvivor.class, true));
+            zombie.goalSelector.addGoal(3, new NearestAttackableTargetGoal<>(zombie, AbstractSurvivor.class, true));
         }
     }
 

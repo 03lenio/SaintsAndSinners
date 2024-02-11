@@ -55,10 +55,6 @@ public abstract class AbstractSurvivor extends Monster {
     protected void customServerAiStep() {
         super.customServerAiStep();
         this.timeInOverworld = 0;
-
-
-
-
     }
 
 

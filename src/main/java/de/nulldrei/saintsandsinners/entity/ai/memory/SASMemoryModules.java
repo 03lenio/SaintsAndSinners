@@ -39,6 +39,9 @@ public class SASMemoryModules<U> {
     public static final RegistryObject<MemoryModuleType<List<AbstractSurvivor>>> NEAREST_VISIBLE_SURVIVORS = MEMORY_MODULE_TYPES.register("nearest_visible_survivors",
             () -> new MemoryModuleType<>(Optional.empty()));
 
+    public static final RegistryObject<MemoryModuleType<Boolean>> IS_DEMANDING = MEMORY_MODULE_TYPES.register("is_demanding",
+            () -> new MemoryModuleType<>(Optional.empty()));
+
 
     public static void register(IEventBus eventBus) {
         MEMORY_MODULE_TYPES.register(eventBus);

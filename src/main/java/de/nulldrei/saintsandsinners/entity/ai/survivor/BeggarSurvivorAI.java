@@ -16,6 +16,7 @@ import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.Brain;
@@ -49,7 +50,7 @@ public class BeggarSurvivorAI {
         p_34842_.useDefaultActivity();
         return p_34842_;
     }
-
+    private final SimpleContainer inventory = new SimpleContainer(8);
     public static void initMemories(BeggarSurvivor p_35095_) {
         GlobalPos globalpos = GlobalPos.of(p_35095_.level().dimension(), p_35095_.blockPosition());
         p_35095_.getBrain().setMemory(MemoryModuleType.HOME, globalpos);

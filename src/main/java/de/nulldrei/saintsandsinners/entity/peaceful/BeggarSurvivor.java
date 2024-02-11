@@ -34,6 +34,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.sensing.Sensor;
 import net.minecraft.world.entity.ai.sensing.SensorType;
+import net.minecraft.world.entity.animal.goat.Goat;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Monster;
@@ -63,6 +64,7 @@ public class BeggarSurvivor extends AbstractSurvivor implements InventoryCarrier
 
     public BeggarSurvivor(EntityType<? extends AbstractSurvivor> p_34652_, Level p_34653_) {
         super(p_34652_, p_34653_);
+        this.getNavigation().setCanFloat(true);
     }
 
     public ItemStack getNeededItem() {
@@ -82,7 +84,6 @@ public class BeggarSurvivor extends AbstractSurvivor implements InventoryCarrier
             case 3 -> { return new ItemStack(Items.ARROW); }
             case 4 -> { return new ItemStack(Items.BOW); }
             default -> { return new ItemStack(SASItems.BOTTLE.get()); }
-
         }
     }
 

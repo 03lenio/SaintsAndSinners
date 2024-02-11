@@ -16,6 +16,7 @@ public class SASCustomEventBusEventsClient {
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(SASModelLayers.SURVIVOR_LAYER, () -> LayerDefinition.create(SurvivorModel.createMesh(CubeDeformation.NONE), 64, 64));
+        
      }
 
 }

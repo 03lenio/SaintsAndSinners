@@ -13,6 +13,7 @@ public class SASCustomEventBusEvents {
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(SASEntities.BEGGAR_SURVIVOR.get(), BeggarSurvivor.createAttributes().build());
+        event.put(SASEntities.ROBBER_SURVIVOR.get(), BeggarSurvivor.createAttributes().build());
     }
 
 }

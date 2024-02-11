@@ -65,6 +65,16 @@ public class SurvivorModel<T extends Mob> extends PlayerModel<T> {
 					this.leftArm.yRot = 0.5F;
 					this.leftArm.xRot = -0.9F;
 				}
+			} else if (Survivorarmpose == SurvivorArmPose.DEMANDING_ITEM) {
+				this.head.xRot = 0.0F;
+				this.head.yRot = 0.0F;
+				if (p_103366_.isLeftHanded()) {
+					this.rightArm.yRot = -0.5F;
+					this.rightArm.xRot = -0.9F;
+				} else {
+					this.leftArm.yRot = 0.5F;
+					this.leftArm.xRot = -0.9F;
+				}
 			}
 		}
 

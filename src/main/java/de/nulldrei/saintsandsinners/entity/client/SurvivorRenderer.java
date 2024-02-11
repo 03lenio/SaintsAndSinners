@@ -5,6 +5,7 @@ import com.google.common.collect.Maps;
 import com.mojang.blaze3d.vertex.PoseStack;
 import de.nulldrei.saintsandsinners.SaintsAndSinners;
 import de.nulldrei.saintsandsinners.entity.animations.pose.SurvivorArmPose;
+import de.nulldrei.saintsandsinners.entity.neutral.RobberSurvivor;
 import de.nulldrei.saintsandsinners.entity.peaceful.BeggarSurvivor;
 import de.nulldrei.saintsandsinners.entity.peaceful.variant.Variant;
 import net.minecraft.Util;
@@ -26,10 +27,16 @@ import java.util.Map;
 public class SurvivorRenderer extends HumanoidMobRenderer<Mob, SurvivorModel<Mob>> {
     private static final Map<EntityType<?>, ResourceLocation> TEXTURES = ImmutableMap.of(EntityType.PIGLIN, new ResourceLocation("textures/entity/piglin/piglin.png"), EntityType.ZOMBIFIED_PIGLIN, new ResourceLocation("textures/entity/piglin/zombified_piglin.png"), EntityType.PIGLIN_BRUTE, new ResourceLocation("textures/entity/piglin/piglin_brute.png"));
 
-    private static final Map<Variant, ResourceLocation> TEXTURE_BY_VARIANT = Util.make(Maps.newEnumMap(Variant.class), (p_114874_) -> {
+    private static final Map<Variant, ResourceLocation> TEXTURE_BY_VARIANT_BEGGAR = Util.make(Maps.newEnumMap(Variant.class), (p_114874_) -> {
         p_114874_.put(Variant.TOM, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/tom.png"));
         p_114874_.put(Variant.PATRICK, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/patrick.png"));
         p_114874_.put(Variant.OSAMA, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/osama.png"));
+    });
+
+    private static final Map<de.nulldrei.saintsandsinners.entity.neutral.variant.Variant, ResourceLocation> TEXTURE_BY_VARIANT_ROBBER = Util.make(Maps.newEnumMap(de.nulldrei.saintsandsinners.entity.neutral.variant.Variant.class), (p_114874_) -> {
+        p_114874_.put(de.nulldrei.saintsandsinners.entity.neutral.variant.Variant.BEN, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/ben.png"));
+        p_114874_.put(de.nulldrei.saintsandsinners.entity.neutral.variant.Variant.RANDY, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/randy.png"));
+        p_114874_.put(de.nulldrei.saintsandsinners.entity.neutral.variant.Variant.RICK, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/rick.png"));
     });
 
     private final ItemRenderer itemRenderer;
@@ -49,14 +56,25 @@ public class SurvivorRenderer extends HumanoidMobRenderer<Mob, SurvivorModel<Mob
 
     @Override
     public void render(Mob p_115455_, float p_115456_, float p_115457_, PoseStack p_115458_, MultiBufferSource p_115459_, int p_115460_) {
-        BeggarSurvivor beggarSurvivor = (BeggarSurvivor) p_115455_;
-        if(beggarSurvivor.getArmPose() == SurvivorArmPose.BEGGING_FOR_ITEM) {
-            if(beggarSurvivor.isAlive()) {
-                p_115458_.pushPose();
-                p_115458_.translate(0, 2.5, 0);
-                p_115458_.scale(0.5f, 0.5f, 0.5f);
-                this.itemRenderer.renderStatic(beggarSurvivor.getNeededItem(), ItemDisplayContext.FIXED, 15728880, OverlayTexture.NO_OVERLAY, p_115458_, p_115459_, p_115455_.level(), p_115455_.getId());
-                p_115458_.popPose();
+        if(p_115455_ instanceof BeggarSurvivor beggarSurvivor) {
+            if (beggarSurvivor.getArmPose() == SurvivorArmPose.BEGGING_FOR_ITEM) {
+                if (beggarSurvivor.isAlive()) {
+                    p_115458_.pushPose();
+                    p_115458_.translate(0, 2.5, 0);
+                    p_115458_.scale(0.5f, 0.5f, 0.5f);
+                    this.itemRenderer.renderStatic(beggarSurvivor.getNeededItem(), ItemDisplayContext.FIXED, 15728880, OverlayTexture.NO_OVERLAY, p_115458_, p_115459_, p_115455_.level(), p_115455_.getId());
+                    p_115458_.popPose();
+                }
+            }
+        } else if(p_115455_ instanceof RobberSurvivor robberSurvivor) {
+            if (robberSurvivor.getArmPose() == SurvivorArmPose.DEMANDING_ITEM) {
+                if (robberSurvivor.isAlive()) {
+                    p_115458_.pushPose();
+                    p_115458_.translate(0, 2.5, 0);
+                    p_115458_.scale(0.5f, 0.5f, 0.5f);
+                    this.itemRenderer.renderStatic(robberSurvivor.getNeededItem(), ItemDisplayContext.FIXED, 15728880, OverlayTexture.NO_OVERLAY, p_115458_, p_115459_, p_115455_.level(), p_115455_.getId());
+                    p_115458_.popPose();
+                }
             }
         }
         super.render(p_115455_, p_115456_, p_115457_, p_115458_, p_115459_, p_115460_);
@@ -65,7 +83,11 @@ public class SurvivorRenderer extends HumanoidMobRenderer<Mob, SurvivorModel<Mob
 
     @Override
     public ResourceLocation getTextureLocation(Mob p_114482_) {
-        BeggarSurvivor beggarSurvivor = (BeggarSurvivor) p_114482_;
-        return TEXTURE_BY_VARIANT.get(beggarSurvivor.getVariant());
+        if (p_114482_ instanceof BeggarSurvivor beggarSurvivor) {
+            return TEXTURE_BY_VARIANT_BEGGAR.get(beggarSurvivor.getVariant());
+        } else if(p_114482_ instanceof RobberSurvivor robberSurvivor) {
+            return TEXTURE_BY_VARIANT_ROBBER.get(robberSurvivor.getVariant());
+        }
+        return null;
     }
 }

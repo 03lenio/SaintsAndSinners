@@ -7,8 +7,10 @@
   "item.saintsandsinners.netherite_fragment": "Netherite Fragment",
   "item.saintsandsinners.copper_nugget": "Copper Nugget",
   "block.saintsandsinners.recycling_bin": "Recycling Bin",
-  "item.saintsandsinners.beggar_spawn_egg": "Spawn Beggar",
+  "item.saintsandsinners.beggar_spawn_egg": "Beggar Spawn Egg",
   "entity.saintsandsinners.beggar_survivor": "Beggar",
+  "item.saintsandsinners.robber_spawn_egg": "Robber Spawn Egg",
+  "entity.saintsandsinners.robber_survivor": "Robber",
   "item.saintsandsinners.green_box_of_stuff": "Green Box Of Stuff",
   "item.saintsandsinners.grey_box_of_stuff": "Grey Box Of Stuff",
   "item.saintsandsinners.orange_box_of_stuff": "Orange Box Of Stuff"

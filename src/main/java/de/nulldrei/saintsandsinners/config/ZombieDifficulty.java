@@ -1,5 +1,7 @@
 package de.nulldrei.saintsandsinners.config;
 
+import net.minecraft.world.entity.animal.goat.Goat;
+
 public class ZombieDifficulty {
 
     public static boolean spawnDayZombies = true;

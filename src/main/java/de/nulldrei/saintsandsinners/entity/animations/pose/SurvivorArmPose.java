@@ -7,6 +7,7 @@ public enum SurvivorArmPose {
         CROSSBOW_HOLD,
         CROSSBOW_CHARGE,
         ADMIRING_ITEM,
+        DEMANDING_ITEM,
         DEFAULT;
 
 }

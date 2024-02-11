@@ -27,6 +27,7 @@ import java.util.UUID;
 public class SASUtil {
 
     public static ArrayList<String> neededItems = new ArrayList<>();
+    public static ArrayList<String> demandedItems = new ArrayList<>();
     public static HashMap<String, WorldData> lookupWorldData = new HashMap<>();
     public static Random rand = new Random();
 
@@ -185,6 +186,10 @@ public class SASUtil {
 
     public static boolean doSurvivorsFindItemUseful(ItemStack itemStack) {
         return neededItems.contains(itemStack.toString());
+    }
+
+    public static boolean doSurvivorsDemandItem(ItemStack itemStack) {
+        return demandedItems.contains(itemStack.toString());
     }
 
     public static double distance(int x1, int z1, int x2, int z2) {

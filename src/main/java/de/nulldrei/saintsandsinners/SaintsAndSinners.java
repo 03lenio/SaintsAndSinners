@@ -3,6 +3,7 @@ package de.nulldrei.saintsandsinners;
 import com.mojang.logging.LogUtils;
 import de.nulldrei.saintsandsinners.block.SASBlocks;
 import de.nulldrei.saintsandsinners.entity.SASEntities;
+import de.nulldrei.saintsandsinners.entity.activitiy.SASActivities;
 import de.nulldrei.saintsandsinners.entity.ai.memory.SASMemoryModules;
 import de.nulldrei.saintsandsinners.entity.ai.memory.sensors.SASSensorTypes;
 import de.nulldrei.saintsandsinners.entity.client.SASModelLayers;
@@ -77,6 +78,7 @@ public class SaintsAndSinners {
             output.accept(SASItems.NETHERITE_FRAGMENT.get());
             output.accept(SASItems.COPPER_NUGGET.get());
             output.accept(SASItems.SPAWN_BEGGAR.get());
+            output.accept(SASItems.SPAWN_ROBBER.get());
             output.accept(SASItems.GREEN_BOX_OF_STUFF.get());
             output.accept(SASItems.GREY_BOX_OF_STUFF.get());
             output.accept(SASItems.ORANGE_BOX_OF_STUFF.get());
@@ -89,6 +91,7 @@ public class SaintsAndSinners {
         SASEntities.register(modEventBus);
         SASMemoryModules.register(modEventBus);
         SASSensorTypes.register(modEventBus);
+        SASActivities.register(modEventBus);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(new SASEventHandler());
@@ -149,6 +152,9 @@ public class SaintsAndSinners {
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
             EntityRenderers.register(SASEntities.BEGGAR_SURVIVOR.get(), (p_174066_) -> {
+                return new SurvivorRenderer(p_174066_, SASModelLayers.SURVIVOR_LAYER, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false);
+            });
+            EntityRenderers.register(SASEntities.ROBBER_SURVIVOR.get(), (p_174066_) -> {
                 return new SurvivorRenderer(p_174066_, SASModelLayers.SURVIVOR_LAYER, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false);
             });
 
