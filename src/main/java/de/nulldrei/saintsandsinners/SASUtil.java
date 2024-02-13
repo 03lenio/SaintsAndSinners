@@ -5,10 +5,12 @@ import de.nulldrei.saintsandsinners.config.ZombieSpawning;
 import de.nulldrei.saintsandsinners.data.WorldData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.npc.WanderingTraderSpawner;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -17,6 +19,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.structure.structures.IglooPieces;
+import net.minecraft.world.level.levelgen.structure.structures.IglooStructure;
 import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
@@ -32,34 +36,35 @@ public class SASUtil {
     public static Random rand = new Random();
 
     public static void tickPlayer(Player player) {
-
-        //Day Zombies
-        if(ZombieDifficulty.spawnDayZombies) {
-            if (player.level().isDay()) {
-                if (getWorldData(player.level().dimension().toString()).lastMobsCountSurface < ZombieSpawning.daySpawningSurfaceMaxCount) {
-                    int rand2 =  rand.nextInt(ZombieSpawning.daySpawningSurfaceRandomPool);
-                    if (ZombieSpawning.daySpawningSurfaceRandomPool <= 0 || rand2 == 0) {
-                        spawnNewMobSurface(player);
+        if(player.level().getDifficulty() != Difficulty.PEACEFUL && !player.level().isClientSide()) {
+            //Day Zombies
+            if (ZombieDifficulty.spawnDayZombies) {
+                if (player.level().isDay()) {
+                    if (getWorldData(player.level().dimension().toString()).lastMobsCountSurface < ZombieSpawning.daySpawningSurfaceMaxCount) {
+                        int rand2 = rand.nextInt(ZombieSpawning.daySpawningSurfaceRandomPool);
+                        if (ZombieSpawning.daySpawningSurfaceRandomPool <= 0 || rand2 == 0) {
+                            spawnNewMobSurface(player);
+                        }
                     }
                 }
             }
-        }
 
-        //Extra Night
-        if(ZombieDifficulty.spawnExtraNightZombies) {
-            if (!player.level().isDay()) {
-                if (getWorldData(player.level().dimension().toString()).lastMobsCountSurface < ZombieSpawning.extraNightSpawningSurfaceMaxCount) {
-                    if (ZombieSpawning.extraNightSpawningSurfaceRandomPool <= 0 || rand.nextInt(ZombieSpawning.extraNightSpawningSurfaceRandomPool) == 0) {
-                        spawnNewMobSurface(player);
+            //Extra Night
+            if (ZombieDifficulty.spawnExtraNightZombies) {
+                if (!player.level().isDay()) {
+                    if (getWorldData(player.level().dimension().toString()).lastMobsCountSurface < ZombieSpawning.extraNightSpawningSurfaceMaxCount) {
+                        if (ZombieSpawning.extraNightSpawningSurfaceRandomPool <= 0 || rand.nextInt(ZombieSpawning.extraNightSpawningSurfaceRandomPool) == 0) {
+                            spawnNewMobSurface(player);
+                        }
                     }
                 }
             }
-        }
 
-        if (ZombieDifficulty.extraSpawningCave) {
-            if (getWorldData(player.level().dimension().toString()).lastMobsCountSurface < ZombieSpawning.extraSpawningCavesMaxCount) {
-                if (ZombieSpawning.extraSpawningCavesRandomPool <= 0 || rand.nextInt(ZombieSpawning.extraSpawningCavesRandomPool) == 0) {
-                    spawnNewMobCave(player);
+            if (ZombieDifficulty.extraSpawningCave) {
+                if (getWorldData(player.level().dimension().toString()).lastMobsCountSurface < ZombieSpawning.extraSpawningCavesMaxCount) {
+                    if (ZombieSpawning.extraSpawningCavesRandomPool <= 0 || rand.nextInt(ZombieSpawning.extraSpawningCavesRandomPool) == 0) {
+                        spawnNewMobCave(player);
+                    }
                 }
             }
         }

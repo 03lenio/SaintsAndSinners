@@ -13,6 +13,7 @@ import de.nulldrei.saintsandsinners.entity.neutral.variant.Variant;
 import de.nulldrei.saintsandsinners.item.SASItems;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
+import net.minecraft.data.worldgen.PillagerOutpostPools;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -38,6 +39,7 @@ import net.minecraft.world.entity.monster.CrossbowAttackMob;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.InventoryCarrier;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -226,7 +228,8 @@ public class RobberSurvivor extends AbstractSurvivor implements CrossbowAttackMo
         protected void customServerAiStep() {
             this.level().getProfiler().push("RobberSurvivorBrain");
             this.getBrain().tick((ServerLevel)this.level(), this);
-            if(!this.level().isClientSide() && isDemanding()) {
+
+            if(!this.level().isClientSide() && isDemanding() && getBrain().hasMemoryValue(MemoryModuleType.NEAREST_VISIBLE_PLAYER)) {
                 setTicksUntilAngry(getTicksUntilAngry()+1);
             }
             System.out.println(getTicksUntilAngry());
