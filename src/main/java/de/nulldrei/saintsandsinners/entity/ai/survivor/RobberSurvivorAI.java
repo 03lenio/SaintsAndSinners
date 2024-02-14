@@ -32,6 +32,8 @@ import net.minecraft.world.entity.ai.memory.MemoryStatus;
 import net.minecraft.world.entity.ai.sensing.Sensor;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
 import net.minecraft.world.entity.animal.allay.AllayAi;
+import net.minecraft.world.entity.animal.frog.Frog;
+import net.minecraft.world.entity.animal.sniffer.Sniffer;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.piglin.*;
 import net.minecraft.world.entity.player.Player;
@@ -67,7 +69,7 @@ public class RobberSurvivorAI {
     }
 
     private static void initCoreActivity(RobberSurvivor p_35112_, Brain<RobberSurvivor> p_35113_) {
-        p_35113_.addActivity(Activity.CORE, 0, ImmutableList.of(new LookAtTargetSink(45, 90), new MoveToTargetSink(),InteractWithDoor.create(), avoidZombiesIfOutnumbered(), StartDemanding.create(), StopDemanding.create(), StopDemandingWhenFleeing.create(), StopBeingAngryIfTargetDead.create(), StopHoldingItemIfNoLongerAdmiring.create(), StartAdmiringItemIfSeen.create(200)));
+        p_35113_.addActivity(Activity.CORE, 0, ImmutableList.of(new Swim(0.8F), new LookAtTargetSink(45, 90), new MoveToTargetSink(),InteractWithDoor.create(), avoidZombiesIfOutnumbered(), StartDemanding.create(), StopDemanding.create(), StopDemandingWhenFleeing.create(), StopBeingAngryIfTargetDead.create(), StopHoldingItemIfNoLongerAdmiring.create(), StartAdmiringItemIfSeen.create(200)));
     }
 
     private static void initIdleActivity(RobberSurvivor p_35120_, Brain<RobberSurvivor> p_35121_) {

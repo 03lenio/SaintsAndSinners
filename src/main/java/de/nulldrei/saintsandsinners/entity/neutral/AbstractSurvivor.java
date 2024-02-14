@@ -9,6 +9,8 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.util.GoalUtils;
+import net.minecraft.world.entity.animal.sniffer.Sniffer;
+import net.minecraft.world.entity.animal.sniffer.SnifferAi;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.level.Level;
@@ -24,6 +26,7 @@ public abstract class AbstractSurvivor extends Monster {
     public AbstractSurvivor(EntityType<? extends AbstractSurvivor> p_34652_, Level p_34653_) {
         super(p_34652_, p_34653_);
         this.setCanPickUpLoot(true);
+        this.getNavigation().setCanFloat(true);
         this.applyOpenDoorsAbility();
         this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, 16.0F);
         this.setPathfindingMalus(BlockPathTypes.DAMAGE_FIRE, -1.0F);

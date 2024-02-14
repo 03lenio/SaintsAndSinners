@@ -64,7 +64,6 @@ public class BeggarSurvivor extends AbstractSurvivor implements InventoryCarrier
 
     public BeggarSurvivor(EntityType<? extends AbstractSurvivor> p_34652_, Level p_34653_) {
         super(p_34652_, p_34653_);
-        this.getNavigation().setCanFloat(true);
     }
 
     public ItemStack getNeededItem() {

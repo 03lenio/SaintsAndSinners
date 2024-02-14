@@ -57,7 +57,7 @@ public class BeggarSurvivorAI {
     }
 
     private static void initCoreActivity(Brain<BeggarSurvivor> p_34821_) {
-        p_34821_.addActivity(Activity.CORE, 0, ImmutableList.of(new LookAtTargetSink(45, 90), new MoveToTargetSink(), InteractWithDoor.create(), avoidZombie(), avoidNemesis(), StartBegging.create(), StopBegging.create(), StopBeggingWhenFleeing.create(),StopHoldingItemIfNoLongerAdmiring.create(), StartAdmiringItemIfSeen.create(200)));
+        p_34821_.addActivity(Activity.CORE, 0, ImmutableList.of(new Swim(0.8F), new LookAtTargetSink(45, 90), new MoveToTargetSink(), InteractWithDoor.create(), avoidZombie(), avoidNemesis(), StartBegging.create(), StopBegging.create(), StopBeggingWhenFleeing.create(),StopHoldingItemIfNoLongerAdmiring.create(), StartAdmiringItemIfSeen.create(200)));
     }
 
     private static void initIdleActivity(Brain<BeggarSurvivor> p_34892_) {

@@ -13,5 +13,9 @@
   "entity.saintsandsinners.robber_survivor": "Robber",
   "item.saintsandsinners.green_box_of_stuff": "Green Box Of Stuff",
   "item.saintsandsinners.grey_box_of_stuff": "Grey Box Of Stuff",
-  "item.saintsandsinners.orange_box_of_stuff": "Orange Box Of Stuff"
+  "item.saintsandsinners.orange_box_of_stuff": "Orange Box Of Stuff",
+  "item.saintsandsinners.tower_guard_spawn_egg": "Tower Guard Spawn Egg",
+  "entity.saintsandsinners.tower_guard": "Tower Guard",
+  "item.saintsandsinners.reclaimed_cultist_spawn_egg": "Reclaimed Cultist Spawn Egg",
+  "entity.saintsandsinners.reclaimed_cultist": "Reclaimed Cultist"
 }

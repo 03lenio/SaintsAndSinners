@@ -20,6 +20,9 @@ public class SASSensorTypes<U> {
     public static final RegistryObject<SensorType<RobberSurvivorSpecificSensor>> ROBBER_SURVIVOR_SPECIFIC_SENSOR = SENSOR_TYPES.register("robber_survivor_specific_sensor",
             () -> new SensorType<>(RobberSurvivorSpecificSensor::new));
 
+    public static final RegistryObject<SensorType<FactionSurvivorSpecificSensor>> FACTION_SURVIVOR_SPECIFIC_SENSOR = SENSOR_TYPES.register("faction_survivor_specific_sensor",
+            () -> new SensorType<>(FactionSurvivorSpecificSensor::new));
+
 
 
 

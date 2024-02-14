@@ -30,6 +30,8 @@ public class SASItems {
     public static final RegistryObject<Item>  GREY_BOX_OF_STUFF = ITEMS.register("grey_box_of_stuff", () -> new BoxOfStuff(new Item.Properties(), SASLootTables.GREY_BOX_OF_STUFF_LOOT_TABLE));
     public static final RegistryObject<Item>  ORANGE_BOX_OF_STUFF = ITEMS.register("orange_box_of_stuff", () -> new BoxOfStuff(new Item.Properties(), SASLootTables.ORANGE_BOX_OF_STUFF_LOOT_TABLE));
     public static final RegistryObject<ForgeSpawnEggItem> SPAWN_ROBBER = ITEMS.register("robber_spawn_egg", () -> new ForgeSpawnEggItem(SASEntities.ROBBER_SURVIVOR, 0xff0303, 0xFFC51C, new Item.Properties()));
+    public static final RegistryObject<ForgeSpawnEggItem> SPAWN_TOWER_GUARD = ITEMS.register("tower_guard_spawn_egg", () -> new ForgeSpawnEggItem(SASEntities.TOWER_FACTION_SURVIVOR, 0x030ffc, 0x3d3e4d, new Item.Properties()));
+    public static final RegistryObject<ForgeSpawnEggItem> SPAWN_RECLAIMED_CULTIST = ITEMS.register("reclaimed_cultist_spawn_egg", () -> new ForgeSpawnEggItem(SASEntities.RECLAIMED_FACTION_SURVIVOR, 0x852424, 0x3d3e4d, new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

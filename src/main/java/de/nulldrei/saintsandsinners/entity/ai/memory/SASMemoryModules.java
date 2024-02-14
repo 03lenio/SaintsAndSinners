@@ -1,6 +1,7 @@
 package de.nulldrei.saintsandsinners.entity.ai.memory;
 
 import de.nulldrei.saintsandsinners.SaintsAndSinners;
+import de.nulldrei.saintsandsinners.entity.hostile.AbstractFactionSurvivor;
 import de.nulldrei.saintsandsinners.entity.neutral.AbstractSurvivor;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.monster.Zombie;
@@ -30,13 +31,15 @@ public class SASMemoryModules<U> {
     public static final RegistryObject<MemoryModuleType<Integer>> VISIBLE_SURVIVOR_COUNT = MEMORY_MODULE_TYPES.register("visible_survivor_count",
             () -> new MemoryModuleType<>(Optional.empty()));
 
+
+    public static final RegistryObject<MemoryModuleType<AbstractFactionSurvivor>> NEAREST_RIVALING_SURVIVOR = MEMORY_MODULE_TYPES.register("nearest_rivaling_survivor",
+            () -> new MemoryModuleType<>(Optional.empty()));
+
+
     public static final RegistryObject<MemoryModuleType<AbstractSurvivor>> NEAREST_SURVIVOR = MEMORY_MODULE_TYPES.register("nearest_survivor",
             () -> new MemoryModuleType<>(Optional.empty()));
 
-    public static final RegistryObject<MemoryModuleType<List<AbstractSurvivor>>> NEARBY_SURVIVORS = MEMORY_MODULE_TYPES.register("nearby_survivors",
-            () -> new MemoryModuleType<>(Optional.empty()));
-
-    public static final RegistryObject<MemoryModuleType<List<AbstractSurvivor>>> NEAREST_VISIBLE_SURVIVORS = MEMORY_MODULE_TYPES.register("nearest_visible_survivors",
+    public static final RegistryObject<MemoryModuleType<List<AbstractFactionSurvivor>>> NEARBY_SURVIVORS = MEMORY_MODULE_TYPES.register("nearby_survivors",
             () -> new MemoryModuleType<>(Optional.empty()));
 
     public static final RegistryObject<MemoryModuleType<Boolean>> IS_DEMANDING = MEMORY_MODULE_TYPES.register("is_demanding",

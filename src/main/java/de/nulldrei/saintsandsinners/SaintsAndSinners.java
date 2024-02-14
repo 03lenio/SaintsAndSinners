@@ -79,6 +79,8 @@ public class SaintsAndSinners {
             output.accept(SASItems.COPPER_NUGGET.get());
             output.accept(SASItems.SPAWN_BEGGAR.get());
             output.accept(SASItems.SPAWN_ROBBER.get());
+            output.accept(SASItems.SPAWN_TOWER_GUARD.get());
+            output.accept(SASItems.SPAWN_RECLAIMED_CULTIST.get());
             output.accept(SASItems.GREEN_BOX_OF_STUFF.get());
             output.accept(SASItems.GREY_BOX_OF_STUFF.get());
             output.accept(SASItems.ORANGE_BOX_OF_STUFF.get());
@@ -157,7 +159,12 @@ public class SaintsAndSinners {
             EntityRenderers.register(SASEntities.ROBBER_SURVIVOR.get(), (p_174066_) -> {
                 return new SurvivorRenderer(p_174066_, SASModelLayers.SURVIVOR_LAYER, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false);
             });
-
+            EntityRenderers.register(SASEntities.TOWER_FACTION_SURVIVOR.get(), (p_174066_) -> {
+                return new SurvivorRenderer(p_174066_, SASModelLayers.SURVIVOR_LAYER, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false);
+            });
+            EntityRenderers.register(SASEntities.RECLAIMED_FACTION_SURVIVOR.get(), (p_174066_) -> {
+                return new SurvivorRenderer(p_174066_, SASModelLayers.SURVIVOR_LAYER, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false);
+            });
         }
     }
 }

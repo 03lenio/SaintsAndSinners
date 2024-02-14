@@ -5,6 +5,10 @@ import com.google.common.collect.Maps;
 import com.mojang.blaze3d.vertex.PoseStack;
 import de.nulldrei.saintsandsinners.SaintsAndSinners;
 import de.nulldrei.saintsandsinners.entity.animations.pose.SurvivorArmPose;
+import de.nulldrei.saintsandsinners.entity.hostile.ReclaimedFactionSurvivor;
+import de.nulldrei.saintsandsinners.entity.hostile.TowerFactionSurvivor;
+import de.nulldrei.saintsandsinners.entity.hostile.variant.ReclaimedVariant;
+import de.nulldrei.saintsandsinners.entity.hostile.variant.TowerVariant;
 import de.nulldrei.saintsandsinners.entity.neutral.RobberSurvivor;
 import de.nulldrei.saintsandsinners.entity.peaceful.BeggarSurvivor;
 import de.nulldrei.saintsandsinners.entity.peaceful.variant.Variant;
@@ -37,6 +41,18 @@ public class SurvivorRenderer extends HumanoidMobRenderer<Mob, SurvivorModel<Mob
         p_114874_.put(de.nulldrei.saintsandsinners.entity.neutral.variant.Variant.BEN, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/ben.png"));
         p_114874_.put(de.nulldrei.saintsandsinners.entity.neutral.variant.Variant.RANDY, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/randy.png"));
         p_114874_.put(de.nulldrei.saintsandsinners.entity.neutral.variant.Variant.RICK, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/rick.png"));
+    });
+
+    private static final Map<TowerVariant, ResourceLocation> TEXTURE_BY_VARIANT_TOWER_GUARD = Util.make(Maps.newEnumMap(TowerVariant.class), (p_114874_) -> {
+        p_114874_.put(TowerVariant.MORGAN, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/morgan.png"));
+        p_114874_.put(TowerVariant.ABRAHAM, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/abraham.png"));
+        p_114874_.put(TowerVariant.JOE, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/joe.png"));
+    });
+
+    private static final Map<ReclaimedVariant, ResourceLocation> TEXTURE_BY_VARIANT_RECLAIMED_CULTIST = Util.make(Maps.newEnumMap(ReclaimedVariant.class), (p_114874_) -> {
+        p_114874_.put(ReclaimedVariant.JOHN, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/john.png"));
+        p_114874_.put(ReclaimedVariant.WALTER, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/walter.png"));
+        p_114874_.put(ReclaimedVariant.JESSE, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/jesse.png"));
     });
 
     private final ItemRenderer itemRenderer;
@@ -87,6 +103,12 @@ public class SurvivorRenderer extends HumanoidMobRenderer<Mob, SurvivorModel<Mob
             return TEXTURE_BY_VARIANT_BEGGAR.get(beggarSurvivor.getVariant());
         } else if(p_114482_ instanceof RobberSurvivor robberSurvivor) {
             return TEXTURE_BY_VARIANT_ROBBER.get(robberSurvivor.getVariant());
+        }
+        else if(p_114482_ instanceof TowerFactionSurvivor towerFactionSurvivor) {
+            return TEXTURE_BY_VARIANT_TOWER_GUARD.get(towerFactionSurvivor.getVariant());
+        }
+        else if(p_114482_ instanceof ReclaimedFactionSurvivor reclaimedFactionSurvivor) {
+            return TEXTURE_BY_VARIANT_RECLAIMED_CULTIST.get(reclaimedFactionSurvivor.getVariant());
         }
         return null;
     }
