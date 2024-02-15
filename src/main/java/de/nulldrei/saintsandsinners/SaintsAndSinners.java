@@ -87,6 +87,8 @@ public class SaintsAndSinners {
             output.accept(SASItems.GREY_BOX_OF_STUFF.get());
             output.accept(SASItems.ORANGE_BOX_OF_STUFF.get());
             output.accept(SASItems.RECLAIMED_MASK.get());
+            output.accept(SASItems.TOWER_HELMET.get());
+            output.accept(SASItems.TOWER_VEST.get());
             }).build());
 
     public SaintsAndSinners() {

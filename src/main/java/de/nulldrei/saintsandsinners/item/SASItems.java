@@ -1,6 +1,8 @@
 package de.nulldrei.saintsandsinners.item;
 
 import de.nulldrei.saintsandsinners.SaintsAndSinners;
+import de.nulldrei.saintsandsinners.armor.material.MaterialReclaimed;
+import de.nulldrei.saintsandsinners.armor.material.MaterialTower;
 import de.nulldrei.saintsandsinners.data.SASLootTables;
 import de.nulldrei.saintsandsinners.entity.SASEntities;
 import de.nulldrei.saintsandsinners.item.armor.ReclaimedArmor;
@@ -34,7 +36,13 @@ public class SASItems {
     public static final RegistryObject<ForgeSpawnEggItem> SPAWN_TOWER_GUARD = ITEMS.register("tower_guard_spawn_egg", () -> new ForgeSpawnEggItem(SASEntities.TOWER_FACTION_SURVIVOR, 0x030ffc, 0x3d3e4d, new Item.Properties()));
     public static final RegistryObject<ForgeSpawnEggItem> SPAWN_RECLAIMED_CULTIST = ITEMS.register("reclaimed_cultist_spawn_egg", () -> new ForgeSpawnEggItem(SASEntities.RECLAIMED_FACTION_SURVIVOR, 0x852424, 0x3d3e4d, new Item.Properties()));
     public static final RegistryObject<Item> RECLAIMED_MASK = ITEMS.register("reclaimed_mask",
-            () -> new ReclaimedArmor(ReclaimedArmor.MaterialReclaimed.RECLAIMED, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new ReclaimedArmor(MaterialReclaimed.RECLAIMED, ArmorItem.Type.HELMET, new Item.Properties()));
+
+    public static final RegistryObject<Item> TOWER_HELMET = ITEMS.register("tower_helmet",
+            () -> new ArmorItem(MaterialTower.TOWER, ArmorItem.Type.HELMET, new Item.Properties()));
+
+    public static final RegistryObject<Item> TOWER_VEST = ITEMS.register("tower_vest",
+            () -> new ArmorItem(MaterialTower.TOWER, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
 
 
     public static void register(IEventBus eventBus) {

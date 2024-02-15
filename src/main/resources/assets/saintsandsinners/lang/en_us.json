@@ -17,5 +17,8 @@
   "item.saintsandsinners.tower_guard_spawn_egg": "Tower Guard Spawn Egg",
   "entity.saintsandsinners.tower_guard": "Tower Guard",
   "item.saintsandsinners.reclaimed_cultist_spawn_egg": "Reclaimed Cultist Spawn Egg",
-  "entity.saintsandsinners.reclaimed_cultist": "Reclaimed Cultist"
+  "entity.saintsandsinners.reclaimed_cultist": "Reclaimed Cultist",
+  "item.saintsandsinners.reclaimed_mask": "Cultist Mask",
+  "item.saintsandsinners.tower_helmet": "Tower Helmet",
+  "item.saintsandsinners.tower_vest": "Tower Vest"
 }
