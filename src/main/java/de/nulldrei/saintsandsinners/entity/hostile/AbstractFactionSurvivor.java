@@ -97,6 +97,13 @@ public abstract class AbstractFactionSurvivor extends AbstractSurvivor {
         return false;
     }
 
+    protected void maybeWearArmor(EquipmentSlot p_219192_, ItemStack p_219193_, RandomSource p_219194_) {
+        if (p_219194_.nextFloat() < 0.1F) {
+            this.setItemSlot(p_219192_, p_219193_);
+        }
+
+    }
+
     protected void customServerAiStep() {
         this.level().getProfiler().push("FactionSurvivorBrain");
         this.getBrain().tick((ServerLevel)this.level(), this);

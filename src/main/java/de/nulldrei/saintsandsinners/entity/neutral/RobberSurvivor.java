@@ -232,7 +232,6 @@ public class RobberSurvivor extends AbstractSurvivor implements CrossbowAttackMo
             if(!this.level().isClientSide() && isDemanding() && getBrain().hasMemoryValue(MemoryModuleType.NEAREST_VISIBLE_PLAYER)) {
                 setTicksUntilAngry(getTicksUntilAngry()+1);
             }
-            System.out.println(getTicksUntilAngry());
             if(getTicksUntilAngry() >= 600 && !hasReceivedItem()) {
                 setDemanding(false);
             }

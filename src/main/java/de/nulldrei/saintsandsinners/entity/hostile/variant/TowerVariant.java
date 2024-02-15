@@ -7,7 +7,7 @@ import net.minecraft.util.StringRepresentable;
 import java.util.function.IntFunction;
 
 public enum TowerVariant implements StringRepresentable {
-    MORGAN(0, "morgan"),
+    MISSY(0, "missy"),
     ABRAHAM(1, "abraham"),
     JOE(2, "joe");
 

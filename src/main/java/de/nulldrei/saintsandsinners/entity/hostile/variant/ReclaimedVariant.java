@@ -7,7 +7,7 @@ import net.minecraft.util.StringRepresentable;
 import java.util.function.IntFunction;
 
 public enum ReclaimedVariant implements StringRepresentable {
-    JOHN(0, "john"),
+    GEORGIA(0, "georgia"),
     WALTER(1, "walter"),
     JESSE(2, "jesse");
 

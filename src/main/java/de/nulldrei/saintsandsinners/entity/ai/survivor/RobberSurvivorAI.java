@@ -111,7 +111,6 @@ public class RobberSurvivorAI {
         Activity activity = brain.getActiveNonCoreActivity().orElse((Activity)null);
         brain.setActiveActivityToFirstValid(ImmutableList.of(Activity.ADMIRE_ITEM, Activity.FIGHT, Activity.AVOID, SASActivities.DEMAND_ITEM.get(), Activity.IDLE));
         Activity activity1 = brain.getActiveNonCoreActivity().orElse((Activity)null);
-        System.out.println(activity+":"+activity1);
         if (activity != activity1) {
             playActivitySound(p_35110_);
         }
@@ -133,12 +132,11 @@ public class RobberSurvivorAI {
             RobberSurvivor robberSurvivor = (RobberSurvivor) p_35087_;
             Optional<? extends LivingEntity> playerNearby = getTargetIfWithinRange(p_35087_, MemoryModuleType.NEAREST_VISIBLE_ATTACKABLE_PLAYER);
             Optional<? extends LivingEntity> zombieNearby = getTargetIfWithinRange(p_35087_, SASMemoryModules.NEAREST_VISIBLE_ZOMBIE.get());
-            System.out.println(robberSurvivor.isDemanding() + ":" + robberSurvivor.hasReceivedItem() + ":" + optional.isPresent());
+
 
             if(zombieNearby.isPresent() && robberCanTakeOnZombies(robberSurvivor)) {
                 return zombieNearby;
             } else if(playerNearby.isPresent() && !robberSurvivor.isDemanding() && !robberSurvivor.hasReceivedItem()) {
-                System.out.println("PUT YOU IN THE TUNDRA");
                 return playerNearby;
             }
         }

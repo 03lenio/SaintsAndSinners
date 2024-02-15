@@ -8,9 +8,11 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.monster.CrossbowAttackMob;
+import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -32,7 +34,9 @@ public class ReclaimedFactionSurvivor extends AbstractFactionSurvivor implements
     @Nullable
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_35058_, DifficultyInstance p_35059_, MobSpawnType p_35060_, @Nullable SpawnGroupData p_35061_, @Nullable CompoundTag p_35062_) {
+        RandomSource randomsource = p_35058_.getRandom();
         this.setItemSlot(EquipmentSlot.MAINHAND, this.createSpawnWeapon());
+        this.populateDefaultEquipmentSlots(randomsource, p_35059_);
         setVariant(Util.getRandom(ReclaimedVariant.values(), p_35058_.getRandom()));
         return super.finalizeSpawn(p_35058_, p_35059_, p_35060_, p_35061_, p_35062_);
     }
@@ -75,6 +79,10 @@ public class ReclaimedFactionSurvivor extends AbstractFactionSurvivor implements
 
     private ItemStack createSpawnWeapon() {
         return (double)this.random.nextFloat() < 0.5D ? new ItemStack(Items.CROSSBOW) : new ItemStack(SASItems.BROKEN_BOTTLE.get());
+    }
+
+    protected void populateDefaultEquipmentSlots(RandomSource p_219189_, DifficultyInstance p_219190_) {
+            maybeWearArmor(EquipmentSlot.HEAD, new ItemStack(SASItems.RECLAIMED_MASK.get()), p_219189_);
     }
 
     public SurvivorArmPose getArmPose() {

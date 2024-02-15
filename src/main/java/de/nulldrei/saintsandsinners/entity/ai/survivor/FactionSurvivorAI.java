@@ -82,7 +82,6 @@ public class FactionSurvivorAI {
         Activity activity = brain.getActiveNonCoreActivity().orElse((Activity)null);
         brain.setActiveActivityToFirstValid(ImmutableList.of(Activity.FIGHT, Activity.AVOID, Activity.IDLE));
         Activity activity1 = brain.getActiveNonCoreActivity().orElse((Activity)null);
-        System.out.println(activity+":"+activity1);
         if (activity != activity1) {
             playActivitySound(p_35110_);
         }
@@ -114,7 +113,6 @@ public class FactionSurvivorAI {
                 return zombieNearby;
             }
             else if(playerNearby.isPresent()) {
-                System.out.println("PUT YOU IN THE TUNDRA");
                 return playerNearby;
             }
         }
@@ -208,8 +206,6 @@ public class FactionSurvivorAI {
     private static boolean zombiesOutnumberFaction(AbstractSurvivor AbstractSurvivor) {
         int zombieCount = AbstractSurvivor.getBrain().getMemory(SASMemoryModules.VISIBLE_ZOMBIE_COUNT.get()).orElse(0);
         int survivorFromFactionCount = AbstractSurvivor.getBrain().getMemory(SASMemoryModules.VISIBLE_SURVIVOR_COUNT.get()).orElse(0);
-        System.out.println(zombieCount);
-        System.out.println(survivorFromFactionCount);
         return zombieCount > survivorFromFactionCount;
     }
 

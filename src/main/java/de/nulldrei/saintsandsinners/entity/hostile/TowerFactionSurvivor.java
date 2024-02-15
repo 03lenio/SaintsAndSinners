@@ -11,6 +11,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.monster.CrossbowAttackMob;
@@ -33,10 +34,18 @@ public class TowerFactionSurvivor extends AbstractFactionSurvivor implements Var
         super(p_35048_, p_35049_);
     }
 
+    protected void populateDefaultEquipmentSlots(RandomSource p_219189_, DifficultyInstance p_219190_) {
+        maybeWearArmor(EquipmentSlot.HEAD, new ItemStack(SASItems.TOWER_HELMET.get()), p_219189_);
+        maybeWearArmor(EquipmentSlot.CHEST, new ItemStack(SASItems.TOWER_VEST.get()), p_219189_);
+    }
+
+
     @Nullable
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_35058_, DifficultyInstance p_35059_, MobSpawnType p_35060_, @Nullable SpawnGroupData p_35061_, @Nullable CompoundTag p_35062_) {
+        RandomSource randomsource = p_35058_.getRandom();
         this.setItemSlot(EquipmentSlot.MAINHAND, this.createSpawnWeapon());
+        populateDefaultEquipmentSlots(randomsource, p_35059_);
         setVariant(Util.getRandom(TowerVariant.values(), p_35058_.getRandom()));
         return super.finalizeSpawn(p_35058_, p_35059_, p_35060_, p_35061_, p_35062_);
     }
