@@ -3,6 +3,7 @@ package de.nulldrei.saintsandsinners.item;
 import de.nulldrei.saintsandsinners.SaintsAndSinners;
 import de.nulldrei.saintsandsinners.data.SASLootTables;
 import de.nulldrei.saintsandsinners.entity.SASEntities;
+import de.nulldrei.saintsandsinners.item.armor.ReclaimedArmor;
 import de.nulldrei.saintsandsinners.item.combat.Bottle;
 import de.nulldrei.saintsandsinners.item.stuff.BoxOfStuff;
 import net.minecraft.resources.ResourceLocation;
@@ -32,6 +33,9 @@ public class SASItems {
     public static final RegistryObject<ForgeSpawnEggItem> SPAWN_ROBBER = ITEMS.register("robber_spawn_egg", () -> new ForgeSpawnEggItem(SASEntities.ROBBER_SURVIVOR, 0xff0303, 0xFFC51C, new Item.Properties()));
     public static final RegistryObject<ForgeSpawnEggItem> SPAWN_TOWER_GUARD = ITEMS.register("tower_guard_spawn_egg", () -> new ForgeSpawnEggItem(SASEntities.TOWER_FACTION_SURVIVOR, 0x030ffc, 0x3d3e4d, new Item.Properties()));
     public static final RegistryObject<ForgeSpawnEggItem> SPAWN_RECLAIMED_CULTIST = ITEMS.register("reclaimed_cultist_spawn_egg", () -> new ForgeSpawnEggItem(SASEntities.RECLAIMED_FACTION_SURVIVOR, 0x852424, 0x3d3e4d, new Item.Properties()));
+    public static final RegistryObject<Item> RECLAIMED_MASK = ITEMS.register("reclaimed_mask",
+            () -> new ReclaimedArmor(ReclaimedArmor.MaterialReclaimed.RECLAIMED, ArmorItem.Type.HELMET, new Item.Properties()));
+
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
