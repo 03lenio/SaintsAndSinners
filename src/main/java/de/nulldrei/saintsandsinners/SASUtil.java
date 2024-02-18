@@ -1,8 +1,14 @@
 package de.nulldrei.saintsandsinners;
 
+import de.nulldrei.saintsandsinners.config.PatrolSpawning;
 import de.nulldrei.saintsandsinners.config.ZombieDifficulty;
 import de.nulldrei.saintsandsinners.config.ZombieSpawning;
 import de.nulldrei.saintsandsinners.data.WorldData;
+import de.nulldrei.saintsandsinners.entity.SASEntities;
+import de.nulldrei.saintsandsinners.entity.hostile.AbstractFactionSurvivor;
+import de.nulldrei.saintsandsinners.entity.hostile.ReclaimedFactionSurvivor;
+import de.nulldrei.saintsandsinners.entity.hostile.TowerFactionSurvivor;
+import jdk.jshell.spi.ExecutionControl;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Difficulty;
@@ -10,6 +16,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.npc.WanderingTraderSpawner;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -23,6 +30,7 @@ import net.minecraft.world.level.levelgen.structure.structures.IglooPieces;
 import net.minecraft.world.level.levelgen.structure.structures.IglooStructure;
 import org.checkerframework.checker.units.qual.A;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -34,6 +42,10 @@ public class SASUtil {
     public static ArrayList<String> demandedItems = new ArrayList<>();
     public static HashMap<String, WorldData> lookupWorldData = new HashMap<>();
     public static Random rand = new Random();
+    private static int lastFactionSpawned = 999;
+    private static int lastFactionSpawnedX = 0;
+    private static int lastFactionSapwnedY = 0;
+    private static int lastFactionSpawnedZ = 0;
 
     public static void tickPlayer(Player player) {
         if(player.level().getDifficulty() != Difficulty.PEACEFUL && !player.level().isClientSide()) {
@@ -64,6 +76,17 @@ public class SASUtil {
                 if (getWorldData(player.level().dimension().toString()).lastMobsCountSurface < ZombieSpawning.extraSpawningCavesMaxCount) {
                     if (ZombieSpawning.extraSpawningCavesRandomPool <= 0 || rand.nextInt(ZombieSpawning.extraSpawningCavesRandomPool) == 0) {
                         spawnNewMobCave(player);
+                    }
+                }
+            }
+
+            //Patrol Spawn
+            if (PatrolSpawning.patrolSpawnRandomPool <= 0 || rand.nextInt(PatrolSpawning.patrolSpawnRandomPool) == 0) {
+                spawnNewPatrol(player);
+                if(PatrolSpawning.patrolRivalSpawnRandomPool <= 0 || rand.nextInt(PatrolSpawning.patrolRivalSpawnRandomPool) == 0) {
+                    int randSize = player.level().random.nextInt(PatrolSpawning.patrolRivalSpawnMaxGroupSize) + 1;
+                    for (int i = 0; i < randSize; i++) {
+                        spawnRivalingPatrol(player);
                     }
                 }
             }
@@ -147,6 +170,47 @@ public class SASUtil {
         return false;
     }
 
+    public static void spawnNewPatrol(Player player) {
+        int minDist = PatrolSpawning.patrolSpawningMinDist;
+        int maxDist = PatrolSpawning.patrolSpawningMaxDist;
+        int range = maxDist * 2;
+        for (int tries = 0; tries < 5; tries++) {
+            int tryX = ((int)player.getX() - range / 2 + rand.nextInt(range));
+            int tryZ = ((int)player.getZ() - range / 2 + rand.nextInt(range));
+            int tryY = player.level().getHeight(Heightmap.Types.MOTION_BLOCKING, (int)Math.floor(tryX), (int)Math.floor(tryZ));
+            if ((int)distance((int)player.getX(), (int)player.getZ(), tryX, tryZ) < minDist || (int)distance((int)player.getX(), (int)player.getZ(), tryX, tryZ) > maxDist ||
+                    player.level().getLightEmission(new BlockPos(tryX, tryY, tryZ)) >= 6) {
+                continue;
+            }
+            int randSize = player.level().random.nextInt(PatrolSpawning.patrolGroupMaxSize) + 1;
+            ServerLevel world = (ServerLevel) player.level();
+            int spawned = 0;
+            int factionType = world.random.nextInt(2);
+            System.out.println(factionType);
+            lastFactionSpawnedX = tryX;
+            lastFactionSapwnedY = tryY;
+            lastFactionSpawnedZ = tryZ;
+            lastFactionSpawned = factionType;
+            for (int i = 0; i < randSize; i++) {
+                spawnFactionSurvivorAllowed(player, world, tryX, tryY, tryZ, factionType);
+                spawned++;
+            }
+            if(spawned < PatrolSpawning.patrolGroupMinSize) {
+                spawnFactionSurvivorAllowed(player, world, tryX, tryY, tryZ, factionType);
+            }
+
+            return;
+        }
+    }
+
+    private static void spawnRivalingPatrol(Player player) {
+        if(lastFactionSpawned == 0) {
+            spawnFactionSurvivorAllowed(player, (ServerLevel) player.level(), lastFactionSpawnedX + 10, lastFactionSapwnedY, lastFactionSpawnedZ + 10,  1);
+        } else {
+            spawnFactionSurvivorAllowed(player, (ServerLevel) player.level(), lastFactionSpawnedX + 10, lastFactionSapwnedY, lastFactionSpawnedZ + 10, 0);
+        }
+    }
+
     public static boolean canSpawnMobOnGround(Level world, int x, int y, int z) {
         BlockPos pos = new BlockPos(x, y, z);
         BlockState state = world.getBlockState(pos);
@@ -166,6 +230,24 @@ public class SASUtil {
             if (ZombieSpawning.extraSpawningAutoTarget) entZ.setTarget(player);
 
             SaintsAndSinners.LOGGER.info("spawnNewMob: " + tryX + ", " + tryY + ", " + tryZ);
+
+    }
+
+    public static void spawnFactionSurvivorAllowed(Player player, ServerLevel world, int tryX, int tryY, int tryZ, int factionType){
+        AbstractFactionSurvivor entFS;
+        if(factionType == 0) {
+            entFS = new TowerFactionSurvivor(SASEntities.TOWER_FACTION_SURVIVOR.get(), world);
+        } else {
+            entFS = new ReclaimedFactionSurvivor(SASEntities.RECLAIMED_FACTION_SURVIVOR.get(), world);
+        }
+        entFS.setPos(tryX + 0.5F, tryY + 1.1F, tryZ + 0.5F);
+        entFS.finalizeSpawn(world.getLevel(), world.getCurrentDifficultyAt(new BlockPos(entFS.getBlockX(), entFS.getBlockY(), entFS.getBlockZ())), MobSpawnType.MOB_SUMMONED, null, null);
+        giveRandomSpeedBoost(entFS);
+        world.addFreshEntity(entFS);
+
+        if (PatrolSpawning.patrolAutoTargetPlayer) entFS.setTarget(player);
+
+        SaintsAndSinners.LOGGER.info("spawnNewPatrolMob: " + tryX + ", " + tryY + ", " + tryZ);
 
     }
 
