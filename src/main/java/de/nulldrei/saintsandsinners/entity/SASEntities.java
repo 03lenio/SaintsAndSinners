@@ -6,6 +6,8 @@ import de.nulldrei.saintsandsinners.entity.hostile.TowerFactionSurvivor;
 import de.nulldrei.saintsandsinners.entity.hostile.variant.ReclaimedVariant;
 import de.nulldrei.saintsandsinners.entity.neutral.RobberSurvivor;
 import de.nulldrei.saintsandsinners.entity.peaceful.BeggarSurvivor;
+import de.nulldrei.saintsandsinners.entity.projectile.ExplosiveArrow;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.animal.goat.GoatAi;
@@ -37,6 +39,9 @@ public class SASEntities {
             ENTITY_TYPES.register("reclaimed_cultist", () -> EntityType.Builder.of(ReclaimedFactionSurvivor::new, MobCategory.CREATURE)
                     .sized(1, 2).build("reclaimed_cultist"));
 
+    public static final RegistryObject<EntityType<ExplosiveArrow>> EXPLOSIVE_ARROW =
+            ENTITY_TYPES.register("explosive_arrow", () -> EntityType.Builder.<ExplosiveArrow>of(ExplosiveArrow::new, MobCategory.MISC)
+                    .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("explosive_arrow"));
 
 
     public static void register(IEventBus eventBus) {

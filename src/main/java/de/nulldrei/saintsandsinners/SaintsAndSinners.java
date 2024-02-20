@@ -1,11 +1,13 @@
 package de.nulldrei.saintsandsinners;
 
 import com.mojang.logging.LogUtils;
+import de.nulldrei.saintsandsinners.behaviors.SASDispenseBehavior;
 import de.nulldrei.saintsandsinners.block.SASBlocks;
 import de.nulldrei.saintsandsinners.entity.SASEntities;
 import de.nulldrei.saintsandsinners.entity.activitiy.SASActivities;
 import de.nulldrei.saintsandsinners.entity.ai.memory.SASMemoryModules;
 import de.nulldrei.saintsandsinners.entity.ai.memory.sensors.SASSensorTypes;
+import de.nulldrei.saintsandsinners.entity.client.ExplosiveArrowRenderer;
 import de.nulldrei.saintsandsinners.entity.client.SASModelLayers;
 import de.nulldrei.saintsandsinners.entity.client.SurvivorRenderer;
 import de.nulldrei.saintsandsinners.event.SASEventHandler;
@@ -93,6 +95,7 @@ public class SaintsAndSinners {
             output.accept(SASItems.ROTTEN_INTESTINES.get());
             output.accept(SASItems.ROTTEN_LEGS.get());
             output.accept(SASItems.ROTTEN_TOES.get());
+            output.accept(SASItems.EXPLOSIVE_ARROW.get());
             }).build());
 
     public SaintsAndSinners() {
@@ -134,6 +137,9 @@ public class SaintsAndSinners {
         LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
 
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
+        event.enqueueWork(() -> {
+            SASDispenseBehavior.registerDispenseBehaviors();
+        });
     }
 
     // Add the example block item to the building blocks tab
@@ -174,6 +180,7 @@ public class SaintsAndSinners {
             EntityRenderers.register(SASEntities.RECLAIMED_FACTION_SURVIVOR.get(), (p_174066_) -> {
                 return new SurvivorRenderer(p_174066_, SASModelLayers.SURVIVOR_LAYER, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false);
             });
+            EntityRenderers.register(SASEntities.EXPLOSIVE_ARROW.get(), ExplosiveArrowRenderer::new);
         }
     }
 }

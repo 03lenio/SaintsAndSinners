@@ -31,27 +31,27 @@ import java.util.Map;
 public class SurvivorRenderer extends HumanoidMobRenderer<Mob, SurvivorModel<Mob>> {
 
     private static final Map<Variant, ResourceLocation> TEXTURE_BY_VARIANT_BEGGAR = Util.make(Maps.newEnumMap(Variant.class), (p_114874_) -> {
-        p_114874_.put(Variant.TOM, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/tom.png"));
-        p_114874_.put(Variant.PATRICK, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/patrick.png"));
-        p_114874_.put(Variant.OSAMA, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/osama.png"));
+        p_114874_.put(Variant.TOM, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/survivor/tom.png"));
+        p_114874_.put(Variant.PATRICK, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/survivor/patrick.png"));
+        p_114874_.put(Variant.OSAMA, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/survivor/osama.png"));
     });
 
     private static final Map<de.nulldrei.saintsandsinners.entity.neutral.variant.Variant, ResourceLocation> TEXTURE_BY_VARIANT_ROBBER = Util.make(Maps.newEnumMap(de.nulldrei.saintsandsinners.entity.neutral.variant.Variant.class), (p_114874_) -> {
-        p_114874_.put(de.nulldrei.saintsandsinners.entity.neutral.variant.Variant.BEN, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/ben.png"));
-        p_114874_.put(de.nulldrei.saintsandsinners.entity.neutral.variant.Variant.RANDY, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/randy.png"));
-        p_114874_.put(de.nulldrei.saintsandsinners.entity.neutral.variant.Variant.RICK, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/rick.png"));
+        p_114874_.put(de.nulldrei.saintsandsinners.entity.neutral.variant.Variant.BEN, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/survivor/ben.png"));
+        p_114874_.put(de.nulldrei.saintsandsinners.entity.neutral.variant.Variant.RANDY, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/survivor/randy.png"));
+        p_114874_.put(de.nulldrei.saintsandsinners.entity.neutral.variant.Variant.RICK, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/survivor/rick.png"));
     });
 
     private static final Map<TowerVariant, ResourceLocation> TEXTURE_BY_VARIANT_TOWER_GUARD = Util.make(Maps.newEnumMap(TowerVariant.class), (p_114874_) -> {
-        p_114874_.put(TowerVariant.MISSY, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/missy.png"));
-        p_114874_.put(TowerVariant.ABRAHAM, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/abraham.png"));
-        p_114874_.put(TowerVariant.JOE, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/joe.png"));
+        p_114874_.put(TowerVariant.MISSY, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/survivor/missy.png"));
+        p_114874_.put(TowerVariant.ABRAHAM, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/survivor/abraham.png"));
+        p_114874_.put(TowerVariant.JOE, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/survivor/joe.png"));
     });
 
     private static final Map<ReclaimedVariant, ResourceLocation> TEXTURE_BY_VARIANT_RECLAIMED_CULTIST = Util.make(Maps.newEnumMap(ReclaimedVariant.class), (p_114874_) -> {
-        p_114874_.put(ReclaimedVariant.GEORGIA  , new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/georgia.png"));
-        p_114874_.put(ReclaimedVariant.WALTER, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/walter.png"));
-        p_114874_.put(ReclaimedVariant.JESSE, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/jesse.png"));
+        p_114874_.put(ReclaimedVariant.GEORGIA  , new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/survivor/georgia.png"));
+        p_114874_.put(ReclaimedVariant.WALTER, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/survivor/walter.png"));
+        p_114874_.put(ReclaimedVariant.JESSE, new ResourceLocation(SaintsAndSinners.MODID, "textures/entity/survivor/jesse.png"));
     });
 
     private final ItemRenderer itemRenderer;

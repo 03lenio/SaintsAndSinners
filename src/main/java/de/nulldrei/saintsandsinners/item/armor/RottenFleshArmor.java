@@ -32,7 +32,7 @@ public class RottenFleshArmor extends ArmorItem {
                                 p_41300_.broadcastBreakEvent(player.getUsedItemHand());
                             });
                             if(armorPiece.getDamageValue() == 0) {
-                                level.playSound(null, player.blockPosition(), SoundEvents.ITEM_BREAK, SoundSource.BLOCKS);
+                                level.playSound(null, player.blockPosition(), SoundEvents.ITEM_BREAK, SoundSource.PLAYERS);
                             }
                         }
 

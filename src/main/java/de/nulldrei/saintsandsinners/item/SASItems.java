@@ -9,8 +9,10 @@ import de.nulldrei.saintsandsinners.entity.SASEntities;
 import de.nulldrei.saintsandsinners.item.armor.ReclaimedArmor;
 import de.nulldrei.saintsandsinners.item.armor.RottenFleshArmor;
 import de.nulldrei.saintsandsinners.item.combat.Bottle;
+import de.nulldrei.saintsandsinners.item.combat.ExplosiveArrowItem;
 import de.nulldrei.saintsandsinners.item.stuff.BoxOfStuff;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -50,6 +52,8 @@ public class SASItems {
             () -> new RottenFleshArmor(MaterialRottenFlesh.ROTTEN_FLESH, ArmorItem.Type.LEGGINGS,  new Item.Properties().durability(10)));
     public static final RegistryObject<Item> ROTTEN_TOES = ITEMS.register("rotten_toes",
             () -> new RottenFleshArmor(MaterialRottenFlesh.ROTTEN_FLESH, ArmorItem.Type.BOOTS,  new Item.Properties().durability(10)));
+    public static final RegistryObject<ArrowItem> EXPLOSIVE_ARROW = ITEMS.register("explosive_arrow",
+            () -> new ExplosiveArrowItem(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
