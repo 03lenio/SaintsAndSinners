@@ -32,11 +32,10 @@ public class ExplosiveArrow extends AbstractArrow {
    }
 
    public void tick() {
-      super.tick();
       if (this.level().isClientSide && !this.inGround) {
          this.level().playSound(null, this.getBlockPosBelowThatAffectsMyMovement(), SoundEvents.TNT_PRIMED, SoundSource.AMBIENT);
       }
-
+      super.tick();
    }
 
 

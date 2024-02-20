@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "saintsandsinners:explosive_arrow"
+    "saintsandsinners:explosive_arrow",
+    "saintsandsinners:lure_arrow"
   ]
 }

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern":[
+    "   ",
+    "GGA",
+    "   "
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:arrow"
+    },
+    "G": {
+      "item": "minecraft:gunpowder"
+    }
+  },
+  "result": {
+    "item": "saintsandsinners:lure_arrow"
+}
+}
