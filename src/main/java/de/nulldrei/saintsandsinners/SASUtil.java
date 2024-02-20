@@ -8,6 +8,7 @@ import de.nulldrei.saintsandsinners.entity.SASEntities;
 import de.nulldrei.saintsandsinners.entity.hostile.AbstractFactionSurvivor;
 import de.nulldrei.saintsandsinners.entity.hostile.ReclaimedFactionSurvivor;
 import de.nulldrei.saintsandsinners.entity.hostile.TowerFactionSurvivor;
+import de.nulldrei.saintsandsinners.item.SASItems;
 import jdk.jshell.spi.ExecutionControl;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -31,10 +32,7 @@ import net.minecraft.world.level.levelgen.structure.structures.IglooStructure;
 import org.checkerframework.checker.units.qual.A;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 public class SASUtil {
 
@@ -275,9 +273,28 @@ public class SASUtil {
         return neededItems.contains(itemStack.toString());
     }
 
-    public static boolean doSurvivorsDemandItem(ItemStack itemStack) {
-        return demandedItems.contains(itemStack.toString());
+    public static boolean doesPlayerWearRottenFleshArmor(Player player) {
+        Iterable<ItemStack> armorSlots = player.getArmorSlots();
+        boolean isWearingHeadPiece = false;
+        boolean isWearingChestPiece = false;
+        boolean isWearingLegPiece = false;
+        boolean isWearingFootPiece = false;
+        for(ItemStack armorPiece : armorSlots) {
+            Item armorPieceItem = armorPiece.getItem();
+            if (armorPieceItem == SASItems.ROTTEN_BRAIN_MATTER.get()) {
+                isWearingHeadPiece = true;
+            } else if (armorPieceItem == SASItems.ROTTEN_INTESTINES.get()) {
+                isWearingChestPiece = true;
+            } else if (armorPieceItem == SASItems.ROTTEN_LEGS.get()) {
+                isWearingLegPiece = true;
+            } else if (armorPieceItem == SASItems.ROTTEN_TOES.get()) {
+                isWearingFootPiece = true;
+            }
+        }
+        return isWearingHeadPiece && isWearingChestPiece && isWearingLegPiece && isWearingFootPiece;
     }
+
+
 
     public static double distance(int x1, int z1, int x2, int z2) {
         return Math.sqrt((Math.pow(x1 - x2, 2)) + (Math.pow(z1 - z2, 2)));

@@ -89,6 +89,10 @@ public class SaintsAndSinners {
             output.accept(SASItems.RECLAIMED_MASK.get());
             output.accept(SASItems.TOWER_HELMET.get());
             output.accept(SASItems.TOWER_VEST.get());
+            output.accept(SASItems.ROTTEN_BRAIN_MATTER.get());
+            output.accept(SASItems.ROTTEN_INTESTINES.get());
+            output.accept(SASItems.ROTTEN_LEGS.get());
+            output.accept(SASItems.ROTTEN_TOES.get());
             }).build());
 
     public SaintsAndSinners() {

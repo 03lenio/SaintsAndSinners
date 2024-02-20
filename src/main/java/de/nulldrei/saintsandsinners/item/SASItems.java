@@ -2,10 +2,12 @@ package de.nulldrei.saintsandsinners.item;
 
 import de.nulldrei.saintsandsinners.SaintsAndSinners;
 import de.nulldrei.saintsandsinners.armor.material.MaterialReclaimed;
+import de.nulldrei.saintsandsinners.armor.material.MaterialRottenFlesh;
 import de.nulldrei.saintsandsinners.armor.material.MaterialTower;
 import de.nulldrei.saintsandsinners.data.SASLootTables;
 import de.nulldrei.saintsandsinners.entity.SASEntities;
 import de.nulldrei.saintsandsinners.item.armor.ReclaimedArmor;
+import de.nulldrei.saintsandsinners.item.armor.RottenFleshArmor;
 import de.nulldrei.saintsandsinners.item.combat.Bottle;
 import de.nulldrei.saintsandsinners.item.stuff.BoxOfStuff;
 import net.minecraft.resources.ResourceLocation;
@@ -24,7 +26,6 @@ public class SASItems {
     public static final RegistryObject<Item> DIAMOND_SHARD = ITEMS.register("diamond_shard", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> NETHERITE_FRAGMENT = ITEMS.register("netherite_fragment", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> COPPER_NUGGET = ITEMS.register("copper_nugget", () -> new Item(new Item.Properties()));
-
     public static final RegistryObject<Item> SHIV = ITEMS.register("shiv", () -> new SwordItem(Tiers.IRON, 2, -1.5F, new Item.Properties().durability(100)));
     public static final RegistryObject<Item> BROKEN_BOTTLE = ITEMS.register("broken_bottle", () -> new SwordItem(Tiers.STONE, 3, -0.5F, new Item.Properties().durability(15)));
     public static final RegistryObject<Item> SCREWDRIVER = ITEMS.register("screwdriver", () -> new SwordItem(Tiers.STONE, 2, -0.5F, new Item.Properties().durability(150)));
@@ -37,13 +38,18 @@ public class SASItems {
     public static final RegistryObject<ForgeSpawnEggItem> SPAWN_RECLAIMED_CULTIST = ITEMS.register("reclaimed_cultist_spawn_egg", () -> new ForgeSpawnEggItem(SASEntities.RECLAIMED_FACTION_SURVIVOR, 0x852424, 0x3d3e4d, new Item.Properties()));
     public static final RegistryObject<Item> RECLAIMED_MASK = ITEMS.register("reclaimed_mask",
             () -> new ReclaimedArmor(MaterialReclaimed.RECLAIMED, ArmorItem.Type.HELMET, new Item.Properties()));
-
     public static final RegistryObject<Item> TOWER_HELMET = ITEMS.register("tower_helmet",
             () -> new ArmorItem(MaterialTower.TOWER, ArmorItem.Type.HELMET, new Item.Properties()));
-
     public static final RegistryObject<Item> TOWER_VEST = ITEMS.register("tower_vest",
             () -> new ArmorItem(MaterialTower.TOWER, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
-
+    public static final RegistryObject<Item> ROTTEN_BRAIN_MATTER = ITEMS.register("rotten_brain_matter",
+            () -> new RottenFleshArmor(MaterialRottenFlesh.ROTTEN_FLESH, ArmorItem.Type.HELMET,  new Item.Properties().durability(10)));
+    public static final RegistryObject<Item> ROTTEN_INTESTINES = ITEMS.register("rotten_intestines",
+            () -> new RottenFleshArmor(MaterialRottenFlesh.ROTTEN_FLESH, ArmorItem.Type.CHESTPLATE,  new Item.Properties().durability(10)));
+    public static final RegistryObject<Item> ROTTEN_LEGS = ITEMS.register("rotten_legs",
+            () -> new RottenFleshArmor(MaterialRottenFlesh.ROTTEN_FLESH, ArmorItem.Type.LEGGINGS,  new Item.Properties().durability(10)));
+    public static final RegistryObject<Item> ROTTEN_TOES = ITEMS.register("rotten_toes",
+            () -> new RottenFleshArmor(MaterialRottenFlesh.ROTTEN_FLESH, ArmorItem.Type.BOOTS,  new Item.Properties().durability(10)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
