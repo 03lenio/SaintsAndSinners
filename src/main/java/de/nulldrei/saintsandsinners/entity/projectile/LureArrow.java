@@ -62,13 +62,15 @@ public class LureArrow extends AbstractArrow {
    public void tick() {
       if (!this.level().isClientSide) {
          if (getTicksUntilStop() <= 400) {
-            this.level().playSound(null, this.getBlockPosBelowThatAffectsMyMovement(), SoundEvents.BELL_RESONATE, SoundSource.AMBIENT);
+            if((getTicksUntilStop() % 6) == 0) {
+               this.level().playSound(null, this.getBlockPosBelowThatAffectsMyMovement(), SoundEvents.FIREWORK_ROCKET_LARGE_BLAST, SoundSource.AMBIENT);
+            }
             AABB distractionRange = this.getBoundingBox().inflate(5D);
             for (Entity e : level().getEntities(this, distractionRange)) {
                if (e instanceof Zombie zombie) {
-                  if (random.nextInt(3) == 0) {
+                  if (random.nextInt(10) == 0) {
                      //System.out.println("holy gay " + getTicksUntilStop());
-                     zombie.goalSelector.addGoal(2, new ZombieWalkToPositionGoal(zombie, 2.0D, 0.75D, getBlockPosBelowThatAffectsMyMovement()));
+                     zombie.goalSelector.addGoal(1, new ZombieWalkToPositionGoal(zombie, 2.0D, 0.75D, getBlockPosBelowThatAffectsMyMovement()));
                      affectedZombies.add(zombie);
                   }
                }
