@@ -1,7 +1,6 @@
 package de.nulldrei.saintsandsinners.item.combat;
 
-import de.nulldrei.saintsandsinners.entity.projectile.ExplosiveArrow;
-import de.nulldrei.saintsandsinners.entity.projectile.LureArrow;
+import de.nulldrei.saintsandsinners.entity.projectile.arrow.LureArrow;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ArrowItem;

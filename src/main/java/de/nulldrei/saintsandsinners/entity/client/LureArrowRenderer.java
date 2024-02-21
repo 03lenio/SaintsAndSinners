@@ -1,8 +1,7 @@
 package de.nulldrei.saintsandsinners.entity.client;
 
 import de.nulldrei.saintsandsinners.SaintsAndSinners;
-import de.nulldrei.saintsandsinners.entity.projectile.ExplosiveArrow;
-import de.nulldrei.saintsandsinners.entity.projectile.LureArrow;
+import de.nulldrei.saintsandsinners.entity.projectile.arrow.LureArrow;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;

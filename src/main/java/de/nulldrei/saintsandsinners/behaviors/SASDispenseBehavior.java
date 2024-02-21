@@ -1,6 +1,7 @@
 package de.nulldrei.saintsandsinners.behaviors;
 
-import de.nulldrei.saintsandsinners.entity.projectile.ExplosiveArrow;
+import de.nulldrei.saintsandsinners.entity.projectile.arrow.ExplosiveArrow;
+import de.nulldrei.saintsandsinners.entity.projectile.arrow.LureArrow;
 import de.nulldrei.saintsandsinners.item.SASItems;
 import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
@@ -20,6 +21,14 @@ public class SASDispenseBehavior {
                 protected Projectile getProjectile(@Nonnull Level level, @Nonnull Position position, @Nonnull ItemStack stack) {
                     AbstractArrow arrow = new ExplosiveArrow(level, position.x(), position.y(), position.z());
                     arrow.pickup = AbstractArrow.Pickup.DISALLOWED;
+                    return arrow;
+                }
+            });
+            DispenserBlock.registerBehavior(SASItems.LURE_ARROW.get(), new AbstractProjectileDispenseBehavior() {
+                @Nonnull
+                protected Projectile getProjectile(@Nonnull Level level, @Nonnull Position position, @Nonnull ItemStack stack) {
+                    AbstractArrow arrow = new LureArrow(level, position.x(), position.y(), position.z());
+                    arrow.pickup = AbstractArrow.Pickup.ALLOWED;
                     return arrow;
                 }
             });

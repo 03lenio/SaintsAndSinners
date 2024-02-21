@@ -11,6 +11,7 @@ import de.nulldrei.saintsandsinners.item.armor.RottenFleshArmor;
 import de.nulldrei.saintsandsinners.item.combat.Bottle;
 import de.nulldrei.saintsandsinners.item.combat.ExplosiveArrowItem;
 import de.nulldrei.saintsandsinners.item.combat.LureArrowItem;
+import de.nulldrei.saintsandsinners.item.combat.NailBombItem;
 import de.nulldrei.saintsandsinners.item.stuff.BoxOfStuff;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.projectile.Arrow;
@@ -58,6 +59,9 @@ public class SASItems {
 
     public static final RegistryObject<ArrowItem> LURE_ARROW = ITEMS.register("lure_arrow",
             () -> new LureArrowItem(new Item.Properties()));
+
+    public static final RegistryObject<NailBombItem> NAIL_BOMB = ITEMS.register("nail_bomb",
+            () -> new NailBombItem(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

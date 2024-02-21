@@ -3,16 +3,13 @@ package de.nulldrei.saintsandsinners.entity;
 import de.nulldrei.saintsandsinners.SaintsAndSinners;
 import de.nulldrei.saintsandsinners.entity.hostile.ReclaimedFactionSurvivor;
 import de.nulldrei.saintsandsinners.entity.hostile.TowerFactionSurvivor;
-import de.nulldrei.saintsandsinners.entity.hostile.variant.ReclaimedVariant;
 import de.nulldrei.saintsandsinners.entity.neutral.RobberSurvivor;
 import de.nulldrei.saintsandsinners.entity.peaceful.BeggarSurvivor;
-import de.nulldrei.saintsandsinners.entity.projectile.ExplosiveArrow;
-import de.nulldrei.saintsandsinners.entity.projectile.LureArrow;
-import net.minecraft.world.entity.Entity;
+import de.nulldrei.saintsandsinners.entity.projectile.NailBomb;
+import de.nulldrei.saintsandsinners.entity.projectile.arrow.ExplosiveArrow;
+import de.nulldrei.saintsandsinners.entity.projectile.arrow.LureArrow;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.animal.goat.GoatAi;
-import net.minecraft.world.entity.monster.warden.WardenAi;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -47,6 +44,10 @@ public class SASEntities {
     public static final RegistryObject<EntityType<LureArrow>> LURE_ARROW =
             ENTITY_TYPES.register("lure_arrow", () -> EntityType.Builder.<LureArrow>of(LureArrow::new, MobCategory.MISC)
                     .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("lure_arrow"));
+
+    public static final RegistryObject<EntityType<NailBomb>> NAIL_BOMB =
+            ENTITY_TYPES.register("nail_bomb", () -> EntityType.Builder.<NailBomb>of(NailBomb::new, MobCategory.MISC)
+                    .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("nail_bomb"));
 
 
     public static void register(IEventBus eventBus) {

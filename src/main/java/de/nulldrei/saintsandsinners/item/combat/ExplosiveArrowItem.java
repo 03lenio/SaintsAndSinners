@@ -1,9 +1,8 @@
 package de.nulldrei.saintsandsinners.item.combat;
 
-import de.nulldrei.saintsandsinners.entity.projectile.ExplosiveArrow;
+import de.nulldrei.saintsandsinners.entity.projectile.arrow.ExplosiveArrow;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.SpectralArrow;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 

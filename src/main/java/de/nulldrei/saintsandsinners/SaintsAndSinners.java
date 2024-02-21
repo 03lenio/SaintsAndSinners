@@ -16,7 +16,9 @@ import de.nulldrei.saintsandsinners.item.SASItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
@@ -98,6 +100,7 @@ public class SaintsAndSinners {
             output.accept(SASItems.ROTTEN_TOES.get());
             output.accept(SASItems.EXPLOSIVE_ARROW.get());
             output.accept(SASItems.LURE_ARROW.get());
+            output.accept(SASItems.NAIL_BOMB.get());
             }).build());
 
     public SaintsAndSinners() {
@@ -182,6 +185,7 @@ public class SaintsAndSinners {
             });
             EntityRenderers.register(SASEntities.EXPLOSIVE_ARROW.get(), ExplosiveArrowRenderer::new);
             EntityRenderers.register(SASEntities.LURE_ARROW.get(), LureArrowRenderer::new);
+            EntityRenderers.register(SASEntities.NAIL_BOMB.get(), ThrownItemRenderer::new);
 
         }
     }

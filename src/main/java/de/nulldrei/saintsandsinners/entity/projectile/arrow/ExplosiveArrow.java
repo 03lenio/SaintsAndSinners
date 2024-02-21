@@ -1,18 +1,12 @@
-package de.nulldrei.saintsandsinners.entity.projectile;
+package de.nulldrei.saintsandsinners.entity.projectile.arrow;
 
 import de.nulldrei.saintsandsinners.entity.SASEntities;
-import de.nulldrei.saintsandsinners.item.SASItems;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 
@@ -45,10 +39,10 @@ public class ExplosiveArrow extends AbstractArrow {
 
    @Override
    protected void onHit(HitResult p_37260_) {
+      super.onHit(p_37260_);
       if (!level().isClientSide()) {
          level().explode(this, p_37260_.getLocation().x, p_37260_.getLocation().y, p_37260_.getLocation().z, 4.0F, Level.ExplosionInteraction.MOB);
          remove(RemovalReason.DISCARDED);
-         super.onHit(p_37260_);
       }
    }
 }
