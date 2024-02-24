@@ -6,6 +6,7 @@ import de.nulldrei.saintsandsinners.entity.hostile.TowerFactionSurvivor;
 import de.nulldrei.saintsandsinners.entity.neutral.RobberSurvivor;
 import de.nulldrei.saintsandsinners.entity.peaceful.BeggarSurvivor;
 import de.nulldrei.saintsandsinners.entity.projectile.NailBomb;
+import de.nulldrei.saintsandsinners.entity.projectile.StickyProximityBomb;
 import de.nulldrei.saintsandsinners.entity.projectile.arrow.ExplosiveArrow;
 import de.nulldrei.saintsandsinners.entity.projectile.arrow.LureArrow;
 import net.minecraft.world.entity.EntityType;
@@ -14,6 +15,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.stringtemplate.v4.ST;
 
 public class SASEntities {
 
@@ -48,6 +50,10 @@ public class SASEntities {
     public static final RegistryObject<EntityType<NailBomb>> NAIL_BOMB =
             ENTITY_TYPES.register("nail_bomb", () -> EntityType.Builder.<NailBomb>of(NailBomb::new, MobCategory.MISC)
                     .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("nail_bomb"));
+
+    public static final RegistryObject<EntityType<StickyProximityBomb>> STICKY_PROXIMITY_BOMB =
+            ENTITY_TYPES.register("sticky_proximity_bomb", () -> EntityType.Builder.<StickyProximityBomb>of(StickyProximityBomb::new, MobCategory.MISC)
+                    .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("sticky_proximity_bomb"));
 
 
     public static void register(IEventBus eventBus) {

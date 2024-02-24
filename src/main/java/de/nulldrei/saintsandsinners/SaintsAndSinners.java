@@ -7,10 +7,7 @@ import de.nulldrei.saintsandsinners.entity.SASEntities;
 import de.nulldrei.saintsandsinners.entity.activitiy.SASActivities;
 import de.nulldrei.saintsandsinners.entity.ai.memory.SASMemoryModules;
 import de.nulldrei.saintsandsinners.entity.ai.memory.sensors.SASSensorTypes;
-import de.nulldrei.saintsandsinners.entity.client.ExplosiveArrowRenderer;
-import de.nulldrei.saintsandsinners.entity.client.LureArrowRenderer;
-import de.nulldrei.saintsandsinners.entity.client.SASModelLayers;
-import de.nulldrei.saintsandsinners.entity.client.SurvivorRenderer;
+import de.nulldrei.saintsandsinners.entity.client.*;
 import de.nulldrei.saintsandsinners.event.SASEventHandler;
 import de.nulldrei.saintsandsinners.item.SASItems;
 import net.minecraft.client.Minecraft;
@@ -101,6 +98,7 @@ public class SaintsAndSinners {
             output.accept(SASItems.EXPLOSIVE_ARROW.get());
             output.accept(SASItems.LURE_ARROW.get());
             output.accept(SASItems.NAIL_BOMB.get());
+            output.accept(SASItems.STICKY_PROXIMITY_BOMB.get());
             }).build());
 
     public SaintsAndSinners() {
@@ -186,7 +184,7 @@ public class SaintsAndSinners {
             EntityRenderers.register(SASEntities.EXPLOSIVE_ARROW.get(), ExplosiveArrowRenderer::new);
             EntityRenderers.register(SASEntities.LURE_ARROW.get(), LureArrowRenderer::new);
             EntityRenderers.register(SASEntities.NAIL_BOMB.get(), ThrownItemRenderer::new);
-
+            EntityRenderers.register(SASEntities.STICKY_PROXIMITY_BOMB.get(), StickyThrownItemRenderer::new);
         }
     }
 }

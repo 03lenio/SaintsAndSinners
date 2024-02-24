@@ -35,7 +35,6 @@ public class Bottle extends Item {
     }
 
 
-
     @Override
     public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
         Entity camera = Minecraft.getInstance().getCameraEntity();

@@ -8,10 +8,7 @@ import de.nulldrei.saintsandsinners.data.SASLootTables;
 import de.nulldrei.saintsandsinners.entity.SASEntities;
 import de.nulldrei.saintsandsinners.item.armor.ReclaimedArmor;
 import de.nulldrei.saintsandsinners.item.armor.RottenFleshArmor;
-import de.nulldrei.saintsandsinners.item.combat.Bottle;
-import de.nulldrei.saintsandsinners.item.combat.ExplosiveArrowItem;
-import de.nulldrei.saintsandsinners.item.combat.LureArrowItem;
-import de.nulldrei.saintsandsinners.item.combat.NailBombItem;
+import de.nulldrei.saintsandsinners.item.combat.*;
 import de.nulldrei.saintsandsinners.item.stuff.BoxOfStuff;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.projectile.Arrow;
@@ -62,6 +59,9 @@ public class SASItems {
 
     public static final RegistryObject<NailBombItem> NAIL_BOMB = ITEMS.register("nail_bomb",
             () -> new NailBombItem(new Item.Properties()));
+
+    public static final RegistryObject<StickyProximityBombItem> STICKY_PROXIMITY_BOMB = ITEMS.register("sticky_proximity_bomb",
+            () -> new StickyProximityBombItem(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
