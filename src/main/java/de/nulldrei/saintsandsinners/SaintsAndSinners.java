@@ -181,6 +181,9 @@ public class SaintsAndSinners {
             EntityRenderers.register(SASEntities.RECLAIMED_FACTION_SURVIVOR.get(), (p_174066_) -> {
                 return new SurvivorRenderer(p_174066_, SASModelLayers.SURVIVOR_LAYER, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false);
             });
+            EntityRenderers.register(SASEntities.DECAPITATED.get(), (p_174066_) -> {
+                return new DecapitatedRenderer(p_174066_, SASModelLayers.DECAPITATED_LAYER, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false);
+            });
             EntityRenderers.register(SASEntities.EXPLOSIVE_ARROW.get(), ExplosiveArrowRenderer::new);
             EntityRenderers.register(SASEntities.LURE_ARROW.get(), LureArrowRenderer::new);
             EntityRenderers.register(SASEntities.NAIL_BOMB.get(), ThrownItemRenderer::new);

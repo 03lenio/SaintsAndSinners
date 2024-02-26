@@ -2,6 +2,7 @@ package de.nulldrei.saintsandsinners.event;
 
 import de.nulldrei.saintsandsinners.SaintsAndSinners;
 import de.nulldrei.saintsandsinners.armor.model.ReclaimedMaskModel;
+import de.nulldrei.saintsandsinners.entity.client.DecapitatedModel;
 import de.nulldrei.saintsandsinners.entity.client.SASModelLayers;
 import de.nulldrei.saintsandsinners.entity.client.SurvivorModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -20,7 +21,8 @@ public class SASCustomEventBusEventsClient {
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(new ModelLayerLocation(new ResourceLocation(SaintsAndSinners.MODID, "main"), "reclaimed_mask"), ReclaimedMaskModel::createBodyLayer);
         event.registerLayerDefinition(SASModelLayers.SURVIVOR_LAYER, () -> LayerDefinition.create(SurvivorModel.createMesh(CubeDeformation.NONE), 64, 64));
-        
-     }
+        event.registerLayerDefinition(SASModelLayers.DECAPITATED_LAYER, () -> DecapitatedModel.createBodyLayer());
+
+    }
 
 }

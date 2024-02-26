@@ -3,12 +3,15 @@ package de.nulldrei.saintsandsinners.entity;
 import de.nulldrei.saintsandsinners.SaintsAndSinners;
 import de.nulldrei.saintsandsinners.entity.hostile.ReclaimedFactionSurvivor;
 import de.nulldrei.saintsandsinners.entity.hostile.TowerFactionSurvivor;
+import de.nulldrei.saintsandsinners.entity.neutral.Decapitated;
 import de.nulldrei.saintsandsinners.entity.neutral.RobberSurvivor;
 import de.nulldrei.saintsandsinners.entity.peaceful.BeggarSurvivor;
 import de.nulldrei.saintsandsinners.entity.projectile.NailBomb;
 import de.nulldrei.saintsandsinners.entity.projectile.StickyProximityBomb;
 import de.nulldrei.saintsandsinners.entity.projectile.arrow.ExplosiveArrow;
 import de.nulldrei.saintsandsinners.entity.projectile.arrow.LureArrow;
+import io.netty.util.Attribute;
+import net.minecraft.server.commands.DebugCommand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -54,6 +57,11 @@ public class SASEntities {
     public static final RegistryObject<EntityType<StickyProximityBomb>> STICKY_PROXIMITY_BOMB =
             ENTITY_TYPES.register("sticky_proximity_bomb", () -> EntityType.Builder.<StickyProximityBomb>of(StickyProximityBomb::new, MobCategory.MISC)
                     .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("sticky_proximity_bomb"));
+
+    public static final RegistryObject<EntityType<Decapitated>> DECAPITATED =
+            ENTITY_TYPES.register("decapitated", () -> EntityType.Builder.of(Decapitated::new, MobCategory.CREATURE)
+                    .sized(1, 2).build("decapitated"));
+
 
 
     public static void register(IEventBus eventBus) {
