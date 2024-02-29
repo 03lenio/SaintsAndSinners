@@ -1,4 +1,4 @@
-package de.nulldrei.saintsandsinners.item.combat;
+package de.nulldrei.saintsandsinners.item.combat.melee;
 
 import de.nulldrei.saintsandsinners.item.SASItems;
 import net.minecraft.client.Minecraft;

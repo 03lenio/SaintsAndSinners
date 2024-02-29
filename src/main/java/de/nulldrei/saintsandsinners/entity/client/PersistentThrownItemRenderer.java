@@ -1,7 +1,6 @@
 package de.nulldrei.saintsandsinners.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -17,20 +16,20 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class StickyThrownItemRenderer<T extends Entity & ItemSupplier> extends EntityRenderer<T> {
+public class PersistentThrownItemRenderer<T extends Entity & ItemSupplier> extends EntityRenderer<T> {
    private static final float MIN_CAMERA_DISTANCE_SQUARED = 12.25F;
    private final ItemRenderer itemRenderer;
    private final float scale;
    private final boolean fullBright;
 
-   public StickyThrownItemRenderer(EntityRendererProvider.Context p_174416_, float p_174417_, boolean p_174418_) {
+   public PersistentThrownItemRenderer(EntityRendererProvider.Context p_174416_, float p_174417_, boolean p_174418_) {
       super(p_174416_);
       this.itemRenderer = p_174416_.getItemRenderer();
       this.scale = p_174417_;
       this.fullBright = p_174418_;
    }
 
-   public StickyThrownItemRenderer(EntityRendererProvider.Context p_174414_) {
+   public PersistentThrownItemRenderer(EntityRendererProvider.Context p_174414_) {
       this(p_174414_, 1.0F, false);
    }
 

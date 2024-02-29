@@ -15,8 +15,6 @@ import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -24,7 +22,6 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CarvedPumpkinBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.api.distmarker.Dist;
@@ -99,6 +96,7 @@ public class SaintsAndSinners {
             output.accept(SASItems.LURE_ARROW.get());
             output.accept(SASItems.NAIL_BOMB.get());
             output.accept(SASItems.STICKY_PROXIMITY_BOMB.get());
+            output.accept(SASItems.TIMED_NOISE_MAKER_BOMB.get());
             }).build());
 
     public SaintsAndSinners() {
@@ -187,7 +185,9 @@ public class SaintsAndSinners {
             EntityRenderers.register(SASEntities.EXPLOSIVE_ARROW.get(), ExplosiveArrowRenderer::new);
             EntityRenderers.register(SASEntities.LURE_ARROW.get(), LureArrowRenderer::new);
             EntityRenderers.register(SASEntities.NAIL_BOMB.get(), ThrownItemRenderer::new);
-            EntityRenderers.register(SASEntities.STICKY_PROXIMITY_BOMB.get(), StickyThrownItemRenderer::new);
+            EntityRenderers.register(SASEntities.STICKY_PROXIMITY_BOMB.get(), PersistentThrownItemRenderer::new);
+            EntityRenderers.register(SASEntities.THROWN_TIMED_NOISE_MAKER_BOMB.get(), PersistentThrownItemRenderer::new);
+            EntityRenderers.register(SASEntities.TIMED_NOISE_MAKER_BOMB.get(), TimedNoiseMakerBombRenderer::new);
         }
     }
 }

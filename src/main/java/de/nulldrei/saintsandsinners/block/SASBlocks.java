@@ -3,11 +3,8 @@ package de.nulldrei.saintsandsinners.block;
 import de.nulldrei.saintsandsinners.SaintsAndSinners;
 import de.nulldrei.saintsandsinners.block.utility.RecyclingBinBlock;
 import de.nulldrei.saintsandsinners.item.SASItems;
-import de.nulldrei.saintsandsinners.item.combat.Bottle;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
@@ -18,8 +15,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
-
-import static de.nulldrei.saintsandsinners.SaintsAndSinners.BLOCKS;
 
 public class SASBlocks {
 

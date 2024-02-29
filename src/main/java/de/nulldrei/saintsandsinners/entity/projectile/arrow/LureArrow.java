@@ -27,10 +27,6 @@ import java.util.List;
 public class LureArrow extends AbstractArrow {
    private static final EntityDataAccessor<Integer> DATA_TICKS_UNTIL_STOP = SynchedEntityData.defineId(LureArrow.class, EntityDataSerializers.INT);
 
-   private static final EntityDataAccessor<Integer> DATA_TICKS_UUID = SynchedEntityData.defineId(LureArrow.class, EntityDataSerializers.INT);
-
-   private static final EntityDataAccessor<Integer> DATA_TICKS_AFFECTED_ZOMBIES_COUNT = SynchedEntityData.defineId(LureArrow.class, EntityDataSerializers.INT);
-
    private ArrayList<Zombie> affectedZombies = new ArrayList<Zombie>();
 
    public LureArrow(EntityType<? extends LureArrow> p_37411_, Level p_37412_) {

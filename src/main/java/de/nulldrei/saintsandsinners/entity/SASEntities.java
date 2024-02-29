@@ -8,17 +8,18 @@ import de.nulldrei.saintsandsinners.entity.neutral.RobberSurvivor;
 import de.nulldrei.saintsandsinners.entity.peaceful.BeggarSurvivor;
 import de.nulldrei.saintsandsinners.entity.projectile.NailBomb;
 import de.nulldrei.saintsandsinners.entity.projectile.StickyProximityBomb;
+import de.nulldrei.saintsandsinners.entity.projectile.ThrownTimedNoiseMakerBomb;
+import de.nulldrei.saintsandsinners.entity.projectile.TimedNoiseMakerBomb;
 import de.nulldrei.saintsandsinners.entity.projectile.arrow.ExplosiveArrow;
 import de.nulldrei.saintsandsinners.entity.projectile.arrow.LureArrow;
-import io.netty.util.Attribute;
-import net.minecraft.server.commands.DebugCommand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.stringtemplate.v4.ST;
+
+import java.sql.Time;
 
 public class SASEntities {
 
@@ -62,7 +63,13 @@ public class SASEntities {
             ENTITY_TYPES.register("decapitated", () -> EntityType.Builder.of(Decapitated::new, MobCategory.CREATURE)
                     .sized(1, 2).build("decapitated"));
 
+    public static final RegistryObject<EntityType<ThrownTimedNoiseMakerBomb>> THROWN_TIMED_NOISE_MAKER_BOMB =
+            ENTITY_TYPES.register("thrown_timed_noise_maker_bomb", () -> EntityType.Builder.<ThrownTimedNoiseMakerBomb>of(ThrownTimedNoiseMakerBomb::new, MobCategory.MISC)
+                    .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("thrown_timed_noise_maker_bomb"));
 
+    public static final RegistryObject<EntityType<TimedNoiseMakerBomb>> TIMED_NOISE_MAKER_BOMB =
+            ENTITY_TYPES.register("timed_noise_maker_bomb", () -> EntityType.Builder.<TimedNoiseMakerBomb>of(TimedNoiseMakerBomb::new, MobCategory.MISC)
+                    .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("timed_noise_maker_bomb"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

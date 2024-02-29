@@ -1,4 +1,4 @@
-package de.nulldrei.saintsandsinners.item.combat;
+package de.nulldrei.saintsandsinners.item.combat.projectile;
 
 import de.nulldrei.saintsandsinners.entity.projectile.arrow.ExplosiveArrow;
 import net.minecraft.world.entity.LivingEntity;
