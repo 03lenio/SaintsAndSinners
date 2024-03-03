@@ -13,7 +13,9 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.CrossbowAttackMob;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
@@ -38,6 +40,30 @@ public class TowerFactionSurvivor extends AbstractFactionSurvivor implements Var
         maybeWearArmor(EquipmentSlot.HEAD, new ItemStack(SASItems.TOWER_HELMET.get()), p_219189_);
         maybeWearArmor(EquipmentSlot.CHEST, new ItemStack(SASItems.TOWER_VEST.get()), p_219189_);
     }
+
+    protected void dropCustomDeathLoot(DamageSource p_34697_, int p_34698_, boolean p_34699_) {
+        super.dropCustomDeathLoot(p_34697_, p_34698_, p_34699_);
+        Entity entity = p_34697_.getEntity();
+        if (entity instanceof Creeper creeper) {
+            if (creeper.canDropMobsSkull()) {
+                ItemStack itemStack;
+                switch (getVariant().getSerializedName()) {
+                    case "missy":
+                        itemStack = new ItemStack(SASItems.MISSY_HEAD.get());
+                        break;
+                    case "abraham":
+                        itemStack = new ItemStack(SASItems.ABRAHAM_HEAD.get());
+                        break;
+                    default:
+                        itemStack = new ItemStack(SASItems.JOE_HEAD.get());
+                        break;
+                }
+                creeper.increaseDroppedSkulls();
+                this.spawnAtLocation(itemStack);
+            }
+        }
+    }
+
 
 
     @Nullable

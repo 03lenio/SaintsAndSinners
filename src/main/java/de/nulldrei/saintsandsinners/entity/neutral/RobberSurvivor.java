@@ -365,16 +365,25 @@ public class RobberSurvivor extends AbstractSurvivor implements CrossbowAttackMo
 
         protected void dropCustomDeathLoot(DamageSource p_34697_, int p_34698_, boolean p_34699_) {
             super.dropCustomDeathLoot(p_34697_, p_34698_, p_34699_);
-            // TODO // Implement drop of Survivor Heads if killed with cleaver or katana
             Entity entity = p_34697_.getEntity();
             if (entity instanceof Creeper creeper) {
                 if (creeper.canDropMobsSkull()) {
-                    ItemStack itemstack = new ItemStack(Items.PIGLIN_HEAD);
+                    ItemStack itemStack;
+                    switch (getVariant().getSerializedName()) {
+                        case "ben":
+                            itemStack = new ItemStack(SASItems.BEN_HEAD.get());
+                            break;
+                        case "randy":
+                            itemStack = new ItemStack(SASItems.RANDY_HEAD.get());
+                            break;
+                        default:
+                            itemStack = new ItemStack(SASItems.RICK_HEAD.get());
+                            break;
+                    }
                     creeper.increaseDroppedSkulls();
-                    this.spawnAtLocation(itemstack);
+                    this.spawnAtLocation(itemStack);
                 }
             }
-
             this.inventory.removeAllItems().forEach(this::spawnAtLocation);
         }
 

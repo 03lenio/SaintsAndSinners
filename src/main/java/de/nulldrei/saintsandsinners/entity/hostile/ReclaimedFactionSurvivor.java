@@ -10,7 +10,9 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.CrossbowAttackMob;
 import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -84,6 +86,30 @@ public class ReclaimedFactionSurvivor extends AbstractFactionSurvivor implements
     protected void populateDefaultEquipmentSlots(RandomSource p_219189_, DifficultyInstance p_219190_) {
             maybeWearArmor(EquipmentSlot.HEAD, new ItemStack(SASItems.RECLAIMED_MASK.get()), p_219189_);
     }
+
+    protected void dropCustomDeathLoot(DamageSource p_34697_, int p_34698_, boolean p_34699_) {
+        super.dropCustomDeathLoot(p_34697_, p_34698_, p_34699_);
+        Entity entity = p_34697_.getEntity();
+        if (entity instanceof Creeper creeper) {
+            if (creeper.canDropMobsSkull()) {
+                ItemStack itemStack;
+                switch (getVariant().getSerializedName()) {
+                    case "georgia":
+                        itemStack = new ItemStack(SASItems.GEORGIA_HEAD.get());
+                        break;
+                    case "walter":
+                        itemStack = new ItemStack(SASItems.WALTER_HEAD.get());
+                        break;
+                    default:
+                        itemStack = new ItemStack(SASItems.JESSE_HEAD.get());
+                        break;
+                }
+                creeper.increaseDroppedSkulls();
+                this.spawnAtLocation(itemStack);
+            }
+        }
+    }
+
 
     public SurvivorArmPose getArmPose() {
         if (this.isAggressive() && this.isHoldingMeleeWeapon()) {

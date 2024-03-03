@@ -144,13 +144,23 @@ public class BeggarSurvivor extends AbstractSurvivor implements InventoryCarrier
 
     protected void dropCustomDeathLoot(DamageSource p_34697_, int p_34698_, boolean p_34699_) {
         super.dropCustomDeathLoot(p_34697_, p_34698_, p_34699_);
-        // TODO // Implement drop of Survivor Heads if killed with cleaver or katana
         Entity entity = p_34697_.getEntity();
         if (entity instanceof Creeper creeper) {
             if (creeper.canDropMobsSkull()) {
-                ItemStack itemstack = new ItemStack(Items.PIGLIN_HEAD);
+                ItemStack itemStack;
+                switch (getVariant().getSerializedName()) {
+                    case "tom":
+                        itemStack = new ItemStack(SASItems.TOM_HEAD.get());
+                        break;
+                    case "patrick":
+                        itemStack = new ItemStack(SASItems.PATRICK_HEAD.get());
+                        break;
+                    default:
+                        itemStack = new ItemStack(SASItems.OSAMA_HEAD.get());
+                        break;
+                }
                 creeper.increaseDroppedSkulls();
-                this.spawnAtLocation(itemstack);
+                this.spawnAtLocation(itemStack);
             }
         }
 
