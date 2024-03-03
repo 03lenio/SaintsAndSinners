@@ -188,8 +188,12 @@ public class FactionSurvivorAI {
             }
             if (p_35098_ instanceof Zombie zombie) {
                 if(zombiesOutnumberFaction(p_35097_)) {
-                    setAvoidTarget(p_35097_, zombie);
-                    broadcastRetreat(p_35097_, zombie);
+                    if(p_35097_.getHealth() > 5) {
+                        setAvoidTarget(p_35097_, zombie);
+                    } else {
+                        broadcastRetreat(p_35097_, zombie);
+                        setAngerTarget(p_35097_, zombie);
+                    }
                 } else {
                     setAngerTarget(p_35097_, zombie);
                     broadcastAngerTarget(p_35097_, zombie);

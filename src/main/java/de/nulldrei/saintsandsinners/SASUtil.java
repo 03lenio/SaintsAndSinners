@@ -11,6 +11,7 @@ import de.nulldrei.saintsandsinners.entity.hostile.TowerFactionSurvivor;
 import de.nulldrei.saintsandsinners.item.SASItems;
 import jdk.jshell.spi.ExecutionControl;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.*;
@@ -293,8 +294,6 @@ public class SASUtil {
         }
         return isWearingHeadPiece && isWearingChestPiece && isWearingLegPiece && isWearingFootPiece;
     }
-
-
 
     public static double distance(int x1, int z1, int x2, int z2) {
         return Math.sqrt((Math.pow(x1 - x2, 2)) + (Math.pow(z1 - z2, 2)));

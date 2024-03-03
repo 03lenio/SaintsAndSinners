@@ -3,23 +3,24 @@ package de.nulldrei.saintsandsinners;
 import com.mojang.logging.LogUtils;
 import de.nulldrei.saintsandsinners.behaviors.SASDispenseBehavior;
 import de.nulldrei.saintsandsinners.block.SASBlocks;
+import de.nulldrei.saintsandsinners.block.blockentity.SASBlockEntities;
+import de.nulldrei.saintsandsinners.block.skull.render.SASSkullBlockRenderer;
 import de.nulldrei.saintsandsinners.entity.SASEntities;
 import de.nulldrei.saintsandsinners.entity.activitiy.SASActivities;
 import de.nulldrei.saintsandsinners.entity.ai.memory.SASMemoryModules;
 import de.nulldrei.saintsandsinners.entity.ai.memory.sensors.SASSensorTypes;
 import de.nulldrei.saintsandsinners.entity.client.*;
 import de.nulldrei.saintsandsinners.event.SASEventHandler;
+import de.nulldrei.saintsandsinners.event.SASForgeEvents;
 import de.nulldrei.saintsandsinners.item.SASItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -74,7 +75,7 @@ public class SaintsAndSinners {
             output.accept(SASItems.BROKEN_BOTTLE.get());
             output.accept(SASItems.SHIV.get());
             output.accept(SASItems.SCREWDRIVER.get());
-            output.accept(SASBlocks.RECYCLINGBIN.get());
+            output.accept(SASBlocks.RECYCLING_BIN.get());
             output.accept(SASItems.DIAMOND_SHARD.get());
             output.accept(SASItems.NETHERITE_FRAGMENT.get());
             output.accept(SASItems.COPPER_NUGGET.get());
@@ -97,18 +98,33 @@ public class SaintsAndSinners {
             output.accept(SASItems.NAIL_BOMB.get());
             output.accept(SASItems.STICKY_PROXIMITY_BOMB.get());
             output.accept(SASItems.TIMED_NOISE_MAKER_BOMB.get());
+            output.accept(SASItems.ABRAHAM_HEAD.get());
+            output.accept(SASItems.BEN_HEAD.get());
+            output.accept(SASItems.GEORGIA_HEAD.get());
+            output.accept(SASItems.JESSE_HEAD.get());
+            output.accept(SASItems.JOE_HEAD.get());
+            output.accept(SASItems.MISSY_HEAD.get());
+            output.accept(SASItems.OSAMA_HEAD.get());
+            output.accept(SASItems.PATRICK_HEAD.get());
+            output.accept(SASItems.RANDY_HEAD.get());
+            output.accept(SASItems.RICK_HEAD.get());
+            output.accept(SASItems.TOM_HEAD.get());
+            output.accept(SASItems.WALTER_HEAD.get());
+
             }).build());
 
     public SaintsAndSinners() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         SASBlocks.register(modEventBus);
         SASItems.register(modEventBus);
+        SASBlockEntities.register(modEventBus);
         SASEntities.register(modEventBus);
         SASMemoryModules.register(modEventBus);
         SASSensorTypes.register(modEventBus);
         SASActivities.register(modEventBus);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
+        MinecraftForge.EVENT_BUS.register(new SASForgeEvents());
         MinecraftForge.EVENT_BUS.register(new SASEventHandler());
         // Register the Deferred Register to the mod event bus so blocks get registered
         BLOCKS.register(modEventBus);
@@ -188,6 +204,8 @@ public class SaintsAndSinners {
             EntityRenderers.register(SASEntities.STICKY_PROXIMITY_BOMB.get(), PersistentThrownItemRenderer::new);
             EntityRenderers.register(SASEntities.THROWN_TIMED_NOISE_MAKER_BOMB.get(), PersistentThrownItemRenderer::new);
             EntityRenderers.register(SASEntities.TIMED_NOISE_MAKER_BOMB.get(), TimedNoiseMakerBombRenderer::new);
+            BlockEntityRenderers.register(SASBlockEntities.SAINTSANDSINNERS_SKULL.get(), SASSkullBlockRenderer::new);
+
         }
     }
 }

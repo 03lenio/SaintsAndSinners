@@ -4,6 +4,8 @@ import de.nulldrei.saintsandsinners.SaintsAndSinners;
 import de.nulldrei.saintsandsinners.armor.material.MaterialReclaimed;
 import de.nulldrei.saintsandsinners.armor.material.MaterialRottenFlesh;
 import de.nulldrei.saintsandsinners.armor.material.MaterialTower;
+import de.nulldrei.saintsandsinners.block.SASBlocks;
+import de.nulldrei.saintsandsinners.item.skull.SurvivorHeadItem;
 import de.nulldrei.saintsandsinners.data.SASLootTables;
 import de.nulldrei.saintsandsinners.entity.SASEntities;
 import de.nulldrei.saintsandsinners.item.armor.ReclaimedArmor;
@@ -11,6 +13,7 @@ import de.nulldrei.saintsandsinners.item.armor.RottenFleshArmor;
 import de.nulldrei.saintsandsinners.item.combat.melee.Bottle;
 import de.nulldrei.saintsandsinners.item.combat.projectile.*;
 import de.nulldrei.saintsandsinners.item.stuff.BoxOfStuff;
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -21,7 +24,6 @@ import net.minecraftforge.registries.RegistryObject;
 public class SASItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, SaintsAndSinners.MODID);
-
     public static final RegistryObject<Item> BOTTLE = ITEMS.register("bottle", () -> new Bottle(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> DIAMOND_SHARD = ITEMS.register("diamond_shard", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> NETHERITE_FRAGMENT = ITEMS.register("netherite_fragment", () -> new Item(new Item.Properties()));
@@ -52,18 +54,63 @@ public class SASItems {
             () -> new RottenFleshArmor(MaterialRottenFlesh.ROTTEN_FLESH, ArmorItem.Type.BOOTS,  new Item.Properties().durability(10)));
     public static final RegistryObject<ArrowItem> EXPLOSIVE_ARROW = ITEMS.register("explosive_arrow",
             () -> new ExplosiveArrowItem(new Item.Properties()));
-
     public static final RegistryObject<ArrowItem> LURE_ARROW = ITEMS.register("lure_arrow",
             () -> new LureArrowItem(new Item.Properties()));
-
     public static final RegistryObject<NailBombItem> NAIL_BOMB = ITEMS.register("nail_bomb",
             () -> new NailBombItem(new Item.Properties()));
-
     public static final RegistryObject<StickyProximityBombItem> STICKY_PROXIMITY_BOMB = ITEMS.register("sticky_proximity_bomb",
             () -> new StickyProximityBombItem(new Item.Properties()));
-
     public static final RegistryObject<TimedNoiseMakerBombItem> TIMED_NOISE_MAKER_BOMB = ITEMS.register("timed_noise_maker_bomb",
             () -> new TimedNoiseMakerBombItem(new Item.Properties()));
+
+    public static final RegistryObject<Item> ABRAHAM_HEAD = ITEMS.register("abraham_head", () ->
+            new SurvivorHeadItem(SASBlocks.ABRAHAM_HEAD.get(), SASBlocks.ABRAHAM_WALL_HEAD.get(),
+                    (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+
+    public static final RegistryObject<Item> BEN_HEAD = ITEMS.register("ben_head", () ->
+            new SurvivorHeadItem(SASBlocks.BEN_HEAD.get(), SASBlocks.BEN_WALL_HEAD.get(),
+                    (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+
+    public static final RegistryObject<Item> GEORGIA_HEAD = ITEMS.register("georgia_head", () ->
+            new SurvivorHeadItem(SASBlocks.GEORGIA_HEAD.get(), SASBlocks.GEORGIA_WALL_HEAD.get(),
+                    (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+
+    public static final RegistryObject<Item> JESSE_HEAD = ITEMS.register("jesse_head", () ->
+            new SurvivorHeadItem(SASBlocks.JESSE_HEAD.get(), SASBlocks.JESSE_WALL_HEAD.get(),
+                    (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+
+    public static final RegistryObject<Item> JOE_HEAD = ITEMS.register("joe_head", () ->
+            new SurvivorHeadItem(SASBlocks.JOE_HEAD.get(), SASBlocks.JOE_WALL_HEAD.get(),
+                    (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+
+    public static final RegistryObject<Item> MISSY_HEAD = ITEMS.register("missy_head", () ->
+            new SurvivorHeadItem(SASBlocks.MISSY_HEAD.get(), SASBlocks.MISSY_WALL_HEAD.get(),
+                    (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+
+    public static final RegistryObject<Item> OSAMA_HEAD = ITEMS.register("osama_head", () ->
+            new SurvivorHeadItem(SASBlocks.OSAMA_HEAD.get(), SASBlocks.OSAMA_WALL_HEAD.get(),
+                    (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+
+    public static final RegistryObject<Item> PATRICK_HEAD = ITEMS.register("patrick_head", () ->
+            new SurvivorHeadItem(SASBlocks.PATRICK_HEAD.get(), SASBlocks.PATRICK_WALL_HEAD.get(),
+                    (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+
+    public static final RegistryObject<Item> RANDY_HEAD = ITEMS.register("randy_head", () ->
+            new SurvivorHeadItem(SASBlocks.RANDY_HEAD.get(), SASBlocks.RANDY_WALL_HEAD.get(),
+                    (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+
+    public static final RegistryObject<Item> RICK_HEAD = ITEMS.register("rick_head", () ->
+            new SurvivorHeadItem(SASBlocks.RICK_HEAD.get(), SASBlocks.RICK_WALL_HEAD.get(),
+                    (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+
+    public static final RegistryObject<Item> TOM_HEAD = ITEMS.register("tom_head", () ->
+            new SurvivorHeadItem(SASBlocks.TOM_HEAD.get(), SASBlocks.TOM_WALL_HEAD.get(),
+                    (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+
+    public static final RegistryObject<Item> WALTER_HEAD = ITEMS.register("walter_head", () ->
+            new SurvivorHeadItem(SASBlocks.WALTER_HEAD.get(), SASBlocks.WALTER_WALL_HEAD.get(),
+                    (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
+
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -42,7 +42,7 @@ public class TimedNoiseMakerBombRenderer extends EntityRenderer<TimedNoiseMakerB
       if (p_115036_.tickCount >= 2 || !(this.entityRenderDispatcher.camera.getEntity().distanceToSqr(p_115036_) < 12.25D)) {
          p_115039_.pushPose();
          p_115039_.scale(1, 1, 1);
-         p_115039_.translate(0,0.5,0);
+         p_115039_.translate(0,0.25,0);
          this.itemRenderer.renderStatic(new ItemStack(SASItems.TIMED_NOISE_MAKER_BOMB.get()), ItemDisplayContext.GROUND, 15728880, OverlayTexture.NO_OVERLAY, p_115039_, p_115040_, p_115036_.level(), p_115036_.getId());
          p_115039_.popPose();
          super.render(p_115036_, p_115037_, p_115038_, p_115039_, p_115040_, p_115041_);

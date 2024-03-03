@@ -10,5 +10,7 @@ public class SASModelLayers {
             new ResourceLocation(SaintsAndSinners.MODID, "survivor_layer"), "main");
     public static final ModelLayerLocation DECAPITATED_LAYER = new ModelLayerLocation(
             new ResourceLocation(SaintsAndSinners.MODID, "decapitated_layer"), "main");
+    public static final ModelLayerLocation SURVIVOR_HEAD_LAYER = new ModelLayerLocation(
+            new ResourceLocation(SaintsAndSinners.MODID, "survivor_head"), "main");
 
 }
