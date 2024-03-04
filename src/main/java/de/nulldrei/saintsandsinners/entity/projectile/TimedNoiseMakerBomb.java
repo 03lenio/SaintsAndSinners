@@ -82,10 +82,8 @@ public class TimedNoiseMakerBomb extends Entity {
                         }
                     }
                 }
-                System.out.println("holy ohio");
                 setTicksUntilExplode(getTicksUntilExplode()+1);
             } else {
-                System.out.println("ohio");
                 try {
                     if(!affectedZombies.isEmpty()) {
                         removeWalkToPositionGoal(affectedZombies);

@@ -63,33 +63,35 @@ public class SASEventHandler {
 
     @SubscribeEvent
     public void entityDeath(LivingDeathEvent event) {
-        if(event.getSource().getEntity() instanceof Player player) {
-            if(player.getMainHandItem().getItem() == SASItems.TEST_HEAD_CUTTER.get()) {
-                if(event.getEntity() instanceof AbstractSurvivor abstractSurvivor) {
-                    String variant = "";
-                    if(abstractSurvivor instanceof BeggarSurvivor beggarSurvivor) {
-                        variant = beggarSurvivor.getVariant().getSerializedName();
-                    } else if(abstractSurvivor instanceof RobberSurvivor robberSurvivor) {
-                        variant = robberSurvivor.getVariant().getSerializedName();
-                    } else if(abstractSurvivor instanceof ReclaimedFactionSurvivor reclaimedFactionSurvivor) {
-                        variant = reclaimedFactionSurvivor.getVariant().getSerializedName();
-                    } else if(abstractSurvivor instanceof TowerFactionSurvivor towerFactionSurvivor) {
-                        variant = towerFactionSurvivor.getVariant().getSerializedName();
-                    }
-                    Decapitated decapitated = new Decapitated(player.level());
-                    decapitated.setPos(event.getEntity().position());
-                    decapitated.setVariant("survivor:"+variant);
-                    decapitated.finalizeSpawn((ServerLevelAccessor) player.level(), player.level().getCurrentDifficultyAt(new BlockPos(event.getEntity().getBlockX(), event.getEntity().getBlockY(), event.getEntity().getBlockZ())), MobSpawnType.MOB_SUMMONED, null, null);
-                    abstractSurvivor.discard();
-                    player.level().addFreshEntity(decapitated);
+        if(!event.getEntity().level().isClientSide()) {
+            if (event.getSource().getEntity() instanceof Player player) {
+                if (player.getMainHandItem().getItem() == SASItems.TEST_HEAD_CUTTER.get()) {
+                    if (event.getEntity() instanceof AbstractSurvivor abstractSurvivor) {
+                        String variant = "";
+                        if (abstractSurvivor instanceof BeggarSurvivor beggarSurvivor) {
+                            variant = beggarSurvivor.getVariant().getSerializedName();
+                        } else if (abstractSurvivor instanceof RobberSurvivor robberSurvivor) {
+                            variant = robberSurvivor.getVariant().getSerializedName();
+                        } else if (abstractSurvivor instanceof ReclaimedFactionSurvivor reclaimedFactionSurvivor) {
+                            variant = reclaimedFactionSurvivor.getVariant().getSerializedName();
+                        } else if (abstractSurvivor instanceof TowerFactionSurvivor towerFactionSurvivor) {
+                            variant = towerFactionSurvivor.getVariant().getSerializedName();
+                        }
+                        Decapitated decapitated = new Decapitated(player.level());
+                        decapitated.setPos(event.getEntity().position());
+                        decapitated.setVariant("survivor:" + variant);
+                        decapitated.finalizeSpawn((ServerLevelAccessor) player.level(), player.level().getCurrentDifficultyAt(new BlockPos(event.getEntity().getBlockX(), event.getEntity().getBlockY(), event.getEntity().getBlockZ())), MobSpawnType.MOB_SUMMONED, null, null);
+                        abstractSurvivor.discard();
+                        player.level().addFreshEntity(decapitated);
 
-                } else if (event.getEntity() instanceof Zombie zombie) {
-                    Decapitated decapitated = new Decapitated(player.level());
-                    decapitated.setPos(event.getEntity().position());
-                    decapitated.setVariant("zombie");
-                    decapitated.finalizeSpawn((ServerLevelAccessor) player.level(), player.level().getCurrentDifficultyAt(new BlockPos(event.getEntity().getBlockX(), event.getEntity().getBlockY(), event.getEntity().getBlockZ())), MobSpawnType.MOB_SUMMONED, null, null);
-                    zombie.discard();
-                    player.level().addFreshEntity(decapitated);
+                    } else if (event.getEntity() instanceof Zombie zombie) {
+                        Decapitated decapitated = new Decapitated(player.level());
+                        decapitated.setPos(event.getEntity().position());
+                        decapitated.setVariant("zombie");
+                        decapitated.finalizeSpawn((ServerLevelAccessor) player.level(), player.level().getCurrentDifficultyAt(new BlockPos(event.getEntity().getBlockX(), event.getEntity().getBlockY(), event.getEntity().getBlockZ())), MobSpawnType.MOB_SUMMONED, null, null);
+                        zombie.discard();
+                        player.level().addFreshEntity(decapitated);
+                    }
                 }
             }
         }
