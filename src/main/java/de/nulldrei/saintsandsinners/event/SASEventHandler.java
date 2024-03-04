@@ -2,20 +2,26 @@ package de.nulldrei.saintsandsinners.event;
 
 
 import de.nulldrei.saintsandsinners.SASUtil;
+import de.nulldrei.saintsandsinners.entity.dead.Decapitated;
+import de.nulldrei.saintsandsinners.entity.hostile.ReclaimedFactionSurvivor;
+import de.nulldrei.saintsandsinners.entity.hostile.TowerFactionSurvivor;
 import de.nulldrei.saintsandsinners.entity.neutral.AbstractSurvivor;
 import de.nulldrei.saintsandsinners.entity.neutral.RobberSurvivor;
 import de.nulldrei.saintsandsinners.entity.peaceful.BeggarSurvivor;
+import de.nulldrei.saintsandsinners.item.SASItems;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntitySelector;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.ZombieAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -55,5 +61,38 @@ public class SASEventHandler {
         }
     }
 
+    @SubscribeEvent
+    public void entityDeath(LivingDeathEvent event) {
+        if(event.getSource().getEntity() instanceof Player player) {
+            if(player.getMainHandItem().getItem() == SASItems.TEST_HEAD_CUTTER.get()) {
+                if(event.getEntity() instanceof AbstractSurvivor abstractSurvivor) {
+                    String variant = "";
+                    if(abstractSurvivor instanceof BeggarSurvivor beggarSurvivor) {
+                        variant = beggarSurvivor.getVariant().getSerializedName();
+                    } else if(abstractSurvivor instanceof RobberSurvivor robberSurvivor) {
+                        variant = robberSurvivor.getVariant().getSerializedName();
+                    } else if(abstractSurvivor instanceof ReclaimedFactionSurvivor reclaimedFactionSurvivor) {
+                        variant = reclaimedFactionSurvivor.getVariant().getSerializedName();
+                    } else if(abstractSurvivor instanceof TowerFactionSurvivor towerFactionSurvivor) {
+                        variant = towerFactionSurvivor.getVariant().getSerializedName();
+                    }
+                    Decapitated decapitated = new Decapitated(player.level());
+                    decapitated.setPos(event.getEntity().position());
+                    decapitated.setVariant("survivor:"+variant);
+                    decapitated.finalizeSpawn((ServerLevelAccessor) player.level(), player.level().getCurrentDifficultyAt(new BlockPos(event.getEntity().getBlockX(), event.getEntity().getBlockY(), event.getEntity().getBlockZ())), MobSpawnType.MOB_SUMMONED, null, null);
+                    abstractSurvivor.discard();
+                    player.level().addFreshEntity(decapitated);
+
+                } else if (event.getEntity() instanceof Zombie zombie) {
+                    Decapitated decapitated = new Decapitated(player.level());
+                    decapitated.setPos(event.getEntity().position());
+                    decapitated.setVariant("zombie");
+                    decapitated.finalizeSpawn((ServerLevelAccessor) player.level(), player.level().getCurrentDifficultyAt(new BlockPos(event.getEntity().getBlockX(), event.getEntity().getBlockY(), event.getEntity().getBlockZ())), MobSpawnType.MOB_SUMMONED, null, null);
+                    zombie.discard();
+                    player.level().addFreshEntity(decapitated);
+                }
+            }
+        }
+    }
 
 }

@@ -4,7 +4,7 @@ import de.nulldrei.saintsandsinners.SaintsAndSinners;
 import de.nulldrei.saintsandsinners.entity.SASEntities;
 import de.nulldrei.saintsandsinners.entity.hostile.ReclaimedFactionSurvivor;
 import de.nulldrei.saintsandsinners.entity.hostile.TowerFactionSurvivor;
-import de.nulldrei.saintsandsinners.entity.neutral.Decapitated;
+import de.nulldrei.saintsandsinners.entity.dead.Decapitated;
 import de.nulldrei.saintsandsinners.entity.peaceful.BeggarSurvivor;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

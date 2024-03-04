@@ -1,34 +1,17 @@
 package de.nulldrei.saintsandsinners.entity.client;
 
 import com.google.common.collect.Maps;
-import com.mojang.blaze3d.vertex.PoseStack;
 import de.nulldrei.saintsandsinners.SaintsAndSinners;
-import de.nulldrei.saintsandsinners.entity.animations.pose.SurvivorArmPose;
-import de.nulldrei.saintsandsinners.entity.hostile.ReclaimedFactionSurvivor;
-import de.nulldrei.saintsandsinners.entity.hostile.TowerFactionSurvivor;
 import de.nulldrei.saintsandsinners.entity.hostile.variant.ReclaimedVariant;
 import de.nulldrei.saintsandsinners.entity.hostile.variant.TowerVariant;
-import de.nulldrei.saintsandsinners.entity.neutral.Decapitated;
-import de.nulldrei.saintsandsinners.entity.neutral.RobberSurvivor;
-import de.nulldrei.saintsandsinners.entity.peaceful.BeggarSurvivor;
+import de.nulldrei.saintsandsinners.entity.dead.Decapitated;
 import de.nulldrei.saintsandsinners.entity.peaceful.variant.Variant;
 import net.minecraft.Util;
-import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.model.GoatModel;
-import net.minecraft.client.model.HumanoidArmorModel;
-import net.minecraft.client.model.ZombieModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.*;
-import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
-import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.monster.ZombieVillager;
-import net.minecraft.world.item.ItemDisplayContext;
 
 import java.util.Map;
 

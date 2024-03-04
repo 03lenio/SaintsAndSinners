@@ -3,7 +3,7 @@ package de.nulldrei.saintsandsinners.entity;
 import de.nulldrei.saintsandsinners.SaintsAndSinners;
 import de.nulldrei.saintsandsinners.entity.hostile.ReclaimedFactionSurvivor;
 import de.nulldrei.saintsandsinners.entity.hostile.TowerFactionSurvivor;
-import de.nulldrei.saintsandsinners.entity.neutral.Decapitated;
+import de.nulldrei.saintsandsinners.entity.dead.Decapitated;
 import de.nulldrei.saintsandsinners.entity.neutral.RobberSurvivor;
 import de.nulldrei.saintsandsinners.entity.peaceful.BeggarSurvivor;
 import de.nulldrei.saintsandsinners.entity.projectile.NailBomb;
@@ -12,14 +12,15 @@ import de.nulldrei.saintsandsinners.entity.projectile.ThrownTimedNoiseMakerBomb;
 import de.nulldrei.saintsandsinners.entity.projectile.TimedNoiseMakerBomb;
 import de.nulldrei.saintsandsinners.entity.projectile.arrow.ExplosiveArrow;
 import de.nulldrei.saintsandsinners.entity.projectile.arrow.LureArrow;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-
-import java.sql.Time;
 
 public class SASEntities {
 
@@ -60,7 +61,7 @@ public class SASEntities {
                     .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("sticky_proximity_bomb"));
 
     public static final RegistryObject<EntityType<Decapitated>> DECAPITATED =
-            ENTITY_TYPES.register("decapitated", () -> EntityType.Builder.of(Decapitated::new, MobCategory.CREATURE)
+            ENTITY_TYPES.register("decapitated", () -> EntityType.Builder.<Decapitated>of(Decapitated::new, MobCategory.CREATURE)
                     .sized(1, 2).build("decapitated"));
 
     public static final RegistryObject<EntityType<ThrownTimedNoiseMakerBomb>> THROWN_TIMED_NOISE_MAKER_BOMB =

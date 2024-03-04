@@ -110,7 +110,7 @@ public class SaintsAndSinners {
             output.accept(SASItems.RICK_HEAD.get());
             output.accept(SASItems.TOM_HEAD.get());
             output.accept(SASItems.WALTER_HEAD.get());
-
+            output.accept(SASItems.TEST_HEAD_CUTTER.get());
             }).build());
 
     public SaintsAndSinners() {
