@@ -18,6 +18,8 @@ import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.ZombieAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.monster.Drowned;
+import net.minecraft.world.entity.monster.Husk;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -87,7 +89,7 @@ public class SASEventHandler {
                         player.level().addFreshEntity(decapitated);
                         player.level().playSound(null, player.blockPosition(), SASSounds.HEAD_DECAPITATED.get(), SoundSource.PLAYERS);
                     } else if (event.getEntity() instanceof Zombie zombie) {
-                        if(!zombie.isBaby()) {
+                        if(!zombie.isBaby() && !(zombie instanceof Drowned) && !(zombie instanceof Husk)) {
                             Decapitated decapitated = new Decapitated(player.level());
                             decapitated.setPos(event.getEntity().position());
                             decapitated.setVariant("zombie");
