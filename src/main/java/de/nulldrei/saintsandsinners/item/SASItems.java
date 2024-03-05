@@ -111,9 +111,8 @@ public class SASItems {
             new SurvivorHeadItem(SASBlocks.WALTER_HEAD.get(), SASBlocks.WALTER_WALL_HEAD.get(),
                     (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
 
-    public static final RegistryObject<Item> TEST_HEAD_CUTTER = ITEMS.register("test_head_cutter", () ->
-            new SwordItem(Tiers.IRON, 2, -1.5F, new Item.Properties().durability(100)));
-
+    public static final RegistryObject<Item> CLEAVER = ITEMS.register("cleaver", () ->
+            new SwordItem(Tiers.IRON, 3, -1.5F, new Item.Properties().durability(200)));
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

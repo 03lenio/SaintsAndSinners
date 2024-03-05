@@ -48,47 +48,49 @@ public class Decapitated extends Monster  {
 
     protected void dropCustomDeathLoot(DamageSource p_34697_, int p_34698_, boolean p_34699_) {
         super.dropCustomDeathLoot(p_34697_, p_34698_, p_34699_);
-        ItemStack itemStack;
-        switch (getVariant().toLowerCase().split(":")[1]) {
-            case "abraham":
-                itemStack = new ItemStack(SASItems.ABRAHAM_HEAD.get());
-                break;
-            case "ben":
-                itemStack = new ItemStack(SASItems.BEN_HEAD.get());
-                break;
-            case "georgia":
-                itemStack = new ItemStack(SASItems.GEORGIA_HEAD.get());
-                break;
-            case "jesse":
-                itemStack = new ItemStack(SASItems.JESSE_HEAD.get());
-                break;
-            case "joe":
-                itemStack = new ItemStack(SASItems.JOE_HEAD.get());
-                break;
-            case "missy":
-                itemStack = new ItemStack(SASItems.MISSY_HEAD.get());
-                break;
-            case "osama":
-                itemStack = new ItemStack(SASItems.OSAMA_HEAD.get());
-                break;
-            case "patrick":
-                itemStack = new ItemStack(SASItems.PATRICK_HEAD.get());
-                break;
-            case "randy":
-                itemStack = new ItemStack(SASItems.RANDY_HEAD.get());
-                break;
-            case "rick":
-                itemStack = new ItemStack(SASItems.RICK_HEAD.get());
-                break;
-            case "tom":
-                itemStack = new ItemStack(SASItems.TOM_HEAD.get());
-                break;
-            case "walter":
-                itemStack = new ItemStack(SASItems.WALTER_HEAD.get());
-                break;
-            default:
-                itemStack = new ItemStack(Items.ZOMBIE_HEAD);
-                break;
+        ItemStack itemStack = ItemStack.EMPTY;
+        if(getVariant().startsWith("survivor")) {
+            switch (getVariant().toLowerCase().split(":")[1]) {
+                case "abraham":
+                    itemStack = new ItemStack(SASItems.ABRAHAM_HEAD.get());
+                    break;
+                case "ben":
+                    itemStack = new ItemStack(SASItems.BEN_HEAD.get());
+                    break;
+                case "georgia":
+                    itemStack = new ItemStack(SASItems.GEORGIA_HEAD.get());
+                    break;
+                case "jesse":
+                    itemStack = new ItemStack(SASItems.JESSE_HEAD.get());
+                    break;
+                case "joe":
+                    itemStack = new ItemStack(SASItems.JOE_HEAD.get());
+                    break;
+                case "missy":
+                    itemStack = new ItemStack(SASItems.MISSY_HEAD.get());
+                    break;
+                case "osama":
+                    itemStack = new ItemStack(SASItems.OSAMA_HEAD.get());
+                    break;
+                case "patrick":
+                    itemStack = new ItemStack(SASItems.PATRICK_HEAD.get());
+                    break;
+                case "randy":
+                    itemStack = new ItemStack(SASItems.RANDY_HEAD.get());
+                    break;
+                case "rick":
+                    itemStack = new ItemStack(SASItems.RICK_HEAD.get());
+                    break;
+                case "tom":
+                    itemStack = new ItemStack(SASItems.TOM_HEAD.get());
+                    break;
+                case "walter":
+                    itemStack = new ItemStack(SASItems.WALTER_HEAD.get());
+                    break;
+            }
+        }
+        else {
+            itemStack = new ItemStack(Items.ZOMBIE_HEAD);
         }
         this.spawnAtLocation(itemStack);
     }

@@ -9,7 +9,9 @@ import de.nulldrei.saintsandsinners.entity.neutral.AbstractSurvivor;
 import de.nulldrei.saintsandsinners.entity.neutral.RobberSurvivor;
 import de.nulldrei.saintsandsinners.entity.peaceful.BeggarSurvivor;
 import de.nulldrei.saintsandsinners.item.SASItems;
+import de.nulldrei.saintsandsinners.sound.SASSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -65,7 +67,7 @@ public class SASEventHandler {
     public void entityDeath(LivingDeathEvent event) {
         if(!event.getEntity().level().isClientSide()) {
             if (event.getSource().getEntity() instanceof Player player) {
-                if (player.getMainHandItem().getItem() == SASItems.TEST_HEAD_CUTTER.get()) {
+                if (player.getMainHandItem().getItem() == SASItems.CLEAVER.get()) {
                     if (event.getEntity() instanceof AbstractSurvivor abstractSurvivor) {
                         String variant = "";
                         if (abstractSurvivor instanceof BeggarSurvivor beggarSurvivor) {
@@ -83,14 +85,17 @@ public class SASEventHandler {
                         decapitated.finalizeSpawn((ServerLevelAccessor) player.level(), player.level().getCurrentDifficultyAt(new BlockPos(event.getEntity().getBlockX(), event.getEntity().getBlockY(), event.getEntity().getBlockZ())), MobSpawnType.MOB_SUMMONED, null, null);
                         abstractSurvivor.discard();
                         player.level().addFreshEntity(decapitated);
-
+                        player.level().playSound(null, player.blockPosition(), SASSounds.HEAD_DECAPITATED.get(), SoundSource.PLAYERS);
                     } else if (event.getEntity() instanceof Zombie zombie) {
-                        Decapitated decapitated = new Decapitated(player.level());
-                        decapitated.setPos(event.getEntity().position());
-                        decapitated.setVariant("zombie");
-                        decapitated.finalizeSpawn((ServerLevelAccessor) player.level(), player.level().getCurrentDifficultyAt(new BlockPos(event.getEntity().getBlockX(), event.getEntity().getBlockY(), event.getEntity().getBlockZ())), MobSpawnType.MOB_SUMMONED, null, null);
-                        zombie.discard();
-                        player.level().addFreshEntity(decapitated);
+                        if(!zombie.isBaby()) {
+                            Decapitated decapitated = new Decapitated(player.level());
+                            decapitated.setPos(event.getEntity().position());
+                            decapitated.setVariant("zombie");
+                            decapitated.finalizeSpawn((ServerLevelAccessor) player.level(), player.level().getCurrentDifficultyAt(new BlockPos(event.getEntity().getBlockX(), event.getEntity().getBlockY(), event.getEntity().getBlockZ())), MobSpawnType.MOB_SUMMONED, null, null);
+                            zombie.discard();
+                            player.level().addFreshEntity(decapitated);
+                            player.level().playSound(null, player.blockPosition(), SASSounds.HEAD_DECAPITATED.get(), SoundSource.PLAYERS);
+                        }
                     }
                 }
             }

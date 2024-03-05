@@ -1,0 +1,10 @@
+{
+  "head_decapitated": {
+    "subtitles": "sounds.saintsandsinners.head_decapitated",
+    "sounds":  [
+      "saintsandsinners:decapitated_1",
+      "saintsandsinners:decapitated_2",
+      "saintsandsinners:decapitated_3"
+    ]
+  }
+}

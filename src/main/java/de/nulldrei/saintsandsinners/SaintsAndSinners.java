@@ -13,6 +13,7 @@ import de.nulldrei.saintsandsinners.entity.client.*;
 import de.nulldrei.saintsandsinners.event.SASEventHandler;
 import de.nulldrei.saintsandsinners.event.SASForgeEvents;
 import de.nulldrei.saintsandsinners.item.SASItems;
+import de.nulldrei.saintsandsinners.sound.SASSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -110,7 +111,7 @@ public class SaintsAndSinners {
             output.accept(SASItems.RICK_HEAD.get());
             output.accept(SASItems.TOM_HEAD.get());
             output.accept(SASItems.WALTER_HEAD.get());
-            output.accept(SASItems.TEST_HEAD_CUTTER.get());
+            output.accept(SASItems.CLEAVER.get());
             }).build());
 
     public SaintsAndSinners() {
@@ -122,6 +123,7 @@ public class SaintsAndSinners {
         SASMemoryModules.register(modEventBus);
         SASSensorTypes.register(modEventBus);
         SASActivities.register(modEventBus);
+        SASSounds.register(modEventBus);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(new SASForgeEvents());
