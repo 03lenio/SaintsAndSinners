@@ -2,6 +2,7 @@ package de.nulldrei.saintsandsinners.event;
 
 
 import de.nulldrei.saintsandsinners.SASUtil;
+import de.nulldrei.saintsandsinners.data.SASTags;
 import de.nulldrei.saintsandsinners.entity.dead.Decapitated;
 import de.nulldrei.saintsandsinners.entity.hostile.ReclaimedFactionSurvivor;
 import de.nulldrei.saintsandsinners.entity.hostile.TowerFactionSurvivor;
@@ -22,6 +23,7 @@ import net.minecraft.world.entity.monster.Drowned;
 import net.minecraft.world.entity.monster.Husk;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -69,7 +71,8 @@ public class SASEventHandler {
     public void entityDeath(LivingDeathEvent event) {
         if(!event.getEntity().level().isClientSide()) {
             if (event.getSource().getEntity() instanceof Player player) {
-                if (player.getMainHandItem().getItem() == SASItems.CLEAVER.get()) {
+
+                if (player.getMainHandItem().is(SASTags.DECAPITATING_WEAPONS)) {
                     if (event.getEntity() instanceof AbstractSurvivor abstractSurvivor) {
                         String variant = "";
                         if (abstractSurvivor instanceof BeggarSurvivor beggarSurvivor) {

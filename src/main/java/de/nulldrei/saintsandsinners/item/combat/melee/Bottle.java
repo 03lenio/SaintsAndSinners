@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.GlassBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
+import net.minecraftforge.common.extensions.IForgePlayer;
 
 import java.util.Objects;
 
@@ -46,8 +47,11 @@ public class Bottle extends Item {
         } else {
             return false;
         }
-
-
         return true;
+    }
+
+    @Override
+    public void onUseTick(Level p_41428_, LivingEntity p_41429_, ItemStack p_41430_, int p_41431_) {
+        super.onUseTick(p_41428_, p_41429_, p_41430_, p_41431_);
     }
 }

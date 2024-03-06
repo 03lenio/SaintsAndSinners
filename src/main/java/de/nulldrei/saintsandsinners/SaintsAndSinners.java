@@ -112,6 +112,8 @@ public class SaintsAndSinners {
             output.accept(SASItems.TOM_HEAD.get());
             output.accept(SASItems.WALTER_HEAD.get());
             output.accept(SASItems.CLEAVER.get());
+            output.accept(SASItems.ESTEEMED_MORTAL.get());
+            output.accept(SASItems.FOURTH_N_PAIN.get());
             }).build());
 
     public SaintsAndSinners() {

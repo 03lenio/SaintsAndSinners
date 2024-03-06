@@ -5,6 +5,7 @@ import de.nulldrei.saintsandsinners.armor.material.MaterialReclaimed;
 import de.nulldrei.saintsandsinners.armor.material.MaterialRottenFlesh;
 import de.nulldrei.saintsandsinners.armor.material.MaterialTower;
 import de.nulldrei.saintsandsinners.block.SASBlocks;
+import de.nulldrei.saintsandsinners.item.combat.melee.EsteemedMortal;
 import de.nulldrei.saintsandsinners.item.skull.SurvivorHeadItem;
 import de.nulldrei.saintsandsinners.data.SASLootTables;
 import de.nulldrei.saintsandsinners.entity.SASEntities;
@@ -113,6 +114,14 @@ public class SASItems {
 
     public static final RegistryObject<Item> CLEAVER = ITEMS.register("cleaver", () ->
             new SwordItem(Tiers.IRON, 3, -1.5F, new Item.Properties().durability(200)));
+
+    public static final RegistryObject<Item> ESTEEMED_MORTAL = ITEMS.register("esteemed_mortal", () ->
+            new EsteemedMortal(Tiers.IRON, 5, -3F, new Item.Properties().durability(1000).rarity(Rarity.RARE)));
+
+    public static final RegistryObject<Item> FOURTH_N_PAIN = ITEMS.register("4th_n_pain", () ->
+            new SwordItem(Tiers.IRON, 3, -1.1F, new Item.Properties().durability(1200).rarity(Rarity.UNCOMMON)));
+
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
