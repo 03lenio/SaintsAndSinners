@@ -125,6 +125,9 @@ public class SASItems {
     public static final RegistryObject<Item> THE_BAT = ITEMS.register("the_bat", () ->
             new TheBat(Tiers.IRON, 4, -2.6F, new Item.Properties().durability(500).rarity(Rarity.EPIC)));
 
+    public static final RegistryObject<Item> NAIL_BAT = ITEMS.register("nail_bat", () ->
+            new SwordItem(Tiers.IRON, 3, -2.6F, new Item.Properties().durability(250)));
+
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
