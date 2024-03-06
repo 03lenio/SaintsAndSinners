@@ -114,6 +114,7 @@ public class SaintsAndSinners {
             output.accept(SASItems.CLEAVER.get());
             output.accept(SASItems.ESTEEMED_MORTAL.get());
             output.accept(SASItems.FOURTH_N_PAIN.get());
+            output.accept(SASItems.THE_BAT.get());
             }).build());
 
     public SaintsAndSinners() {
