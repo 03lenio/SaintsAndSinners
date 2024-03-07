@@ -5,6 +5,7 @@ import de.nulldrei.saintsandsinners.behaviors.SASDispenseBehavior;
 import de.nulldrei.saintsandsinners.block.SASBlocks;
 import de.nulldrei.saintsandsinners.block.blockentity.SASBlockEntities;
 import de.nulldrei.saintsandsinners.block.skull.render.SASSkullBlockRenderer;
+import de.nulldrei.saintsandsinners.effect.SASMobEffects;
 import de.nulldrei.saintsandsinners.entity.SASEntities;
 import de.nulldrei.saintsandsinners.entity.activitiy.SASActivities;
 import de.nulldrei.saintsandsinners.entity.ai.memory.SASMemoryModules;
@@ -20,6 +21,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
@@ -116,6 +118,8 @@ public class SaintsAndSinners {
             output.accept(SASItems.FOURTH_N_PAIN.get());
             output.accept(SASItems.THE_BAT.get());
             output.accept(SASItems.NAIL_BAT.get());
+            output.accept(SASItems.HATCHET.get());
+            output.accept(SASItems.SAMEDIS_HAND.get());
             }).build());
 
     public SaintsAndSinners() {
@@ -128,6 +132,7 @@ public class SaintsAndSinners {
         SASSensorTypes.register(modEventBus);
         SASActivities.register(modEventBus);
         SASSounds.register(modEventBus);
+        SASMobEffects.register(modEventBus);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(new SASForgeEvents());

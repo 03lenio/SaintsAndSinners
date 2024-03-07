@@ -114,19 +114,25 @@ public class SASItems {
                     (new Item.Properties()).rarity(Rarity.UNCOMMON), Direction.DOWN));
 
     public static final RegistryObject<Item> CLEAVER = ITEMS.register("cleaver", () ->
-            new SwordItem(Tiers.IRON, 3, -1.5F, new Item.Properties().durability(200)));
+            new SwordItem(Tiers.IRON, 3, -2F, new Item.Properties().durability(200)));
 
     public static final RegistryObject<Item> ESTEEMED_MORTAL = ITEMS.register("esteemed_mortal", () ->
-            new EsteemedMortal(Tiers.IRON, 5, -3F, new Item.Properties().durability(1000).rarity(Rarity.RARE)));
+            new EsteemedMortal(Tiers.IRON, 6, -3F, new Item.Properties().durability(1000).rarity(Rarity.RARE)));
 
     public static final RegistryObject<Item> FOURTH_N_PAIN = ITEMS.register("4th_n_pain", () ->
-            new SwordItem(Tiers.IRON, 3, -1.1F, new Item.Properties().durability(1200).rarity(Rarity.UNCOMMON)));
+            new SwordItem(Tiers.IRON, 3, -1.5F, new Item.Properties().durability(1200).rarity(Rarity.UNCOMMON)));
 
     public static final RegistryObject<Item> THE_BAT = ITEMS.register("the_bat", () ->
             new TheBat(Tiers.IRON, 4, -2.6F, new Item.Properties().durability(500).rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> NAIL_BAT = ITEMS.register("nail_bat", () ->
             new SwordItem(Tiers.IRON, 3, -2.6F, new Item.Properties().durability(250)));
+
+    public static final RegistryObject<Item> HATCHET = ITEMS.register("hatchet", () ->
+            new SwordItem(Tiers.IRON, 6, -3.1F, new Item.Properties().durability(350)));
+
+    public static final RegistryObject<Item> SAMEDIS_HAND = ITEMS.register("samedis_hand", () ->
+            new SwordItem(Tiers.IRON, 3, -2.4F, new Item.Properties().durability(600)));
 
 
     public static void register(IEventBus eventBus) {

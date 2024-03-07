@@ -30,7 +30,7 @@ public class EsteemedMortal extends SwordItem {
 
     @Override
     public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
-        AttributeModifier rangeModifier = new AttributeModifier(UUID.fromString("556E1665-5bf6-4d07-9c0f-22b3512c1494"), "SAS Esteemed Mortal extended reach", 0.25D, AttributeModifier.Operation.fromValue(AttributeModifier.Operation.MULTIPLY_BASE.ordinal()));
+        AttributeModifier rangeModifier = new AttributeModifier(UUID.fromString("556E1665-5bf6-4d07-9c0f-22b3512c1494"), "SAS Esteemed Mortal extended reach", 0.5D, AttributeModifier.Operation.fromValue(AttributeModifier.Operation.MULTIPLY_BASE.ordinal()));
         if(!player.level().isClientSide()) {
             if(player.getMainHandItem().getItem() == SASItems.ESTEEMED_MORTAL.get()) {
                 if(!player.getAttribute(ForgeMod.ENTITY_REACH.get()).hasModifier(rangeModifier)) {
