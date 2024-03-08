@@ -26,6 +26,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.GameMasterBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.api.distmarker.Dist;
@@ -120,6 +121,8 @@ public class SaintsAndSinners {
             output.accept(SASItems.NAIL_BAT.get());
             output.accept(SASItems.HATCHET.get());
             output.accept(SASItems.SAMEDIS_HAND.get());
+            output.accept(SASItems.NATIONAL_GUARD_KNIFE.get());
+            output.accept(SASItems.NINJA_STAR.get());
             }).build());
 
     public SaintsAndSinners() {

@@ -1,6 +1,6 @@
 package de.nulldrei.saintsandsinners.data;
 
-public class WorldData {
+public class SASWorldData {
 
     public int lastZombieCount;
     public int lastMobsCountSurface;

@@ -959,7 +959,7 @@
 			"name": "handleOuter",
 			"from": [11.18, 1.9085, 5.498],
 			"to": [11.88, 1.9885, 8.708],
-			"rotation": {"angle": 0, "axis": "x", "origin": [0, 0, -3.6]},
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, -3.6]},
 			"faces": {
 				"north": {"uv": [0, 0, 0.7, 0.08], "rotation": 180, "texture": "#2"},
 				"east": {"uv": [0, 0, 0.08, 3.21], "rotation": 90, "texture": "#2"},
@@ -1179,12 +1179,12 @@
 		},
 		"firstperson_righthand": {
 			"rotation": [0, -90, 30],
-			"translation": [-0.5, 7, -1.5],
+			"translation": [-3.5, 9.25, 1],
 			"scale": [1, 1, 1.17188]
 		},
 		"firstperson_lefthand": {
 			"rotation": [0, 90, -30],
-			"translation": [-0.5, 7, -1.5],
+			"translation": [-1.5, 9.25, 1],
 			"scale": [1, 1, 1.17188]
 		},
 		"ground": {

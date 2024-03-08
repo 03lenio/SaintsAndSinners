@@ -1,6 +1,7 @@
 package de.nulldrei.saintsandsinners.behaviors;
 
 import de.nulldrei.saintsandsinners.entity.projectile.NailBomb;
+import de.nulldrei.saintsandsinners.entity.projectile.NinjaStar;
 import de.nulldrei.saintsandsinners.entity.projectile.StickyProximityBomb;
 import de.nulldrei.saintsandsinners.entity.projectile.ThrownTimedNoiseMakerBomb;
 import de.nulldrei.saintsandsinners.entity.projectile.arrow.ExplosiveArrow;
@@ -56,6 +57,13 @@ public class SASDispenseBehavior {
             DispenserBlock.registerBehavior(SASItems.TIMED_NOISE_MAKER_BOMB.get(), new AbstractProjectileDispenseBehavior() {
                 protected Projectile getProjectile(Level level, Position position, ItemStack stack) {
                     return Util.make(new ThrownTimedNoiseMakerBomb(level, position.x(), position.y(), position.z()), (p_123474_) -> {
+                        p_123474_.setItem(stack);
+                    });
+                }
+            });
+            DispenserBlock.registerBehavior(SASItems.NINJA_STAR.get(), new AbstractProjectileDispenseBehavior() {
+                protected Projectile getProjectile(Level level, Position position, ItemStack stack) {
+                    return Util.make(new NinjaStar(level, position.x(), position.y(), position.z()), (p_123474_) -> {
                         p_123474_.setItem(stack);
                     });
                 }

@@ -23,7 +23,7 @@ public class SamedisHand extends SwordItem {
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
-        if(!player.level().isClientSide() && player.level().getRandom().nextInt(10) == 0 && entity instanceof LivingEntity) {
+        if(!player.level().isClientSide() && player.level().getRandom().nextInt(25) == 0 && entity instanceof LivingEntity) {
             ((LivingEntity) entity).addEffect(new MobEffectInstance(SASMobEffects.BLOOD_POISONING.get(), 300, 1));
         }
         return super.onLeftClickEntity(stack, player, entity);

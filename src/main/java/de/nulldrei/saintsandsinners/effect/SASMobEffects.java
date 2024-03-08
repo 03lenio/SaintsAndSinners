@@ -25,7 +25,7 @@ public class SASMobEffects {
 
     public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, SaintsAndSinners.MODID);
     public static final RegistryObject<MobEffect> BLOOD_POISONING = EFFECTS.register("blood_poisoning",
-            () -> new BloodPoisoningEffect(MobEffectCategory.HARMFUL, 3454687).addAttributeModifier(Attributes.MOVEMENT_SPEED, "7107DE9E-7CE8-4030-940E-514C1F160890", (double)-0.15F, AttributeModifier.Operation.MULTIPLY_TOTAL));
+            () -> new BloodPoisoningEffect(MobEffectCategory.HARMFUL, 703635).addAttributeModifier(Attributes.MOVEMENT_SPEED, "7107DE9E-7CE8-4030-940E-514C1F160890", (double)-0.15F, AttributeModifier.Operation.MULTIPLY_TOTAL));
     public static void register(IEventBus eventBus) {
         EFFECTS.register(eventBus);
     }

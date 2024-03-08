@@ -3,43 +3,34 @@ package de.nulldrei.saintsandsinners;
 import de.nulldrei.saintsandsinners.config.PatrolSpawning;
 import de.nulldrei.saintsandsinners.config.ZombieDifficulty;
 import de.nulldrei.saintsandsinners.config.ZombieSpawning;
-import de.nulldrei.saintsandsinners.data.WorldData;
+import de.nulldrei.saintsandsinners.data.SASWorldData;
 import de.nulldrei.saintsandsinners.entity.SASEntities;
 import de.nulldrei.saintsandsinners.entity.hostile.AbstractFactionSurvivor;
 import de.nulldrei.saintsandsinners.entity.hostile.ReclaimedFactionSurvivor;
 import de.nulldrei.saintsandsinners.entity.hostile.TowerFactionSurvivor;
 import de.nulldrei.saintsandsinners.item.SASItems;
-import jdk.jshell.spi.ExecutionControl;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Zombie;
-import net.minecraft.world.entity.monster.piglin.Piglin;
-import net.minecraft.world.entity.npc.WanderingTraderSpawner;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.structure.structures.IglooPieces;
-import net.minecraft.world.level.levelgen.structure.structures.IglooStructure;
-import org.checkerframework.checker.units.qual.A;
 
-import java.security.Principal;
 import java.util.*;
 
 public class SASUtil {
 
     public static ArrayList<String> neededItems = new ArrayList<>();
     public static ArrayList<String> demandedItems = new ArrayList<>();
-    public static HashMap<String, WorldData> lookupWorldData = new HashMap<>();
+    public static HashMap<String, SASWorldData> lookupWorldData = new HashMap<>();
     public static Random rand = new Random();
     private static int lastFactionSpawned = 999;
     private static int lastFactionSpawnedX = 0;
@@ -299,9 +290,9 @@ public class SASUtil {
         return Math.sqrt((Math.pow(x1 - x2, 2)) + (Math.pow(z1 - z2, 2)));
     }
 
-    public static WorldData getWorldData(String dimension) {
+    public static SASWorldData getWorldData(String dimension) {
         if (!lookupWorldData.containsKey(dimension)) {
-            lookupWorldData.put(dimension, new WorldData());
+            lookupWorldData.put(dimension, new SASWorldData());
         }
         return lookupWorldData.get(dimension);
     }

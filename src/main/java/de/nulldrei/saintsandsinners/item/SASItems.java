@@ -6,7 +6,10 @@ import de.nulldrei.saintsandsinners.armor.material.MaterialRottenFlesh;
 import de.nulldrei.saintsandsinners.armor.material.MaterialTower;
 import de.nulldrei.saintsandsinners.block.SASBlocks;
 import de.nulldrei.saintsandsinners.item.combat.melee.EsteemedMortal;
+import de.nulldrei.saintsandsinners.item.combat.melee.SamedisHand;
 import de.nulldrei.saintsandsinners.item.combat.melee.TheBat;
+import de.nulldrei.saintsandsinners.item.combat.projectile.arrow.ExplosiveArrowItem;
+import de.nulldrei.saintsandsinners.item.combat.projectile.arrow.LureArrowItem;
 import de.nulldrei.saintsandsinners.item.skull.SurvivorHeadItem;
 import de.nulldrei.saintsandsinners.data.SASLootTables;
 import de.nulldrei.saintsandsinners.entity.SASEntities;
@@ -132,8 +135,13 @@ public class SASItems {
             new SwordItem(Tiers.IRON, 6, -3.1F, new Item.Properties().durability(350)));
 
     public static final RegistryObject<Item> SAMEDIS_HAND = ITEMS.register("samedis_hand", () ->
-            new SwordItem(Tiers.IRON, 3, -2.4F, new Item.Properties().durability(600)));
+            new SamedisHand(Tiers.IRON, 3, -2.4F, new Item.Properties().durability(600)));
 
+    public static final RegistryObject<Item> NATIONAL_GUARD_KNIFE = ITEMS.register("national_guard_knife", () ->
+            new SwordItem(Tiers.IRON, 3, -2.2F, new Item.Properties().durability(500)));
+
+    public static final RegistryObject<NinjaStarItem> NINJA_STAR = ITEMS.register("ninja_star",
+            () -> new NinjaStarItem(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

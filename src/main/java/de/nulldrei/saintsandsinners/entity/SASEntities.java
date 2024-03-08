@@ -6,10 +6,7 @@ import de.nulldrei.saintsandsinners.entity.hostile.TowerFactionSurvivor;
 import de.nulldrei.saintsandsinners.entity.dead.Decapitated;
 import de.nulldrei.saintsandsinners.entity.neutral.RobberSurvivor;
 import de.nulldrei.saintsandsinners.entity.peaceful.BeggarSurvivor;
-import de.nulldrei.saintsandsinners.entity.projectile.NailBomb;
-import de.nulldrei.saintsandsinners.entity.projectile.StickyProximityBomb;
-import de.nulldrei.saintsandsinners.entity.projectile.ThrownTimedNoiseMakerBomb;
-import de.nulldrei.saintsandsinners.entity.projectile.TimedNoiseMakerBomb;
+import de.nulldrei.saintsandsinners.entity.projectile.*;
 import de.nulldrei.saintsandsinners.entity.projectile.arrow.ExplosiveArrow;
 import de.nulldrei.saintsandsinners.entity.projectile.arrow.LureArrow;
 import net.minecraft.world.entity.Entity;
@@ -70,6 +67,10 @@ public class SASEntities {
 
     public static final RegistryObject<EntityType<TimedNoiseMakerBomb>> TIMED_NOISE_MAKER_BOMB =
             ENTITY_TYPES.register("timed_noise_maker_bomb", () -> EntityType.Builder.<TimedNoiseMakerBomb>of(TimedNoiseMakerBomb::new, MobCategory.MISC)
+                    .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("timed_noise_maker_bomb"));
+
+    public static final RegistryObject<EntityType<NinjaStar>> NINJA_STAR =
+            ENTITY_TYPES.register("ninja_star", () -> EntityType.Builder.<NinjaStar>of(NinjaStar::new, MobCategory.MISC)
                     .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("timed_noise_maker_bomb"));
 
     public static void register(IEventBus eventBus) {

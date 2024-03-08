@@ -13,7 +13,7 @@ public class BloodPoisoningEffect extends MobEffect {
     @Override
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
         if (!pLivingEntity.level().isClientSide()) {
-                if (pLivingEntity.getHealth() > 10.0F) {
+                if (pLivingEntity.getHealth() > 1.0F) {
                     pLivingEntity.hurt(pLivingEntity.damageSources().wither(), 1.0F);
                 }
         }

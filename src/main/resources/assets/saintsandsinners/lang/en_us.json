@@ -50,5 +50,9 @@
   "item.saintsandsinners.nail_bat": "Nail Bat",
   "item.saintsandsinners.hatchet": "Hatchet",
   "item.saintsandsinners.samedis_hand": "Samedis Hand",
-  "effect.saintsandsinners.blood_poisoning": "Blood Poisoning"
+  "effect.saintsandsinners.blood_poisoning": "Blood Poisoning",
+  "item.saintsandsinners.national_guard_knife": "National Guard Knife",
+  "item.saintsandsinners.ninja_star": "Ninja Star",
+  "death.attack.saintsandsinners.ninja_star": "%1$s was killed by a ninja star",
+  "death.attack.saintsandsinners.ninja_star.player": "%1$s killed %2$s with a ninja star"
 }
