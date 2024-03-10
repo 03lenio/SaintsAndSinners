@@ -5,9 +5,7 @@ import de.nulldrei.saintsandsinners.armor.material.MaterialReclaimed;
 import de.nulldrei.saintsandsinners.armor.material.MaterialRottenFlesh;
 import de.nulldrei.saintsandsinners.armor.material.MaterialTower;
 import de.nulldrei.saintsandsinners.block.SASBlocks;
-import de.nulldrei.saintsandsinners.item.combat.melee.EsteemedMortal;
-import de.nulldrei.saintsandsinners.item.combat.melee.SamedisHand;
-import de.nulldrei.saintsandsinners.item.combat.melee.TheBat;
+import de.nulldrei.saintsandsinners.item.combat.melee.*;
 import de.nulldrei.saintsandsinners.item.combat.projectile.arrow.ExplosiveArrowItem;
 import de.nulldrei.saintsandsinners.item.combat.projectile.arrow.LureArrowItem;
 import de.nulldrei.saintsandsinners.item.skull.SurvivorHeadItem;
@@ -15,7 +13,6 @@ import de.nulldrei.saintsandsinners.data.SASLootTables;
 import de.nulldrei.saintsandsinners.entity.SASEntities;
 import de.nulldrei.saintsandsinners.item.armor.ReclaimedArmor;
 import de.nulldrei.saintsandsinners.item.armor.RottenFleshArmor;
-import de.nulldrei.saintsandsinners.item.combat.melee.Bottle;
 import de.nulldrei.saintsandsinners.item.combat.projectile.*;
 import de.nulldrei.saintsandsinners.item.stuff.BoxOfStuff;
 import net.minecraft.core.Direction;
@@ -142,6 +139,12 @@ public class SASItems {
 
     public static final RegistryObject<NinjaStarItem> NINJA_STAR = ITEMS.register("ninja_star",
             () -> new NinjaStarItem(new Item.Properties()));
+
+    public static final RegistryObject<Absolution> ABSOLUTION = ITEMS.register("absolution",
+            () -> new Absolution(Tiers.IRON, 4, -2.5F, new Item.Properties().durability(1500).rarity(Rarity.EPIC)));
+
+    public static final RegistryObject<Item> NIGHTSHIFT = ITEMS.register("nightshift",
+            () -> new SwordItem(Tiers.IRON, 3, -2.1F, new Item.Properties().durability(1000)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

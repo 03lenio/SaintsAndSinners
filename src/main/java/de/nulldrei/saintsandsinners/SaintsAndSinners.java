@@ -123,6 +123,8 @@ public class SaintsAndSinners {
             output.accept(SASItems.SAMEDIS_HAND.get());
             output.accept(SASItems.NATIONAL_GUARD_KNIFE.get());
             output.accept(SASItems.NINJA_STAR.get());
+            output.accept(SASItems.ABSOLUTION.get());
+            output.accept(SASItems.NIGHTSHIFT.get());
             }).build());
 
     public SaintsAndSinners() {

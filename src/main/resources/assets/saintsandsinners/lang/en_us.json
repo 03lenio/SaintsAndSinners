@@ -54,5 +54,7 @@
   "item.saintsandsinners.national_guard_knife": "National Guard Knife",
   "item.saintsandsinners.ninja_star": "Ninja Star",
   "death.attack.saintsandsinners.ninja_star": "%1$s was killed by a ninja star",
-  "death.attack.saintsandsinners.ninja_star_player": "%1$s killed %2$s with a ninja star"
+  "death.attack.saintsandsinners.ninja_star_player": "%1$s killed %2$s with a ninja star",
+  "item.saintsandsinners.absolution": "Absolution",
+  "item.saintsandsinners.nightshift": "Nightshift"
 }

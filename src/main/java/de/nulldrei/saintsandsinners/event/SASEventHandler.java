@@ -23,6 +23,7 @@ import net.minecraft.world.entity.monster.Drowned;
 import net.minecraft.world.entity.monster.Husk;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraftforge.event.TickEvent;
@@ -72,7 +73,7 @@ public class SASEventHandler {
         if(!event.getEntity().level().isClientSide()) {
             if (event.getSource().getEntity() instanceof Player player) {
 
-                if (player.getMainHandItem().is(SASTags.DECAPITATING_WEAPONS)) {
+                if (player.getMainHandItem().is(SASTags.DECAPITATING_WEAPONS) && player.getOffhandItem() == ItemStack.EMPTY) {
                     if (event.getEntity() instanceof AbstractSurvivor abstractSurvivor) {
                         String variant = "";
                         if (abstractSurvivor instanceof BeggarSurvivor beggarSurvivor) {
