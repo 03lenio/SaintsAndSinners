@@ -219,7 +219,7 @@ public class SaintsAndSinners {
             EntityRenderers.register(SASEntities.THROWN_TIMED_NOISE_MAKER_BOMB.get(), PersistentThrownItemRenderer::new);
             EntityRenderers.register(SASEntities.TIMED_NOISE_MAKER_BOMB.get(), TimedNoiseMakerBombRenderer::new);
             BlockEntityRenderers.register(SASBlockEntities.SAINTSANDSINNERS_SKULL.get(), SASSkullBlockRenderer::new);
-
+            EntityRenderers.register(SASEntities.NINJA_STAR.get(), ThrownItemRenderer::new);
         }
     }
 }

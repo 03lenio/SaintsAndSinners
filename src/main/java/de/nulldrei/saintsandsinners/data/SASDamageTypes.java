@@ -8,15 +8,17 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import org.jetbrains.annotations.Nullable;
 
 public class SASDamageTypes
 {
     public static final ResourceKey<DamageType> NINJA_STAR = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(SaintsAndSinners.MODID, "ninja_star"));
+
+    public static final ResourceKey<DamageType> NINJA_STAR_PLAYER = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(SaintsAndSinners.MODID, "ninja_star_player"));
 
     public static class Sources
     {
@@ -30,9 +32,9 @@ public class SASDamageTypes
             return new DamageSource(getHolder(access, damageTypeKey), directEntity, causingEntity);
         }
 
-        public static DamageSource projectile(RegistryAccess access, Projectile projectile, LivingEntity entity)
+        public static DamageSource projectile(RegistryAccess access, ThrowableItemProjectile projectile, LivingEntity entity)
         {
-            return source(access, NINJA_STAR, projectile, entity);
+            return source(access, NINJA_STAR_PLAYER, projectile, entity);
         }
 
         public static DamageSource projectileNoPlayer(RegistryAccess access, Projectile projectile)

@@ -21,7 +21,7 @@ public class NinjaStarItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level p_43142_, Player p_43143_, InteractionHand p_43144_) {
         ItemStack itemstack = p_43143_.getItemInHand(p_43144_);
         if (!p_43142_.isClientSide()) {
-            NinjaStar ninjaStar = new NinjaStar(p_43142_, p_43143_, p_43143_);
+            NinjaStar ninjaStar = new NinjaStar(p_43142_, p_43143_);
             ninjaStar.setItem(itemstack);
             ninjaStar.shootFromRotation(p_43143_, p_43143_.getXRot(), p_43143_.getYRot(), 0.0F, 1.5F, 1.0F);
             p_43142_.addFreshEntity(ninjaStar);
