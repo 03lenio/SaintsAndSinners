@@ -127,15 +127,15 @@ public abstract class AbstractFactionSurvivor extends AbstractSurvivor {
     }
 
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.PIGLIN_BRUTE_AMBIENT;
+        return SoundEvents.VINDICATOR_AMBIENT;
     }
 
     protected SoundEvent getHurtSound(DamageSource p_35072_) {
-        return SoundEvents.PIGLIN_BRUTE_HURT;
+        return SoundEvents.PILLAGER_HURT;
     }
 
     protected SoundEvent getDeathSound() {
-        return SoundEvents.PIGLIN_BRUTE_DEATH;
+        return SoundEvents.VILLAGER_DEATH;
     }
 
     protected void playStepSound(BlockPos p_35066_, BlockState p_35067_) {
