@@ -18,6 +18,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.CrossbowAttackMob;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ProjectileWeaponItem;
@@ -25,6 +26,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Random;
 
 public class TowerFactionSurvivor extends AbstractFactionSurvivor implements VariantHolder<TowerVariant>, CrossbowAttackMob {
 
@@ -113,7 +116,15 @@ public class TowerFactionSurvivor extends AbstractFactionSurvivor implements Var
 
 
     private ItemStack createSpawnWeapon() {
-        return (double)this.random.nextFloat() < 0.5D ? new ItemStack(Items.CROSSBOW) : new ItemStack(SASItems.SHIV.get());
+        ItemStack meleeWeapon;
+        Random random = new Random();
+        if(random.nextBoolean()) {
+            meleeWeapon = new ItemStack(SASItems.NIGHTSHIFT.get());
+        } else {
+            meleeWeapon = new ItemStack(SASItems.NATIONAL_GUARD_KNIFE.get());
+        }
+
+        return (double)this.random.nextFloat() < 0.5D ? new ItemStack(Items.CROSSBOW) : meleeWeapon;
     }
 
     public SurvivorArmPose getArmPose() {

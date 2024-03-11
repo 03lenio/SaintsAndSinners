@@ -3,7 +3,7 @@
   // If two or more structures in this list can spawn in a biome at a spot, a random one based on weight is chosen to spawn
   "structures": [
     {
-      "structure": "saintsandsinners:tower_outpost_warehouse",
+      "structure": "saintsandsinners:reclaimed_outpost_graveyard",
       "weight": 1
     }
   ],
@@ -12,7 +12,7 @@
     "type": "minecraft:random_spread",
 
     // Make sure this is unique and does not match any other structure set's salt
-    "salt": 1694767053,
+    "salt": 1694434330,
 
     // The average distance apart in chunks for spawn attempts
     "spacing": 40,

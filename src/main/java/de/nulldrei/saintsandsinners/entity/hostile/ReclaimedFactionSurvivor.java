@@ -23,6 +23,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Random;
+
 public class ReclaimedFactionSurvivor extends AbstractFactionSurvivor implements VariantHolder<ReclaimedVariant>, CrossbowAttackMob {
 
     private static final EntityDataAccessor<Boolean> DATA_IS_CHARGING_CROSSBOW = SynchedEntityData.defineId(ReclaimedFactionSurvivor.class, EntityDataSerializers.BOOLEAN);
@@ -80,7 +82,15 @@ public class ReclaimedFactionSurvivor extends AbstractFactionSurvivor implements
 
 
     private ItemStack createSpawnWeapon() {
-        return (double)this.random.nextFloat() < 0.5D ? new ItemStack(Items.CROSSBOW) : new ItemStack(SASItems.BROKEN_BOTTLE.get());
+        ItemStack meleeWeapon;
+        Random random = new Random();
+        if(random.nextBoolean()) {
+            meleeWeapon = new ItemStack(SASItems.HATCHET.get());
+        } else {
+            meleeWeapon = new ItemStack(SASItems.CLEAVER.get());
+        }
+
+        return (double)this.random.nextFloat() < 0.5D ? new ItemStack(Items.CROSSBOW) : meleeWeapon;
     }
 
     protected void populateDefaultEquipmentSlots(RandomSource p_219189_, DifficultyInstance p_219190_) {
