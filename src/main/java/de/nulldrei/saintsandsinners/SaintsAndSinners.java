@@ -5,6 +5,7 @@ import de.nulldrei.saintsandsinners.behaviors.SASDispenseBehavior;
 import de.nulldrei.saintsandsinners.block.SASBlocks;
 import de.nulldrei.saintsandsinners.block.blockentity.SASBlockEntities;
 import de.nulldrei.saintsandsinners.block.skull.render.SASSkullBlockRenderer;
+import de.nulldrei.saintsandsinners.config.SASConfig;
 import de.nulldrei.saintsandsinners.effect.SASMobEffects;
 import de.nulldrei.saintsandsinners.entity.SASEntities;
 import de.nulldrei.saintsandsinners.entity.activitiy.SASActivities;
@@ -21,12 +22,10 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.GameMasterBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.api.distmarker.Dist;
@@ -156,20 +155,13 @@ public class SaintsAndSinners {
         modEventBus.addListener(this::addCreative);
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SASConfig.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
         LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
-
-        if (Config.logDirtBlock)
-            LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
-
-        LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
-
-        Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
         event.enqueueWork(SASDispenseBehavior::registerDispenseBehaviors);
     }
 

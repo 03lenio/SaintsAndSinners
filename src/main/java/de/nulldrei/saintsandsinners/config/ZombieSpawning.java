@@ -2,14 +2,7 @@ package de.nulldrei.saintsandsinners.config;
 
 public class ZombieSpawning  {
 
-    public static int maxZombiesNight = 35;
-
-    public static int maxZombiesNightBaseRarity = 100;
-
-    public static int zombieSpawnTickDelay = 5;
     public static boolean extraSpawningAutoTarget = false;
-
-    public static int extraSpawningMaxCount = 50;
 
     //day surface spawns
     public static int daySpawningSurfaceMaxCount = 30;
@@ -17,7 +10,6 @@ public class ZombieSpawning  {
     public static int daySpawningSurfaceRandomPool = 5;
 
     public static int daySpawningDistMin = 30;
-
     public static int daySpawningDistMax = 70;
 
     public static int daySpawningSurfaceMaxGroupSize = 3;
@@ -31,7 +23,6 @@ public class ZombieSpawning  {
 
     public static int extraNightSpawningDistMax = 70;
 
-    public static int extraNightSpawningSurfaceMaxGroupSize = 3;
 
     //cave spawns configs
     public static int extraSpawningCavesMaxCount = 50;
@@ -46,7 +37,6 @@ public class ZombieSpawning  {
 
     public static int extraSpawningCavesTryCount = 15;
 
-     public static boolean extraSpawningUseNaturalSpawnList = false;
 
 
 }
