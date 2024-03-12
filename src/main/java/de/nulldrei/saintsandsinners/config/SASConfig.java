@@ -36,7 +36,7 @@ public class SASConfig
     //PatrolSpawning
     private static final ForgeConfigSpec.IntValue PATROL_SPAWN_POOL = BUILDER
             .comment("The chance every tick to spawn a patrol")
-            .defineInRange("patrolSpawnPool", 250, 50, Integer.MAX_VALUE);
+            .defineInRange("patrolSpawnPool", 150, 50, Integer.MAX_VALUE);
 
     private static final ForgeConfigSpec.IntValue PATROL_SPAWN_MAX_DIST = BUILDER
             .comment("The maximum distance patrols spawn away from the player.")

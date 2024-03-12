@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern":[
+    "NNT",
+    "NCT",
+    "  T"
+  ],
+  "key": {
+    "N": {
+      "item": "saintsandsinners:nail"
+    },
+    "C": {
+      "item": "saintsandsinners:tin_can"
+    },
+    "T": {
+      "item": "minecraft:tnt"
+    }
+  },
+  "result": {
+    "item": "saintsandsinners:nail_bomb"
+}
+}

@@ -14,6 +14,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Zombie;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -24,22 +26,21 @@ public class SASEntities {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
             DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, SaintsAndSinners.MODID);
 
-
     public static final RegistryObject<EntityType<BeggarSurvivor>> BEGGAR_SURVIVOR =
             ENTITY_TYPES.register("beggar_survivor", () -> EntityType.Builder.of(BeggarSurvivor::new, MobCategory.CREATURE)
-                    .sized(1, 2).build("beggar_survivor"));
+                    .sized(0.6F, 1.95F).build("beggar_survivor"));
 
     public static final RegistryObject<EntityType<RobberSurvivor>> ROBBER_SURVIVOR =
             ENTITY_TYPES.register("robber_survivor", () -> EntityType.Builder.of(RobberSurvivor::new, MobCategory.CREATURE)
-                    .sized(1, 2).build("robber_survivor"));
+                    .sized(0.6F, 1.95F).build("robber_survivor"));
 
     public static final RegistryObject<EntityType<TowerFactionSurvivor>> TOWER_FACTION_SURVIVOR =
             ENTITY_TYPES.register("tower_guard", () -> EntityType.Builder.of(TowerFactionSurvivor::new, MobCategory.CREATURE)
-                    .sized(1, 2).build("tower_guard"));
+                    .sized(0.6F, 1.95F).build("tower_guard"));
 
     public static final RegistryObject<EntityType<ReclaimedFactionSurvivor>> RECLAIMED_FACTION_SURVIVOR =
             ENTITY_TYPES.register("reclaimed_cultist", () -> EntityType.Builder.of(ReclaimedFactionSurvivor::new, MobCategory.CREATURE)
-                    .sized(1, 2).build("reclaimed_cultist"));
+                    .sized(0.6F, 1.95F).build("reclaimed_cultist"));
 
     public static final RegistryObject<EntityType<ExplosiveArrow>> EXPLOSIVE_ARROW =
             ENTITY_TYPES.register("explosive_arrow", () -> EntityType.Builder.<ExplosiveArrow>of(ExplosiveArrow::new, MobCategory.MISC)
@@ -59,7 +60,7 @@ public class SASEntities {
 
     public static final RegistryObject<EntityType<Decapitated>> DECAPITATED =
             ENTITY_TYPES.register("decapitated", () -> EntityType.Builder.<Decapitated>of(Decapitated::new, MobCategory.CREATURE)
-                    .sized(1, 2).build("decapitated"));
+                    .sized(0.6F, 1.95F).build("decapitated"));
 
     public static final RegistryObject<EntityType<ThrownTimedNoiseMakerBomb>> THROWN_TIMED_NOISE_MAKER_BOMB =
             ENTITY_TYPES.register("thrown_timed_noise_maker_bomb", () -> EntityType.Builder.<ThrownTimedNoiseMakerBomb>of(ThrownTimedNoiseMakerBomb::new, MobCategory.MISC)

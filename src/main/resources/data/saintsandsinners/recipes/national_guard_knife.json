@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern":[
+    " S ",
+    " I ",
+    " R "
+  ],
+  "key": {
+    "S": {
+      "item": "saintsandsinners:sharp_blade"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "saintsandsinners:reinforced_handle"
+    }
+  },
+  "result": {
+    "item": "saintsandsinners:national_guard_knife"
+}
+}

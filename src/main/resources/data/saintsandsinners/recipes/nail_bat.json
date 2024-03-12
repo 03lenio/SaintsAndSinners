@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern":[
+    "NP ",
+    " PN",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "P": {
+      "item": "minecraft:oak_planks"
+    },
+    "N": {
+      "item": "saintsandsinners:nail"
+    }
+  },
+  "result": {
+    "item": "saintsandsinners:nail_bat"
+}
+}

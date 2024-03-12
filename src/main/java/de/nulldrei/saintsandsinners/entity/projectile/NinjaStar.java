@@ -58,7 +58,7 @@ public class NinjaStar extends ThrowableItemProjectile {
             } else {
                 source = SASDamageTypes.Sources.projectileNoPlayer(level().registryAccess(), this);
             }
-            p_37259_.getEntity().hurt(source, 20F);
+            p_37259_.getEntity().hurt(source, 3F);
             discard();
         }
         super.onHitEntity(p_37259_);

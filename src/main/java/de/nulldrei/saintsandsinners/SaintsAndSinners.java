@@ -124,6 +124,11 @@ public class SaintsAndSinners {
             output.accept(SASItems.NINJA_STAR.get());
             output.accept(SASItems.ABSOLUTION.get());
             output.accept(SASItems.NIGHTSHIFT.get());
+            output.accept(SASItems.NAIL.get());
+            output.accept(SASItems.SHARP_BLADE.get());
+            output.accept(SASItems.TIN_CAN.get());
+            output.accept(SASItems.MUSIC_PLAYER.get());
+            output.accept(SASItems.REINFORCED_HANDLE.get());
             }).build());
 
     public SaintsAndSinners() {

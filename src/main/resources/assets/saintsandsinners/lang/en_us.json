@@ -56,5 +56,10 @@
   "death.attack.saintsandsinners.ninja_star": "%1$s was killed by a ninja star",
   "death.attack.saintsandsinners.ninja_star_player": "%1$s killed %2$s with a ninja star",
   "item.saintsandsinners.absolution": "Absolution",
-  "item.saintsandsinners.nightshift": "Nightshift"
+  "item.saintsandsinners.nightshift": "Nightshift",
+  "item.saintsandsinners.nail": "Nail",
+  "item.saintsandsinners.sharp_blade": "Sharp Blade",
+  "item.saintsandsinners.tin_can": "Tin Can",
+  "item.saintsandsinners.music_player": "Music Player",
+  "item.saintsandsinners.reinforced_handle": "Reinforced Handle"
 }

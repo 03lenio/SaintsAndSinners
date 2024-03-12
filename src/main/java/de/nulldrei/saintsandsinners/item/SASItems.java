@@ -146,6 +146,16 @@ public class SASItems {
     public static final RegistryObject<Item> NIGHTSHIFT = ITEMS.register("nightshift",
             () -> new SwordItem(Tiers.IRON, 3, -2.1F, new Item.Properties().durability(1000)));
 
+    public static final RegistryObject<Item> NAIL = ITEMS.register("nail", () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> SHARP_BLADE = ITEMS.register("sharp_blade", () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> TIN_CAN = ITEMS.register("tin_can", () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> MUSIC_PLAYER = ITEMS.register("music_player", () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> REINFORCED_HANDLE = ITEMS.register("reinforced_handle", () -> new Item(new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
