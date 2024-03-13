@@ -125,14 +125,14 @@
         {
           "type": "minecraft:item",
           "weight": 15,
-          "name": "minecraft:redstone",
+          "name": "saintsandsinners:orange_box_of_stuff",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 1,
-                "max": 4
+                "max": 3
               },
               "add": false
             }
@@ -210,7 +210,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
+          "weight": 5,
           "name": "saintsandsinners:sticky_proximity_bomb",
           "functions": [
             {

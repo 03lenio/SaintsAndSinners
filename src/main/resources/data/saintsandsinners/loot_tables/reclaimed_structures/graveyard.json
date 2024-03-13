@@ -98,6 +98,22 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 10,
+          "name": "saintsandsinners:grey_box_of_stuff",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 2,
+                "max": 4
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
           "weight": 20,
           "name": "minecraft:wheat",
           "functions": [
@@ -169,22 +185,6 @@
           "type": "minecraft:item",
           "weight": 10,
           "name": "minecraft:pumpkin_seeds",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 2,
-                "max": 4
-              },
-              "add": false
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 10,
-          "name": "minecraft:beetroot_seeds",
           "functions": [
             {
               "function": "minecraft:set_count",

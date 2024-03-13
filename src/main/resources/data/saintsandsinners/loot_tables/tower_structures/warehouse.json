@@ -16,6 +16,11 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 2,
+          "name": "saintsandsinners:absolution"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 15,
           "name": "saintsandsinners:national_guard_knife"
         },
@@ -28,11 +33,6 @@
           "type": "minecraft:item",
           "weight": 20,
           "name": "saintsandsinners:nail_bomb"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 2,
-          "name": "saintsandsinners:absolution"
         },
         {
           "type": "minecraft:item",
@@ -168,13 +168,13 @@
         {
           "type": "minecraft:item",
           "weight": 10,
-          "name": "minecraft:wheat_seeds",
+          "name": "saintsandsinners:green_box_of_stuff",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": 2,
+                "min": 1,
                 "max": 4
               },
               "add": false
@@ -205,7 +205,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
+          "weight": 5,
           "name": "saintsandsinners:sticky_proximity_bomb",
           "functions": [
             {

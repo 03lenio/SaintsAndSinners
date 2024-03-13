@@ -79,7 +79,8 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:coal",
+          "weight": 15,
+          "name": "saintsandsinners:orange_box_of_stuff",
           "functions": [
             {
               "function": "minecraft:set_count",
