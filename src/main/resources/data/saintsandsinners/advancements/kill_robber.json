@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:iron_sword"
+    },
+    "title": "He had it coming",
+    "description": "Kill a robber",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "saintsandsinners:kill_beggar",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "saintsandsinners:robber_survivor"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

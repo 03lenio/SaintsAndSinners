@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "saintsandsinners:broken_bottle"
+    },
+    "title": "This isn't a bar fight",
+    "description": "Use a broken bottle to attack a mob",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "saintsandsinners:kill_zombie",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:player_hurt_entity",
+      "conditions": {
+        "player": {
+          "equipment": {
+            "mainhand": {
+              "items": [
+                "saintsandsinners:broken_bottle"
+              ]
+            }
+          }
+        },
+        "entity": {}
+      }
+    }
+  }
+}

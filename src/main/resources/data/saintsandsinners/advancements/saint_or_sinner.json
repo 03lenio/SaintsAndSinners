@@ -1,0 +1,17 @@
+{
+  "display": {
+    "icon": {
+      "item": "saintsandsinners:abraham_head"
+    },
+    "title": "Saint or Sinner?",
+    "description": "Enter this changed world for the first time",
+    "background": "minecraft:textures/block/soul_sand.png",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick"
+    }
+  }
+}

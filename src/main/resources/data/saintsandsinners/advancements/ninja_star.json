@@ -1,0 +1,43 @@
+{
+  "display": {
+    "icon": {
+      "item": "saintsandsinners:ninja_star"
+    },
+    "title": "What you know about kung fu?",
+    "description": "Throw a ninja star",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "saintsandsinners:broken_bottle",
+  "criteria": {
+    "throw_ninja_star": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type_specific": {
+                "type": "player"
+              }
+            }
+          }
+        ],
+        "item": {
+          "items": [
+            "saintsandsinners:ninja_star"
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "throw_ninja_star"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

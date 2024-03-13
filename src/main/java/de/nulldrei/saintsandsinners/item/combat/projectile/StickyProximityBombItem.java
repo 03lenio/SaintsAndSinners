@@ -1,6 +1,8 @@
 package de.nulldrei.saintsandsinners.item.combat.projectile;
 
 import de.nulldrei.saintsandsinners.entity.projectile.StickyProximityBomb;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -31,7 +33,6 @@ public class StickyProximityBombItem extends Item {
         if (!p_43143_.getAbilities().instabuild) {
             itemstack.shrink(1);
         }
-
         return InteractionResultHolder.sidedSuccess(itemstack, p_43142_.isClientSide());
     }
 }

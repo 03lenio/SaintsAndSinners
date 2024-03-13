@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "saintsandsinners:tower_vest"
+    },
+    "title": "Mama is not going to like this",
+    "description": "Kill a Tower guard",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "saintsandsinners:kill_robber",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "saintsandsinners:tower_guard"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

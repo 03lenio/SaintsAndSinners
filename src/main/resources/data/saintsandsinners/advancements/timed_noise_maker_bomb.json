@@ -1,0 +1,43 @@
+{
+  "display": {
+    "icon": {
+      "item": "saintsandsinners:timed_noise_maker_bomb"
+    },
+    "title": "TiK ToK on the clock",
+    "description": "Throw a timed noise maker bomb",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "saintsandsinners:nail_bomb",
+  "criteria": {
+    "throw_timed_noise_maker_bomb": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type_specific": {
+                "type": "player"
+              }
+            }
+          }
+        ],
+        "item": {
+          "items": [
+            "saintsandsinners:timed_noise_maker_bomb"
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "throw_timed_noise_maker_bomb"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,43 @@
+{
+  "display": {
+    "icon": {
+      "item": "saintsandsinners:orange_box_of_stuff"
+    },
+    "title": "So exciting",
+    "description": "Open a orange box of stuff",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "saintsandsinners:saint_or_sinner",
+  "criteria": {
+    "open_orange_box_of_stuff": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type_specific": {
+                "type": "player"
+              }
+            }
+          }
+        ],
+        "item": {
+          "items": [
+            "saintsandsinners:orange_box_of_stuff"
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "open_orange_box_of_stuff"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,43 @@
+{
+  "display": {
+    "icon": {
+      "item": "saintsandsinners:green_box_of_stuff"
+    },
+    "title": "Thanks for the iron kind stranger",
+    "description": "Open a green box of stuff",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "saintsandsinners:orange_box_of_stuff",
+  "criteria": {
+    "open_green_box_of_stuff": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type_specific": {
+                "type": "player"
+              }
+            }
+          }
+        ],
+        "item": {
+          "items": [
+            "saintsandsinners:green_box_of_stuff"
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "open_green_box_of_stuff"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

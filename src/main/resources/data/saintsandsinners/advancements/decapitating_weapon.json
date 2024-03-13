@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "item": "saintsandsinners:cleaver"
+    },
+    "title": "Don't lose your head",
+    "description": "Use a weapon that can decapitate",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "saintsandsinners:kill_zombie",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:player_hurt_entity",
+      "conditions": {
+        "player": {
+          "equipment": {
+            "mainhand": {
+              "items": [
+                "saintsandsinners:absolution",
+                "saintsandsinners:hatchet",
+                "saintsandsinners:cleaver",
+                "saintsandsinners:esteemed_mortal",
+                "saintsandsinners:4th_n_pain"
+              ]
+            }
+          }
+        },
+        "entity": {}
+      }
+    }
+  }
+}

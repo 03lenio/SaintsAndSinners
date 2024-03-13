@@ -1,6 +1,8 @@
 package de.nulldrei.saintsandsinners.item.combat.projectile;
 
 import de.nulldrei.saintsandsinners.entity.projectile.ThrownTimedNoiseMakerBomb;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -25,13 +27,13 @@ public class TimedNoiseMakerBombItem extends Item {
             timedNoiseMakerBomb.setItem(itemstack);
             timedNoiseMakerBomb.shootFromRotation(p_43143_, p_43143_.getXRot(), p_43143_.getYRot(), 0.0F, 1.5F, 1.0F);
             p_43142_.addFreshEntity(timedNoiseMakerBomb);
+            CriteriaTriggers.USING_ITEM.trigger((ServerPlayer) p_43143_, itemstack);
         }
 
         p_43143_.awardStat(Stats.ITEM_USED.get(this));
         if (!p_43143_.getAbilities().instabuild) {
             itemstack.shrink(1);
         }
-
         return InteractionResultHolder.sidedSuccess(itemstack, p_43142_.isClientSide());
     }
 }

@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:rotten_flesh"
+    },
+    "title": "Damn yall live like this?",
+    "description": "Infiltrate a Reclaimed outpost",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "saintsandsinners:warehouse",
+  "criteria": {
+    "graveyard": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "saintsandsinners:reclaimed_outpost_graveyard"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "graveyard"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

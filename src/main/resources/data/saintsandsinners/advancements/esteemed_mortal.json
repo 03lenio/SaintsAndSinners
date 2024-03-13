@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "saintsandsinners:esteemed_mortal"
+    },
+    "title": "Now this looks painful",
+    "description": "Obtain the Esteemed Mortal from a Reclaimed outpost",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "saintsandsinners:broken_bottle",
+  "criteria": {
+    "esteemed_mortal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "saintsandsinners:esteemed_mortal"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "esteemed_mortal"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

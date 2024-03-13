@@ -2,10 +2,15 @@ package de.nulldrei.saintsandsinners.item.stuff;
 
 import de.nulldrei.saintsandsinners.SASUtil;
 import de.nulldrei.saintsandsinners.SaintsAndSinners;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.Criterion;
+import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -33,6 +38,8 @@ public class BoxOfStuff extends Item {
     public @NotNull InteractionResult useOn(UseOnContext p_41427_) {
         LootTable lootTable;
         if (!p_41427_.getLevel().isClientSide()) {
+            p_41427_.getPlayer().awardStat(Stats.ITEM_USED.get(this));
+            CriteriaTriggers.USING_ITEM.trigger((ServerPlayer) p_41427_.getPlayer(), p_41427_.getItemInHand());
             lootTable = p_41427_.getLevel().getServer().getLootData().getLootTable(getLootTableLocation());
             LootParams lootparams = (new LootParams.Builder((ServerLevel)p_41427_.getLevel())).withParameter(LootContextParams.ORIGIN, p_41427_.getPlayer().position()).withParameter(LootContextParams.THIS_ENTITY, p_41427_.getPlayer()).create(LootContextParamSets.GIFT);
             List<ItemStack> list = lootTable.getRandomItems(lootparams);

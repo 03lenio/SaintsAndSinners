@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "saintsandsinners:the_bat"
+    },
+    "title": "Do I know this bat from somewhere?",
+    "description": "Obtain the Bat from a robber",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "saintsandsinners:broken_bottle",
+  "criteria": {
+    "the_bat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "saintsandsinners:the_bat"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_bat"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

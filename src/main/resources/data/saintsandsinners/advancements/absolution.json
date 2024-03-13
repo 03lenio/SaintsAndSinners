@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "saintsandsinners:absolution"
+    },
+    "title": "That's a long sword",
+    "description": "Use the absolution for the first time ",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "saintsandsinners:broken_bottle",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:player_hurt_entity",
+      "conditions": {
+        "player": {
+          "equipment": {
+            "mainhand": {
+              "items": [
+                "saintsandsinners:absolution"
+              ]
+            }
+          }
+        },
+        "entity": {}
+      }
+    }
+  }
+}
