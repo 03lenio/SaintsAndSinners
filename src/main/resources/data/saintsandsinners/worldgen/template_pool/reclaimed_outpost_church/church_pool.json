@@ -1,0 +1,15 @@
+{
+  "name": "saintsandsinners:reclaimed_outpost_church/church_pool.json",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "saintsandsinners:reclaimed_outpost_church/reclaimed_outpost_church",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}
