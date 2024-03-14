@@ -76,7 +76,7 @@ public class SASConfig
 
     private static final ForgeConfigSpec.IntValue EXTRA_SURFACE_MAX_COUNT = BUILDER
             .comment("The maximum amount of SaintsAndSinners spawned zombies that are allowed to exist on the surface during the day")
-            .defineInRange("extraZombieDayMaxCount", 30, 0, Integer.MAX_VALUE);
+            .defineInRange("extraZombieDayMaxCount", 50, 0, Integer.MAX_VALUE);
 
     private static final ForgeConfigSpec.IntValue EXTRA_SURFACE_SPAWN_POOL = BUILDER
             .comment("The chance every tick to spawn zombies on the surface while it's day")
@@ -97,7 +97,7 @@ public class SASConfig
     //Night
     private static final ForgeConfigSpec.IntValue EXTRA_SURFACE_NIGHT_MAX_COUNT = BUILDER
             .comment("The maximum amount of SaintsAndSinners spawned zombies that are allowed to exist on the surface during the night")
-            .defineInRange("extraZombieNightSpawnPool", 50, 0, Integer.MAX_VALUE);
+            .defineInRange("extraZombieNightMaxCount", 70, 0, Integer.MAX_VALUE);
 
     private static final ForgeConfigSpec.IntValue EXTRA_SURFACE_NIGHT_SPAWN_POOL = BUILDER
             .comment("The chance every tick to spawn zombies on the surface while it's night")
@@ -114,7 +114,7 @@ public class SASConfig
     //Caves
     private static final ForgeConfigSpec.IntValue EXTRA_CAVE_MAX_COUNT = BUILDER
             .comment("The maximum amount of SaintsAndSinners spawned zombies that are allowed to exist on the surface during the night")
-            .defineInRange("extraZombieCaveSpawnPool", 50, 0, Integer.MAX_VALUE);
+            .defineInRange("extraZombieCaveSpawnMaxCount", 50, 0, Integer.MAX_VALUE);
 
     private static final ForgeConfigSpec.IntValue EXTRA_CAVE_SPAWN_POOL = BUILDER
             .comment("The chance every tick to spawn zombies while in a cave")

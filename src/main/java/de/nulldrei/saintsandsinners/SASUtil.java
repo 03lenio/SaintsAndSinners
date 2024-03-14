@@ -23,6 +23,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.phys.AABB;
 
 import java.util.*;
 
@@ -39,37 +40,6 @@ public class SASUtil {
 
     public static void tickPlayer(Player player) {
         if(player.level().getDifficulty() != Difficulty.PEACEFUL && !player.level().isClientSide()) {
-            //Day Zombies
-            if (ZombieDifficulty.spawnDayZombies) {
-                if (player.level().isDay()) {
-                    if (getWorldData(player.level().dimension().toString()).lastMobsCountSurface < ZombieSpawning.daySpawningSurfaceMaxCount) {
-                        int rand2 = rand.nextInt(ZombieSpawning.daySpawningSurfaceRandomPool);
-                        if (ZombieSpawning.daySpawningSurfaceRandomPool <= 0 || rand2 == 0) {
-                            spawnNewMobSurface(player);
-                        }
-                    }
-                }
-            }
-
-            //Extra Night
-            if (ZombieDifficulty.spawnExtraNightZombies) {
-                if (!player.level().isDay()) {
-                    if (getWorldData(player.level().dimension().toString()).lastMobsCountSurface < ZombieSpawning.extraNightSpawningSurfaceMaxCount) {
-                        if (ZombieSpawning.extraNightSpawningSurfaceRandomPool <= 0 || rand.nextInt(ZombieSpawning.extraNightSpawningSurfaceRandomPool) == 0) {
-                            spawnNewMobSurface(player);
-                        }
-                    }
-                }
-            }
-
-            if (ZombieDifficulty.extraSpawningCave) {
-                if (getWorldData(player.level().dimension().toString()).lastMobsCountSurface < ZombieSpawning.extraSpawningCavesMaxCount) {
-                    if (ZombieSpawning.extraSpawningCavesRandomPool <= 0 || rand.nextInt(ZombieSpawning.extraSpawningCavesRandomPool) == 0) {
-                        spawnNewMobCave(player);
-                    }
-                }
-            }
-
             //Patrol Spawn
             if (PatrolSpawning.patrolSpawnRandomPool <= 0 || rand.nextInt(PatrolSpawning.patrolSpawnRandomPool) == 0) {
                 spawnNewPatrol(player);
@@ -77,6 +47,35 @@ public class SASUtil {
                     int randSize = player.level().random.nextInt(PatrolSpawning.patrolRivalSpawnMaxGroupSize) + 1;
                     for (int i = 0; i < randSize; i++) {
                         spawnRivalingPatrol(player);
+                    }
+                }
+            }
+            if(!isInDarkCave(player.level(), player.getOnPos().below().getX(), player.getOnPos().below().getY(), player.getOnPos().below().getZ(), false)) {
+                //Day Zombies
+                if (ZombieDifficulty.spawnDayZombies) {
+                    if (player.level().isDay()) {
+                        if (!isZombieCapReached((ServerLevel) player.level(), player)) {
+                            int rand2 = rand.nextInt(ZombieSpawning.daySpawningSurfaceRandomPool);
+                            if (ZombieSpawning.daySpawningSurfaceRandomPool <= 0 || rand2 == 0) {
+                                spawnNewMobSurface(player);
+                            }
+                        }
+                    }
+                }
+                //Extra Night
+                if (ZombieDifficulty.spawnExtraNightZombies) {
+                    if (!player.level().isDay()) {
+                        if (!isZombieCapReached((ServerLevel) player.level(), player)) {
+                            if (ZombieSpawning.extraNightSpawningSurfaceRandomPool <= 0 || rand.nextInt(ZombieSpawning.extraNightSpawningSurfaceRandomPool) == 0) {
+                                spawnNewMobSurface(player);
+                            }
+                        }
+                    }
+                }
+            } else if (ZombieDifficulty.extraSpawningCave) {
+                if (!isZombieCapReached((ServerLevel) player.level(), player)) {
+                    if (ZombieSpawning.extraSpawningCavesRandomPool <= 0 || rand.nextInt(ZombieSpawning.extraSpawningCavesRandomPool) == 0) {
+                        spawnNewMobCave(player);
                     }
                 }
             }
@@ -110,10 +109,7 @@ public class SASUtil {
             for (int i = 0; i < randSize; i++) {
                 spawnMobsAllowed(player, world, tryX, tryY, tryZ);
             }
-
-
             SaintsAndSinners.LOGGER.info("spawnNewMobSurface: " + tryX + ", " + tryY + ", " + tryZ + ", At time: " + player.level().getDayTime());
-
             return;
         }
     }
@@ -135,6 +131,7 @@ public class SASUtil {
                 for (int i = 0; i < randSize; i++) {
                     spawnMobsAllowed(player, world, tryX, tryY, tryZ);
                 }
+                SaintsAndSinners.LOGGER.info("spawnNewMobCave: " + tryX + ", " + tryY + ", " + tryZ + ", At time: " + player.level().getDayTime());
                 return;
         }
     }
@@ -144,8 +141,7 @@ public class SASUtil {
         BlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
         if (!world.canSeeSky(pos) && world.getLightEmission(pos) < 5) {
-
-            if (!(block instanceof AirBlock) && (block == Blocks.STONE || block == Blocks.DEEPSLATE|| block == Blocks.BLACKSTONE || block == Blocks.MOSS_BLOCK) /*(block != Blocks.grass || block.getMaterial() != Material.grass)*/) {
+            if (!(block instanceof AirBlock) && (block == Blocks.STONE || block == Blocks.DEEPSLATE|| block == Blocks.BLACKSTONE || block == Blocks.MOSS_BLOCK || block == Blocks.AMETHYST_BLOCK || block == Blocks.ANDESITE || block == Blocks.GRANITE || block == Blocks.GRAVEL || block == Blocks.MOSS_BLOCK || block == Blocks.COAL_BLOCK || block == Blocks.IRON_ORE || block == Blocks.COPPER_ORE || block == Blocks.GOLD_ORE || block == Blocks.COBBLESTONE || block == Blocks.DIAMOND_ORE || block == Blocks.OBSIDIAN || block == Blocks.REDSTONE_ORE || block == Blocks.LAPIS_ORE || block == Blocks.DIORITE || block == Blocks.TUFF)) {
                 if (!checkSpaceToSpawn) {
                     return true;
                 } else {
@@ -176,7 +172,6 @@ public class SASUtil {
             ServerLevel world = (ServerLevel) player.level();
             int spawned = 0;
             int factionType = world.random.nextInt(2);
-            System.out.println(factionType);
             lastFactionSpawnedX = tryX;
             lastFactionSapwnedY = tryY;
             lastFactionSpawnedZ = tryZ;
@@ -290,11 +285,42 @@ public class SASUtil {
         return Math.sqrt((Math.pow(x1 - x2, 2)) + (Math.pow(z1 - z2, 2)));
     }
 
-    public static SASWorldData getWorldData(String dimension) {
-        if (!lookupWorldData.containsKey(dimension)) {
-            lookupWorldData.put(dimension, new SASWorldData());
+    public static boolean isZombieCapReached(ServerLevel level, Player player) {
+        int counter = 0;
+        if(!isInDarkCave(level, player.getOnPos().below().getX(), player.getOnPos().below().getY(), player.getOnPos().below().getZ(), false)) {
+            for (Entity entity : level.getAllEntities()) {
+                //Day
+                if (level.isDay()) {
+                    if (counter < ZombieSpawning.daySpawningSurfaceMaxCount) {
+                        if (entity instanceof Zombie zombie) {
+                            counter++;
+                        }
+                    } else {
+                        return true;
+                    }
+                } else {
+                    if (counter < ZombieSpawning.extraNightSpawningSurfaceMaxCount) {
+                        if (entity instanceof Zombie zombie) {
+                            counter++;
+                        }
+                    } else {
+                        return true;
+                    }
+                }
+            }
+        } else {
+            AABB playerSpawnRange = player.getBoundingBox().inflate(500, 100, 500);
+            for(Entity entity : level.getEntities(player, playerSpawnRange)) {
+                if (counter < ZombieSpawning.extraSpawningCavesMaxCount) {
+                    if (entity instanceof Zombie zombie) {
+                        counter++;
+                    }
+                } else {
+                    return true;
+                }
+            }
         }
-        return lookupWorldData.get(dimension);
+        return false;
     }
 
 }

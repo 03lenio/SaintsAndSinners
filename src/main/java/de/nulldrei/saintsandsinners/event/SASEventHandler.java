@@ -72,7 +72,6 @@ public class SASEventHandler {
     public void entityDeath(LivingDeathEvent event) {
         if(!event.getEntity().level().isClientSide()) {
             if (event.getSource().getEntity() instanceof Player player) {
-
                 if (player.getMainHandItem().is(SASTags.DECAPITATING_WEAPONS) && player.getOffhandItem() == ItemStack.EMPTY) {
                     if (event.getEntity() instanceof AbstractSurvivor abstractSurvivor) {
                         String variant = "";
