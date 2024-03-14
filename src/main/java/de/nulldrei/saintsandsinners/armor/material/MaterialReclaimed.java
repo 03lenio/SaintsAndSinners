@@ -15,8 +15,8 @@ import java.util.function.Supplier;
 
 public enum MaterialReclaimed implements ArmorMaterial {
 
-        RECLAIMED("reclaimed", 0, Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
-            map.put(ArmorItem.Type.HELMET, 0);
+        RECLAIMED("reclaimed", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
+            map.put(ArmorItem.Type.HELMET, 2);
         }), 25, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
             return Ingredient.of(Items.SKELETON_SKULL);
         });

@@ -16,9 +16,9 @@ import java.util.function.Supplier;
 
 public enum MaterialTower implements ArmorMaterial {
 
-    TOWER("tower", 0, Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
-        map.put(ArmorItem.Type.HELMET, 0);
-        map.put(ArmorItem.Type.CHESTPLATE, 1);
+    TOWER("tower", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
+        map.put(ArmorItem.Type.HELMET, 1);
+        map.put(ArmorItem.Type.CHESTPLATE, 6);
     }), 25, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
         return Ingredient.of(Items.BLACKSTONE);
     });
