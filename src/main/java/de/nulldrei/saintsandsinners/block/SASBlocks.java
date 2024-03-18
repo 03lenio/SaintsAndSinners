@@ -9,8 +9,10 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CauldronBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -23,9 +25,8 @@ public class SASBlocks {
 
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, SaintsAndSinners.MODID);
-
     public static final RegistryObject<Block> RECYCLING_BIN = registerBlock("recycling_bin",
-                () -> new RecyclingBinBlock(BlockBehaviour.Properties.copy(Blocks.CAULDRON).sound(SoundType.STONE)));
+                () -> new RecyclingBinBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(1.0F)));
 
     public static final RegistryObject<Block> ABRAHAM_HEAD = BLOCKS.register("abraham_head",
             () -> new SASSkullBlock(SASSkullBlock.Types.ABRAHAM, BlockBehaviour.Properties.of().strength(1.0F).pushReaction(PushReaction.DESTROY)));

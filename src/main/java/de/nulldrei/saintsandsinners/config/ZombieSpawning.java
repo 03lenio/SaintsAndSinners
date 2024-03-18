@@ -4,6 +4,8 @@ public class ZombieSpawning  {
 
     public static boolean extraSpawningAutoTarget = false;
 
+    public static boolean spawnZombiePerPlayer = false;
+
     //day surface spawns
     public static int daySpawningSurfaceMaxCount = 50;
 

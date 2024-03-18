@@ -68,11 +68,15 @@ public class SASConfig
             .defineInRange("patrolRivalMaxGroupSize", 7, 2, Integer.MAX_VALUE);
 
     //Zombie spawning
-
     //Day
     private static final ForgeConfigSpec.BooleanValue EXTRA_ZOMBIES_AUTO_TARGET_PLAYER = BUILDER
             .comment("If zombies that are spawned by SaintsAndSinners automatically seek and attack you upon spawning")
             .define("extraZombiesAutoTargetPlayer", false);
+
+    private static final ForgeConfigSpec.BooleanValue EXTRA_ZOMBIES_SPAWN_PER_PLAYER = BUILDER
+            .comment("If the zombie spawn limit is decided per player or for the whole world")
+            .define("extraZombieLimitPerPlayer", false);
+
 
     private static final ForgeConfigSpec.IntValue EXTRA_SURFACE_MAX_COUNT = BUILDER
             .comment("The maximum amount of SaintsAndSinners spawned zombies that are allowed to exist on the surface during the day")
@@ -166,6 +170,7 @@ public class SASConfig
         ZombieDifficulty.randomSpeedBoost = EXTRA_ZOMBIE_SPEED_BOOST.get();
 
         ZombieSpawning.extraSpawningAutoTarget = EXTRA_ZOMBIES_AUTO_TARGET_PLAYER.get();
+        ZombieSpawning.spawnZombiePerPlayer = EXTRA_ZOMBIES_SPAWN_PER_PLAYER.get();
         ZombieSpawning.daySpawningSurfaceMaxCount = EXTRA_SURFACE_MAX_COUNT.get();
         ZombieSpawning.daySpawningSurfaceRandomPool = EXTRA_SURFACE_SPAWN_POOL.get();
         ZombieSpawning.daySpawningDistMin = EXTRA_SURFACE_SPAWN_MIN_DIST.get();

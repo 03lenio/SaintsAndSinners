@@ -73,7 +73,7 @@ public class RecyclingBinBlock extends HorizontalDirectionalBlock {
                                     addItem(p_60506_, new ItemStack(SASItems.COPPER_NUGGET.get()), p_60505_);
                                     returnedItem = true;
                                 }
-                                else if(itemStack.getItem().toString().equals("string")) {
+                                else if(itemStack.getItem().toString().contains("wool")) {
                                     addItem(p_60506_, new ItemStack(Items.STRING), p_60505_);
                                     returnedItem = true;
                                 }

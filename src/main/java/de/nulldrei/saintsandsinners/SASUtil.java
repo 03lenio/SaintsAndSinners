@@ -288,23 +288,48 @@ public class SASUtil {
     public static boolean isZombieCapReached(ServerLevel level, Player player) {
         int counter = 0;
         if(!isInDarkCave(level, player.getOnPos().below().getX(), player.getOnPos().below().getY(), player.getOnPos().below().getZ(), false)) {
-            for (Entity entity : level.getAllEntities()) {
-                //Day
-                if (level.isDay()) {
-                    if (counter < ZombieSpawning.daySpawningSurfaceMaxCount) {
-                        if (entity instanceof Zombie zombie) {
-                            counter++;
+            if(!ZombieSpawning.spawnZombiePerPlayer) {
+                for (Entity entity : level.getAllEntities()) {
+                    //Day
+                    if (level.isDay()) {
+                        if (counter < ZombieSpawning.daySpawningSurfaceMaxCount) {
+                            if (entity instanceof Zombie zombie) {
+                                counter++;
+                            }
+                        } else {
+                            return true;
                         }
                     } else {
-                        return true;
+                        if (counter < ZombieSpawning.extraNightSpawningSurfaceMaxCount) {
+                            if (entity instanceof Zombie zombie) {
+                                counter++;
+                            }
+                        } else {
+                            return true;
+                        }
+                    }
+                }
+            } else {
+                AABB playerSpawnRange = player.getBoundingBox().inflate(500, 100, 500);
+                if(level.isDay()) {
+                    for(Entity entity : level.getEntities(player, playerSpawnRange)) {
+                        if (counter < ZombieSpawning.daySpawningSurfaceMaxCount) {
+                            if (entity instanceof Zombie zombie) {
+                                counter++;
+                            }
+                        } else {
+                            return true;
+                        }
                     }
                 } else {
-                    if (counter < ZombieSpawning.extraNightSpawningSurfaceMaxCount) {
-                        if (entity instanceof Zombie zombie) {
-                            counter++;
+                    for(Entity entity : level.getEntities(player, playerSpawnRange)) {
+                        if (counter < ZombieSpawning.extraNightSpawningSurfaceMaxCount) {
+                            if (entity instanceof Zombie zombie) {
+                                counter++;
+                            }
+                        } else {
+                            return true;
                         }
-                    } else {
-                        return true;
                     }
                 }
             }
