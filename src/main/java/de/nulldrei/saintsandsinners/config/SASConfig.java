@@ -77,6 +77,9 @@ public class SASConfig
             .comment("If the zombie spawn limit is decided per player or for the whole world")
             .define("extraZombieLimitPerPlayer", false);
 
+    private static final ForgeConfigSpec.IntValue EXTRA_ZOMBIES_PER_PLAYER_MAX_RANGE = BUILDER
+            .comment("When in caves and additionally when the option above is enabled, zombies will spawn in a area around each player until the max count is reached, define the range of this area here in blocks")
+            .defineInRange("extraZombieLimitPerPlayerMaxRange", 250, 10, Integer.MAX_VALUE);
 
     private static final ForgeConfigSpec.IntValue EXTRA_SURFACE_MAX_COUNT = BUILDER
             .comment("The maximum amount of SaintsAndSinners spawned zombies that are allowed to exist on the surface during the day")
@@ -143,15 +146,8 @@ public class SASConfig
 
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 
-    public static boolean logDirtBlock;
-    public static int magicNumber;
-    public static String magicNumberIntroduction;
     public static Set<Item> items;
 
-    private static boolean validateItemName(final Object obj)
-    {
-        return obj instanceof final String itemName && ForgeRegistries.ITEMS.containsKey(new ResourceLocation(itemName));
-    }
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {
@@ -171,6 +167,7 @@ public class SASConfig
 
         ZombieSpawning.extraSpawningAutoTarget = EXTRA_ZOMBIES_AUTO_TARGET_PLAYER.get();
         ZombieSpawning.spawnZombiePerPlayer = EXTRA_ZOMBIES_SPAWN_PER_PLAYER.get();
+        ZombieSpawning.spawnZombiePerPlayerMaxRange = EXTRA_ZOMBIES_PER_PLAYER_MAX_RANGE.get();
         ZombieSpawning.daySpawningSurfaceMaxCount = EXTRA_SURFACE_MAX_COUNT.get();
         ZombieSpawning.daySpawningSurfaceRandomPool = EXTRA_SURFACE_SPAWN_POOL.get();
         ZombieSpawning.daySpawningDistMin = EXTRA_SURFACE_SPAWN_MIN_DIST.get();

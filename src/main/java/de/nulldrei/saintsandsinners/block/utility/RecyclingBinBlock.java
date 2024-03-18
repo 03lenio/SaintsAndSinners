@@ -91,7 +91,7 @@ public class RecyclingBinBlock extends HorizontalDirectionalBlock {
                                     returnedItem = true;
                                 }
                                 else if(itemStack.getItem().toString().contains("glass")) {
-                                    addItem(p_60506_, new ItemStack(Items.GLASS), p_60505_);
+                                    addItem(p_60506_, new ItemStack(SASItems.GLASS_SHARD.get()), p_60505_);
                                     returnedItem = true;
                                 }
                                 else if(itemStack.getItem().toString().contains("leather")) {

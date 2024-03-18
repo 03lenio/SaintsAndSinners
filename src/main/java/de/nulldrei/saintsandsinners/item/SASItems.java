@@ -156,6 +156,8 @@ public class SASItems {
 
     public static final RegistryObject<Item> REINFORCED_HANDLE = ITEMS.register("reinforced_handle", () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> GLASS_SHARD = ITEMS.register("glass_shard", () -> new Item(new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

@@ -310,7 +310,8 @@ public class SASUtil {
                     }
                 }
             } else {
-                AABB playerSpawnRange = player.getBoundingBox().inflate(500, 100, 500);
+                System.out.println(ZombieSpawning.spawnZombiePerPlayerMaxRange);
+                AABB playerSpawnRange = player.getBoundingBox().inflate(ZombieSpawning.spawnZombiePerPlayerMaxRange, 100, ZombieSpawning.spawnZombiePerPlayerMaxRange);
                 if(level.isDay()) {
                     for(Entity entity : level.getEntities(player, playerSpawnRange)) {
                         if (counter < ZombieSpawning.daySpawningSurfaceMaxCount) {
@@ -334,7 +335,7 @@ public class SASUtil {
                 }
             }
         } else {
-            AABB playerSpawnRange = player.getBoundingBox().inflate(500, 100, 500);
+            AABB playerSpawnRange = player.getBoundingBox().inflate(ZombieSpawning.spawnZombiePerPlayerMaxRange, 100, ZombieSpawning.spawnZombiePerPlayerMaxRange);
             for(Entity entity : level.getEntities(player, playerSpawnRange)) {
                 if (counter < ZombieSpawning.extraSpawningCavesMaxCount) {
                     if (entity instanceof Zombie zombie) {

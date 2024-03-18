@@ -26,7 +26,7 @@ public class SASBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, SaintsAndSinners.MODID);
     public static final RegistryObject<Block> RECYCLING_BIN = registerBlock("recycling_bin",
-                () -> new RecyclingBinBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(1.0F)));
+                () -> new RecyclingBinBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().mapColor(MapColor.STONE).strength(1.0F)));
 
     public static final RegistryObject<Block> ABRAHAM_HEAD = BLOCKS.register("abraham_head",
             () -> new SASSkullBlock(SASSkullBlock.Types.ABRAHAM, BlockBehaviour.Properties.of().strength(1.0F).pushReaction(PushReaction.DESTROY)));
