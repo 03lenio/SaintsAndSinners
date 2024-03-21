@@ -11,6 +11,8 @@ import de.nulldrei.saintsandsinners.entity.hostile.TowerFactionSurvivor;
 import de.nulldrei.saintsandsinners.item.SASItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Brightness;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -20,8 +22,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.AABB;
 
@@ -102,13 +107,14 @@ public class SASUtil {
             int tryZ = ((int)player.getZ() - range / 2 + rand.nextInt(range));
             int tryY = player.level().getHeight(Heightmap.Types.MOTION_BLOCKING, (int)Math.floor(tryX), (int)Math.floor(tryZ));
             if ((int)distance((int)player.getX(), (int)player.getZ(), tryX, tryZ) < minDist || (int)distance((int)player.getX(), (int)player.getZ(), tryX, tryZ) > maxDist ||
-                    player.level().getLightEmission(new BlockPos(tryX, tryY, tryZ)) >= 6) {
-               continue;
+                    !isDarkEnoughToSpawn((ServerLevel) player.level(), new BlockPos(tryX, tryY, tryZ), player.level().random)) {
+                continue;
             }
             ServerLevel world = (ServerLevel) player.level();
             for (int i = 0; i < randSize; i++) {
                 spawnMobsAllowed(player, world, tryX, tryY, tryZ);
             }
+
             SaintsAndSinners.LOGGER.info("spawnNewMobSurface: " + tryX + ", " + tryY + ", " + tryZ + ", At time: " + player.level().getDayTime());
             return;
         }
@@ -156,6 +162,10 @@ public class SASUtil {
         return false;
     }
 
+    public static boolean isDarkEnoughToSpawn(ServerLevelAccessor p_219010_, BlockPos p_219011_, RandomSource p_219012_) {
+        return p_219010_.getBrightness(LightLayer.BLOCK, p_219011_) <= 6;
+    }
+
     public static void spawnNewPatrol(Player player) {
         int minDist = PatrolSpawning.patrolSpawningMinDist;
         int maxDist = PatrolSpawning.patrolSpawningMaxDist;
@@ -165,7 +175,7 @@ public class SASUtil {
             int tryZ = ((int)player.getZ() - range / 2 + rand.nextInt(range));
             int tryY = player.level().getHeight(Heightmap.Types.MOTION_BLOCKING, (int)Math.floor(tryX), (int)Math.floor(tryZ));
             if ((int)distance((int)player.getX(), (int)player.getZ(), tryX, tryZ) < minDist || (int)distance((int)player.getX(), (int)player.getZ(), tryX, tryZ) > maxDist ||
-                    player.level().getLightEmission(new BlockPos(tryX, tryY, tryZ)) >= 6) {
+                    !isDarkEnoughToSpawn((ServerLevel) player.level(), new BlockPos(tryX, tryY, tryZ), player.level().random)) {
                 continue;
             }
             int randSize = player.level().random.nextInt(PatrolSpawning.patrolGroupMaxSize) + 1;
@@ -310,7 +320,6 @@ public class SASUtil {
                     }
                 }
             } else {
-                System.out.println(ZombieSpawning.spawnZombiePerPlayerMaxRange);
                 AABB playerSpawnRange = player.getBoundingBox().inflate(ZombieSpawning.spawnZombiePerPlayerMaxRange, 100, ZombieSpawning.spawnZombiePerPlayerMaxRange);
                 if(level.isDay()) {
                     for(Entity entity : level.getEntities(player, playerSpawnRange)) {
